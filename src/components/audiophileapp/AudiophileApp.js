@@ -1,4 +1,5 @@
 import designSystemImport from '../../lib/designSystem.js';
+import AppHeader from '../appheader/AppHeader.js';
 
 class AudiophileApp extends HTMLElement {
     constructor() {
@@ -18,27 +19,32 @@ class AudiophileApp extends HTMLElement {
 
     html() {
         this.shadowRoot.innerHTML = `
-            <div id="app-inner-container">
-                <h1>TEST</h1>
-            </div>
+            <section id="section-1">
+                <div id="section-1-inner-container">
+                    <app-header></app-header>
+                </div>
+            </section>
         `;
     }
 
     css() {
         this.shadowRoot.innerHTML += `
             <style>
-                *, *::before, *::after { margin: 0; padding: 0; }
+                *, *::before, *::after {margin:0;padding:0;}
 
                 :host {
                     display: block;
                     outline: 2px solid red;
                 }
 
-                #app-inner-container {
+                #section-1 {
+                    background-color: var(--black-1);
+                }
+
+                #section-1-inner-container {
                     margin-left: auto;
                     margin-right: auto;
-                    max-width: 1110px;
-                    outline: 2px solid blue;
+                    width: 77.083%;
                 }
             </style>
         `;
