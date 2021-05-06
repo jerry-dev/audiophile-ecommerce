@@ -19,11 +19,7 @@ class AudiophileApp extends HTMLElement {
 
     html() {
         this.shadowRoot.innerHTML = `
-            <section id="section-1">
-                <div id="section-1-inner-container">
-                    <app-header></app-header>
-                </div>
-            </section>
+            <app-header></app-header>
         `;
     }
 
@@ -35,16 +31,6 @@ class AudiophileApp extends HTMLElement {
                 :host {
                     display: block;
                     outline: 2px solid red;
-                }
-
-                #section-1 {
-                    background-color: var(--black-1);
-                }
-
-                #section-1-inner-container {
-                    margin-left: auto;
-                    margin-right: auto;
-                    width: 77.083%;
                 }
             </style>
         `;

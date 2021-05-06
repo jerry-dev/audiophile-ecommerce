@@ -44,9 +44,10 @@ export default class AppHeader extends HTMLElement {
 
                 :host {
                     align-items: center;
+                    background-color: var(--black-1);
+                    border-bottom: 1px solid var(--white-1-opaque-1);
                     display: flex;
                     height: 6rem;
-                    border-bottom: 1px solid var(--white-1-opaque-1);
                 }
 
                 #header-inner-container {
@@ -54,12 +55,14 @@ export default class AppHeader extends HTMLElement {
                     flex-direction: row;
                     height: 1.75rem;
                     justify-content: space-between;
-                    width: 100%;
+                    margin-right: auto;
+                    margin-left: auto;
+                    width: 77.083%;
                 }
 
                 #companyLogo {
-                    width: 8.9375rem;
                     height: 1.5625rem;
+                    width: 8.9375rem;
                 }
 
                 ul {
@@ -84,8 +87,8 @@ export default class AppHeader extends HTMLElement {
                 }
 
                 #cartIcon {
-                    width: 1.458125rem;
                     height: 1.25rem;
+                    width: 1.458125rem;
                 }
             </style>
         `;
