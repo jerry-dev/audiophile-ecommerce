@@ -17,7 +17,7 @@ export default class AppHeader extends HTMLElement {
     }
 
     html() {
-        this.shadowRoot.innerHTML += `
+        this.shadowRoot.innerHTML = `
             <div id="header-inner-container">
                 <a href="#">
                     <img id="companyLogo" alt="company logo" src="../src/assets/shared/desktop/logo.svg"/>
@@ -86,6 +86,10 @@ export default class AppHeader extends HTMLElement {
                     text-decoration: none;
                 }
 
+                ul > li > a:hover {
+                    color: var(--brown-2);
+                }
+
                 #cartIcon {
                     height: 1.25rem;
                     width: 1.458125rem;
@@ -95,7 +99,7 @@ export default class AppHeader extends HTMLElement {
     }
 
     importedCSS() {
-        this.shadowRoot.innerHTML += `${designSystemImport()};`;
+        this.shadowRoot.innerHTML += `${designSystemImport()}`;
     }
 }
 

@@ -1,0 +1,172 @@
+import designSystemImport from '../../lib/designSystem.js';
+
+export default class AppFooter extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({mode: 'open'});
+    }
+
+    connectedCallback() {
+        this.render();
+    }
+
+    render() {
+        this.html();
+        this.css();
+        this.importedCSS();
+    }
+
+    html() {
+        this.shadowRoot.innerHTML = `
+            <div id="footer-inner-container">
+                <a href="#">
+                    <img id="companyLogo" alt="company logo" src="../src/assets/shared/desktop/logo.svg"/>
+                </a>
+                <nav id="appNav">
+                    <ul>
+                        <li class="subtitle-design-system"><a href="#">HOME</a></li>
+                        <li class="subtitle-design-system"><a href="#">HEADPHONES</a></li>
+                        <li class="subtitle-design-system"><a href="#">SPEAKERS</a></li>
+                        <li class="subtitle-design-system"><a href="#">EARPHONES</a></li>
+                    </ul>
+                </nav>
+                <p id="companyBio">
+                    Audiophile is an all in one stop to fulfill your audio needs. We're a small
+                    team of music lovers and sound specialists who are devoted to helping you get the
+                    most out of personal audio. Come and visit our demo facility - we’re open 7 days a week.
+                </p>
+                <nav id="socialNav">
+                    <ul>
+                        <li class="subtitle-design-system">
+                            <a href="https://www.facebook.com/facebook" target="_blank">
+                                <img id="companyLogo" alt="facebook icon link" src="../src/assets/shared/desktop/icon-facebook.svg"/>
+                            </a>
+                        </li>
+                        <li class="subtitle-design-system">
+                            <a href="https://twitter.com/" target="_blank">
+                                <img id="companyLogo" alt="twitter icon link" src="../src/assets/shared/desktop/icon-twitter.svg"/>
+                            </a>
+                        </li>
+                        <li class="subtitle-design-system">
+                            <a href="https://www.instagram.com/" target="_blank">
+                                <img id="companyLogo" alt="instagram icon link" src="../src/assets/shared/desktop/icon-instagram.svg"/>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <p id="details">
+                    <small>
+                        Copyright 2021. All Rights Reserved
+                    </small>
+                </p>
+            </div>
+        `;
+    }
+
+    css() {
+        this.shadowRoot.innerHTML += `
+            <style>
+                *, *::before, *::after {padding:0;margin:0;}
+
+                :host {
+                    align-items: center;
+                    background-color: var(--black-1);
+                    display: flex;
+                }
+
+                #footer-inner-container {
+                    display: grid;
+                    grid-row-gap: 2.25rem;
+                    grid-template-columns: repeat(2, 1fr);
+                    margin-bottom: 3rem;
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-top: 4.6875rem;
+                    width: 77.083%;
+                }
+
+                #companyLogo {
+                    grid-column: 1 / span 1;
+                    height: 1.5625rem;
+                    width: 8.9375rem;
+                }
+
+                #appNav {
+                    grid-column: 2 / span 1;
+                    margin-left: auto;
+                }
+
+                #appNav > ul {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
+
+                #appNav > ul > li {
+                    text-decoration: none;
+                }
+
+                #appNav > ul > li:not(:last-child) {
+                    margin-right: 2.125rem;
+                }
+
+                #appNav > ul > li > a {
+                    color: var(--white-1);
+                    text-decoration: none;
+                }
+
+                #appNav > ul > li > a:hover {
+                    color: var(--brown-2);
+                }
+
+                #companyBio {
+                    color: var(--white-1);
+                    grid-column: 1 / span 1;
+                    grid-row: 2 / span 1;
+                    max-width: 58ch;
+                    opacity: 0.5;
+                }
+
+                #socialNav {
+                    margin-left: auto;
+                    margin-top: auto;
+                    max-width: 6.5rem;
+                }
+
+                #socialNav > ul {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    list-style: none;
+                }
+
+                #socialNav > ul > li:not(:last-child) {
+                    margin-right: 1rem;
+                }
+
+                #socialNav > ul > li > a > img {
+                    height: 1.5rem;
+                    width: 1.5rem;
+                }
+
+                #socialNav > ul > li > a > img:hover {
+                    filter: invert(57%) sepia(98%) saturate(484%) hue-rotate(328deg) brightness(91%) contrast(84%);
+                }
+
+                #details {
+                    color: var(--white-1);
+                    grid-row: 3;
+                    opacity: 0.5;
+                }
+            </style>
+        `;
+    }
+
+    importedCSS() {
+        this.shadowRoot.innerHTML += `${designSystemImport()}`;
+    }
+}
+
+if (!window.customElements.get('app-footer')) {
+    window.customElements.define('app-footer', AppFooter)
+}

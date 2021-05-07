@@ -1,5 +1,5 @@
-import designSystemImport from '../../lib/designSystem.js';
 import AppHeader from '../appheader/AppHeader.js';
+import AppFooter from '../appfooter/AppFooter.js';
 
 class AudiophileApp extends HTMLElement {
     constructor() {
@@ -14,30 +14,26 @@ class AudiophileApp extends HTMLElement {
     render() {
         this.html();
         this.css();
-        this.importedCSS();
     }
 
     html() {
         this.shadowRoot.innerHTML = `
             <app-header></app-header>
+            <app-footer></app-footer>
         `;
     }
 
     css() {
         this.shadowRoot.innerHTML += `
             <style>
-                *, *::before, *::after {margin:0;padding:0;}
+                *,*::before,*::after{margin:0;padding:0;}
 
                 :host {
                     display: block;
-                    outline: 2px solid red;
+                    outline: 2px solid gold;
                 }
             </style>
         `;
-    }
-
-    importedCSS() {
-        this.shadowRoot.innerHTML += `${designSystemImport()};`;
     }
 }
 
