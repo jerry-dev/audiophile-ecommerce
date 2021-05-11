@@ -1,0 +1,214 @@
+export default class CategoryNavigator extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({mode: 'open'});
+    }
+
+    connectedCallback() {
+        this.render();
+    }
+
+    render() {
+        this.HTML();
+        this.CSS();
+        this.tabletCSS();
+    }
+
+    HTML() {
+        this.shadowRoot.innerHTML = `
+            <nav>
+                <ul>
+                    <li>
+                        <article>
+                            <span class="articleInnerContainer">
+                                <img class="categoryImage" id="headphonesCategory" alt="headphones link icon" src="../src/assets/shared/desktop/image-headphones.png">
+                                <h3>HEADPHONES</h3>
+                                <a class="linkContainer" href="#">
+                                    <p>SHOP<img alt="arrow symbol" src="../src/assets/shared/desktop/icon-arrow-right.svg"/></p>
+                                </a>
+                            </span>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <span class="articleInnerContainer">
+                                <img class="categoryImage" id="speakersCategory" alt="Speakers link icon" src="../src/assets/shared/desktop/image-speakers.png">
+                                <h3>SPEAKERS</h3>
+                                <a class="linkContainer" href="#">
+                                    <p>SHOP<img alt="arrow symbol" src="../src/assets/shared/desktop/icon-arrow-right.svg"/></p>
+                                </a>
+                            </span>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <span class="articleInnerContainer">
+                                <img class="categoryImage" id="earphonesCategory" alt="Speakers link icon" src="../src/assets/shared/desktop/image-earphones.png">
+                                <h3>EARPHONES</h3>
+                                <a class="linkContainer" href="#">
+                                    <p>SHOP<img alt="arrow symbol" src="../src/assets/shared/desktop/icon-arrow-right.svg"/></p>
+                                </a>
+                            </span>
+                        </article>
+                    </li>
+                </ul>
+            </nav>
+        `;
+    }
+
+    CSS() {
+        this.shadowRoot.innerHTML += `
+            <style>
+                *, *::before, *::after {padding:0; margin:0;}
+
+                :host {
+                    background-color: var(--white-1);
+                    display: block;
+                }
+
+                :host nav {
+                    padding-bottom: 10.5rem;
+                    margin-left: auto;
+                    margin-right: auto;
+                    padding-top: 116px;
+                    max-width: 77.083%;
+                }
+
+                :host > nav ul {
+                    display: flex;
+                    list-style: none;
+                    flex-direction: row;
+                }
+
+                :host > nav ul li {
+                    width: 100%;
+                }
+
+                :host > nav article {
+                    display: flex;
+                    background-color: var(--grey-1);
+                    border-radius: 0.5rem;
+                    padding-bottom: 1.875rem;
+                    padding-top: 7.25rem;
+                }
+
+                :host .articleInnerContainer {
+                    align-items: center;
+                    display: inline-flex;
+                    flex-direction: column;
+                    height: 100%;
+                    justify-content: flex-end;
+                    margin-left: auto;
+                    margin-right: auto;
+                    text-align: center;
+                    position: relative;
+                }
+
+                :host > nav article .categoryImage {
+                    position: absolute;
+                }
+
+                :host > nav #headphonesCategory {
+                    bottom: 4.0625rem;
+                    width: 11.309375rem;
+                }
+
+                :host > nav #speakersCategory {
+                    bottom: 4.375rem;
+                    width: 10.684375rem;
+                }
+
+                :host > nav #earphonesCategory {
+                    bottom: 3.75rem;
+                    width: 11.75rem;
+                }
+
+                :host .articleInnerContainer h3 {
+                    font-size: 1.125rem;
+                    letter-spacing: 0.066964375rem;
+                    line-height: 1.5625rem;
+                    margin-bottom: 1.0625rem;
+                }
+
+                :host > nav ul li:not(:last-child) {
+                    margin-right: 0.625rem;
+                }
+
+                :host > nav article a {
+                    text-decoration: none;
+                }
+
+                :host > nav .linkContainer {
+                    align-items: center;
+                    display: flex;
+                    flex-direction: row;
+                    max-height: 1.125rem;
+                    min-width: 3.5825rem;
+                }
+
+                :host > nav .linkContainer p {
+                    font-size: 0.8125rem;
+                    height: 1.125rem;
+                    padding-bottom: 0.25rem;
+                }
+
+                :host > nav .linkContainer p > img {
+                    height: 0.625rem;
+                    padding-top: 0.4375rem;
+                    margin-left: 0.8325rem;
+                    width: 0.3125rem;
+                }
+            </style>
+        `;
+    }
+
+    tabletCSS() {
+        this.shadowRoot.innerHTML += `
+            <style>
+                @media screen and (max-width: 768px) {
+                    :host > nav {
+                        padding-bottom: 4.1875rem;
+                        padding-top: 6.75rem;
+                        min-width: 89.713%;
+                    }
+
+                    :host > nav article {
+                        padding-bottom: 1.375rem;
+                        padding-top: 5.5rem;
+                    }
+
+                    :host .articleInnerContainer h3 {
+                        font-size: 0.9375rem;
+                        letter-spacing: 1.07143px;
+                        line-height: 1.25rem;
+                        margin-bottom: 1.0625rem;
+                    }
+
+
+                    :host > nav article .categoryImage {
+                        bottom: 5.9375rem;
+                    }
+    
+                    :host > nav #headphonesCategory {
+                        bottom: 4.5rem;
+                        width: 7.5rem;
+                    }
+    
+                    :host > nav #speakersCategory {
+                        bottom: 4.0625rem;
+                        width: 8.125rem;
+                    }
+    
+                    :host > nav #earphonesCategory {
+                        bottom: 4.0625rem;
+                        width: 8.75rem;
+                    }
+                }
+            </style>
+        `;
+    }
+}
+
+if (!window.customElements.get('category-navigator')) {
+    window.customElements.define('category-navigator', CategoryNavigator)
+}

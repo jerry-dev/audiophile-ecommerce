@@ -11,12 +11,13 @@ export default class AppFooter extends HTMLElement {
     }
 
     render() {
-        this.html();
-        this.css();
+        this.HTML();
+        this.CSS();
         this.importedCSS();
+        this.tabletCSS();
     }
 
-    html() {
+    HTML() {
         this.shadowRoot.innerHTML = `
             <div id="footer-inner-container">
                 <a href="#">
@@ -63,7 +64,7 @@ export default class AppFooter extends HTMLElement {
         `;
     }
 
-    css() {
+    CSS() {
         this.shadowRoot.innerHTML += `
             <style>
                 *, *::before, *::after {padding:0;margin:0;}
@@ -157,6 +158,15 @@ export default class AppFooter extends HTMLElement {
                     color: var(--white-1);
                     grid-row: 3;
                     opacity: 0.5;
+                }
+            </style>
+        `;
+    }
+
+    tabletCSS() {
+        this.shadowRoot.innerHTML += `
+            <style>
+                @media screen and (max-width: 768px) {
                 }
             </style>
         `;

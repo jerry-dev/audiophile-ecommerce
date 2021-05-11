@@ -26,11 +26,10 @@ class AudiophileApp extends HTMLElement {
     css() {
         this.shadowRoot.innerHTML += `
             <style>
-                *,*::before,*::after{margin:0;padding:0;}
-
                 :host {
                     display: block;
-                    outline: 2px solid gold;
+                    min-height: 100%;
+                    outline: 4px solid gold;
                 }
             </style>
         `;
