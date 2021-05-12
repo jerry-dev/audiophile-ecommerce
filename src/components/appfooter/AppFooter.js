@@ -15,6 +15,7 @@ export default class AppFooter extends HTMLElement {
         this.CSS();
         this.importedCSS();
         this.tabletCSS();
+        this.mobileCSS();
     }
 
     HTML() {
@@ -40,17 +41,17 @@ export default class AppFooter extends HTMLElement {
                     <ul>
                         <li class="subtitle-design-system">
                             <a href="https://www.facebook.com/facebook" target="_blank">
-                                <img id="companyLogo" alt="facebook icon link" src="../src/assets/shared/desktop/icon-facebook.svg"/>
+                                <img alt="facebook icon link" src="../src/assets/shared/desktop/icon-facebook.svg"/>
                             </a>
                         </li>
                         <li class="subtitle-design-system">
                             <a href="https://twitter.com/" target="_blank">
-                                <img id="companyLogo" alt="twitter icon link" src="../src/assets/shared/desktop/icon-twitter.svg"/>
+                                <img alt="twitter icon link" src="../src/assets/shared/desktop/icon-twitter.svg"/>
                             </a>
                         </li>
                         <li class="subtitle-design-system">
                             <a href="https://www.instagram.com/" target="_blank">
-                                <img id="companyLogo" alt="instagram icon link" src="../src/assets/shared/desktop/icon-instagram.svg"/>
+                                <img alt="instagram icon link" src="../src/assets/shared/desktop/icon-instagram.svg"/>
                             </a>
                         </li>
                     </ul>
@@ -167,6 +168,97 @@ export default class AppFooter extends HTMLElement {
         this.shadowRoot.innerHTML += `
             <style>
                 @media screen and (max-width: 768px) {
+                    #footer-inner-container {
+                        grid-row-gap: 0;
+                        grid-template-columns: repeat(2, 1fr);
+                        margin-bottom: 2.875rem;
+                        margin-top: 3.75rem;
+                        width: 89.713%;
+                    }
+    
+                    #companyLogo {
+                        grid-column: 1 / span 2;
+                        height: 1.5625rem;
+                        margin-bottom: 2rem;
+                        width: 8.9375rem;
+                    }
+    
+                    #appNav {
+                        grid-column: 1 / span 1;
+                        grid-row: 2;
+                        margin-bottom: 2rem;
+                    }
+
+                    #companyBio {
+                        grid-column: 1 / span 2;
+                        grid-row: 3;
+                        margin-bottom: 5rem;
+                        max-width: 75ch;
+                    }
+
+                    #details {
+                        grid-column: 1 / span 1;
+                        grid-row: 4;
+                    }
+
+                    #socialNav {
+                        grid-column: 2 / span 1;
+                        grid-row: 4;
+                    }
+                }
+            </style>
+        `;
+    }
+
+    mobileCSS() {
+        this.shadowRoot.innerHTML += `
+            <style>
+                @media screen and (max-width: 576px) {
+                    #footer-inner-container {
+                        align-items: center;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        text-align: center;
+                        width: 87.2%;
+                    }
+    
+                    #companyLogo {
+                        margin: 0;
+                        margin-bottom: 3rem;
+                    }
+
+                    #appNav {
+                        margin: 0;
+                        margin-bottom: 3rem;
+                    }
+    
+                    #appNav > ul {
+                        padding: 0;
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    #appNav > ul > li:not(:last-child) {
+                        margin-bottom: 1rem;
+                        margin-right: 0;
+                    }
+
+                    #companyBio {
+                        margin: 0;
+                        margin-bottom: 3rem;
+                        max-width: 35ch;
+                    }
+
+                    #details {
+                        margin: 0;
+                        margin-bottom: 3rem;
+                    }
+
+                    #socialNav {
+                        margin: 0;
+                        order: 4;
+                    }
                 }
             </style>
         `;

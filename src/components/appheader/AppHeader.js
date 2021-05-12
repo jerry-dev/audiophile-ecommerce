@@ -16,6 +16,7 @@ export default class AppHeader extends HTMLElement {
         this.CSS();
         this.importedCSS();
         this.tabletCSS();
+        this.mobileCSS();
     }
 
     HTML() {
@@ -24,7 +25,7 @@ export default class AppHeader extends HTMLElement {
                 <a href="#" id="hamburger">
                     <img alt="hamburger menu icon" src="../src/assets/shared/tablet/icon-hamburger.svg"/>
                 </a>
-                <a href="#">
+                <a id="companyLogoContainer" href="#">
                     <img id="companyLogo" alt="company logo" src="../src/assets/shared/desktop/logo.svg"/>
                 </a>
                 <nav>
@@ -150,6 +151,27 @@ export default class AppHeader extends HTMLElement {
 
                     #header-inner-container {
                         width: 89.713%;
+                    }
+                }
+            </style>
+        `;
+    }
+
+    mobileCSS() {
+        this.shadowRoot.innerHTML += `
+            <style>
+                @media screen and (max-width: 576px) {
+                    #hamburger {
+                        display: block;
+                        margin-right: 0;
+                    }
+
+                    #header-inner-container {
+                        width: 87.2%;
+                    }
+
+                    #companyLogoContainer {
+                        margin-left: auto;
                     }
                 }
             </style>

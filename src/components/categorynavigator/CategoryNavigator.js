@@ -12,6 +12,7 @@ export default class CategoryNavigator extends HTMLElement {
         this.HTML();
         this.CSS();
         this.tabletCSS();
+        this.mobileCSS();
     }
 
     HTML() {
@@ -166,6 +167,7 @@ export default class CategoryNavigator extends HTMLElement {
         this.shadowRoot.innerHTML += `
             <style>
                 @media screen and (max-width: 768px) {
+                    
                     :host > nav {
                         padding-bottom: 4.1875rem;
                         padding-top: 6.75rem;
@@ -202,6 +204,40 @@ export default class CategoryNavigator extends HTMLElement {
                     :host > nav #earphonesCategory {
                         bottom: 4.0625rem;
                         width: 8.75rem;
+                    }
+                }
+            </style>
+        `;
+    }
+
+    mobileCSS() {
+        this.shadowRoot.innerHTML += `
+            <style>
+                @media screen and (max-width: 576px) {
+                    *, *::before, *::after {padding:0; margin:0;}
+                    :host nav {
+                        padding-bottom: 7.5rem;
+                        padding-top: 3.25rem;
+                        min-width: 87.2%;
+                    }
+
+                    :host > nav ul {
+                        list-style: none;
+                        flex-direction: column;
+                        width: 100%;
+                    }
+
+                    :host > nav ul li:not(:last-child) {
+                        margin-bottom: 4.25rem;
+                    }
+
+                    :host > nav article {
+                        XXXoutline: 2px solid green;
+                    }
+
+                    :host .articleInnerContainer h3 {
+                        font-size: 0.9375rem;
+                        margin-bottom: 1.375rem;
                     }
                 }
             </style>
