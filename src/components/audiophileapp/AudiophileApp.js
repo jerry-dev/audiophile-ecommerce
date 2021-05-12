@@ -9,6 +9,7 @@ class AudiophileApp extends HTMLElement {
 
     connectedCallback() {
         this.render();
+        this.routerInit();
     }
 
     render() {
@@ -19,6 +20,7 @@ class AudiophileApp extends HTMLElement {
     html() {
         this.shadowRoot.innerHTML = `
             <app-header></app-header>
+            <output id="routerOutput"></output>
             <app-footer></app-footer>
         `;
     }
@@ -33,6 +35,14 @@ class AudiophileApp extends HTMLElement {
                 }
             </style>
         `;
+    }
+
+    routerInit() {
+        this.routerOutput = this.shadowRoot.querySelector("#routerOutput");
+        this.router = new Navigo(window.location.origin);
+
+        this.router.on('/', () => this.routerOutput.innerHTML = `<h1>TEST</h1>`);
+        this.router.resolve();
     }
 }
 
