@@ -1,4 +1,5 @@
 import AppHeader from '../appheader/AppHeader.js';
+import HomeSection from '../homesection/src/HomeSection.js';
 import AppFooter from '../appfooter/AppFooter.js';
 
 class AudiophileApp extends HTMLElement {
@@ -20,7 +21,9 @@ class AudiophileApp extends HTMLElement {
     html() {
         this.shadowRoot.innerHTML = `
             <app-header></app-header>
-            <output id="routerOutput"></output>
+            <output id="routerOutput">
+                <home-section></home-section>
+            </output>
             <app-footer></app-footer>
         `;
     }
@@ -41,7 +44,7 @@ class AudiophileApp extends HTMLElement {
         this.routerOutput = this.shadowRoot.querySelector("#routerOutput");
         this.router = new Navigo(window.location.origin);
 
-        this.router.on('/', () => this.routerOutput.innerHTML = `<h1>TEST</h1>`);
+        this.router.on('/', () => this.routerOutput.innerHTML = `<home-section></home-section>`);
         this.router.resolve();
     }
 }
