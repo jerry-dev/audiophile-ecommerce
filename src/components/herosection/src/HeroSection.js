@@ -64,6 +64,7 @@ export default class HeroSection extends HTMLElement {
                     margin-bottom: 1.5rem;
                     opacity: 0.5;
                     max-width: 12.4375rem;
+                    white-space: nowrap;
                 }
 
                 #heroContent > h1 {
