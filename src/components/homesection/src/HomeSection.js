@@ -29,7 +29,6 @@ export default class HomeSection extends HTMLElement {
         this.shadowRoot.innerHTML += `
             <style>
                 :host {
-                    background-color: var(--black-1);
                     display: block;
                 }
             </style>

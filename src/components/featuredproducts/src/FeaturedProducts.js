@@ -130,7 +130,7 @@ export default class FeaturedProducts extends HTMLElement {
                 #block-2 {
                     background-image: url("../src/assets/product-zx7-speaker/desktop/image-gallery-3-2.png");
                     background-repeat: no-repeat;
-                    background-size: fill;
+                    background-size: cover;
                     grid-column: 1 / span 2;
                     grid-row: 2 / span 1;
                     padding-bottom: 7.75rem;
