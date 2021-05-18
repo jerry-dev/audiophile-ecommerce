@@ -1,6 +1,7 @@
 import HeroSection from '../../herosection/src/HeroSection.js';
 import CategoryNavigator from '../../categorynavigator/CategoryNavigator.js';
 import FeaturedProducts from '../../featuredproducts/src/FeaturedProducts.js';
+import AboutUs from '../../aboutus/src/AboutUs.js';
 
 export default class HomeSection extends HTMLElement {
     constructor() {
@@ -22,6 +23,7 @@ export default class HomeSection extends HTMLElement {
             <hero-section></hero-section>
             <category-navigator></category-navigator>
             <featured-products></featured-products>
+            <about-us></about-us>
         `;
     }
 

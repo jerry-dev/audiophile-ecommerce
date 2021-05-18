@@ -51,8 +51,7 @@ const designSystemImport = () => {
         }
 
         .subtitle-design-system {
-            font-size: 0.8125rem;
-            font-weight: bold;
+            font-size: 0.9375rem;
             letter-spacing: 0.0625rem;
             line-height: 1.5625rem;
             text-transform: uppercase;
