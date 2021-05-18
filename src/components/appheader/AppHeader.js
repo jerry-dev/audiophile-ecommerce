@@ -1,5 +1,6 @@
 import designSystemImport from '../../lib/designSystem.js';
 import CategoryNavigator from '../categorynavigator/CategoryNavigator.js';
+import store from '../../lib/store/index.js';
 
 export default class AppHeader extends HTMLElement {
     constructor() {
@@ -9,6 +10,7 @@ export default class AppHeader extends HTMLElement {
 
     connectedCallback() {
         this.render();
+        this.store = store;
     }
 
     render() {
@@ -17,6 +19,7 @@ export default class AppHeader extends HTMLElement {
         this.importedCSS();
         this.tabletCSS();
         this.mobileCSS();
+        this.SCRIPTS();
     }
 
     HTML() {
@@ -30,10 +33,10 @@ export default class AppHeader extends HTMLElement {
                 </a>
                 <nav>
                     <ul>
-                        <li class="subtitle-design-system"><a href="#">HOME</a></li>
-                        <li class="subtitle-design-system"><a href="#">HEADPHONES</a></li>
+                        <li class="subtitle-design-system"><a href="/">HOME</a></li>
+                        <li class="subtitle-design-system"><a href="/heaphones">HEADPHONES</a></li>
                         <li class="subtitle-design-system"><a href="#">SPEAKERS</a></li>
-                        <li class="subtitle-design-system"><a href="#">EARPHONES</a></li>
+                        <li class="subtitle-design-system"><a href="/test">EARPHONES</a></li>
                     </ul>
                 </nav>
                 <a id="cartIconWrapper" href="#">
@@ -180,6 +183,19 @@ export default class AppHeader extends HTMLElement {
 
     importedCSS() {
         this.shadowRoot.innerHTML += `${designSystemImport()}`;
+    }
+
+    SCRIPTS() {
+        this.observerLinkClicks();
+    }
+
+    observerLinkClicks() {
+        this.shadowRoot.addEventListener('click', (event) => {
+            if (event.target.tagName === 'A') {
+                event.preventDefault();
+                this.store.dispatch('navigate', event.target.pathname);
+            }
+        });
     }
 }
 

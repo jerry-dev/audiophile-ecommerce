@@ -14,11 +14,12 @@ export default class HomeSection extends HTMLElement {
     }
 
     render() {
-        this.html();
-        this.css();
+        this.HTML();
+        this.CSS();
+        // this.SCRIPTS();
     }
 
-    html() {
+    HTML() {
         this.shadowRoot.innerHTML = `
             <hero-section></hero-section>
             <category-navigator></category-navigator>
@@ -27,7 +28,7 @@ export default class HomeSection extends HTMLElement {
         `;
     }
 
-    css() {
+    CSS() {
         this.shadowRoot.innerHTML += `
             <style>
                 :host {
@@ -35,6 +36,19 @@ export default class HomeSection extends HTMLElement {
                 }
             </style>
         `;
+    }
+
+    SCRIPTS() {
+        this.observerLinkClicks();
+    }
+
+    observerLinkClicks() {
+        this.shadowRoot.addEventListener('click', (event) => {
+            console.log(event.target);
+            if (event.target.tagName === 'A') {
+                event.preventDefault();
+            }
+        });
     }
 }
 
