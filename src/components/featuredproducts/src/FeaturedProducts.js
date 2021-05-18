@@ -212,8 +212,9 @@ export default class FeaturedProducts extends HTMLElement {
 
                     #block-1 {
                         background-image: url("../src/assets/product-zx9-speaker/tablet/background.png");
-                        background-size: fill;
                         background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: fill;
                         padding-top: 22.0625rem;
                         text-align: center;
                     }
