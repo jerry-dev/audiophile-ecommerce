@@ -94,6 +94,11 @@ export default class HeroSection extends HTMLElement {
                     padding-right: 1.84375rem;
                     padding-top: 0.9375rem;
                 }
+
+                #heroContent > button:hover {
+                    background-color: var(--brown-1);
+                    cursor: pointer;
+                }
             </style>
         `;
     }
