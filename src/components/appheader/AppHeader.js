@@ -25,7 +25,7 @@ export default class AppHeader extends HTMLElement {
     HTML() {
         this.shadowRoot.innerHTML = `
             <div id="header-inner-container">
-                <a href="#" id="hamburger">
+                <a href="/" id="hamburger">
                     <img alt="hamburger menu icon" src="../src/assets/shared/tablet/icon-hamburger.svg"/>
                 </a>
                 <a id="companyLogoContainer" href="#">
@@ -34,9 +34,9 @@ export default class AppHeader extends HTMLElement {
                 <nav>
                     <ul>
                         <li class="subtitle-design-system"><a href="/">HOME</a></li>
-                        <li class="subtitle-design-system"><a href="/heaphones">HEADPHONES</a></li>
-                        <li class="subtitle-design-system"><a href="#">SPEAKERS</a></li>
-                        <li class="subtitle-design-system"><a href="/test">EARPHONES</a></li>
+                        <li class="subtitle-design-system"><a href="/headphones">HEADPHONES</a></li>
+                        <li class="subtitle-design-system"><a href="/speakers">SPEAKERS</a></li>
+                        <li class="subtitle-design-system"><a href="/earphones">EARPHONES</a></li>
                     </ul>
                 </nav>
                 <a id="cartIconWrapper" href="#">

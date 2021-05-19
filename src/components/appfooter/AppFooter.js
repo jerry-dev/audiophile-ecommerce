@@ -21,15 +21,15 @@ export default class AppFooter extends HTMLElement {
     HTML() {
         this.shadowRoot.innerHTML = `
             <div id="footer-inner-container">
-                <a href="#">
+                <a href="/">
                     <img id="companyLogo" alt="company logo" src="../src/assets/shared/desktop/logo.svg"/>
                 </a>
                 <nav id="appNav">
                     <ul>
-                        <li class="subtitle-design-system"><a href="#">HOME</a></li>
-                        <li class="subtitle-design-system"><a href="#">HEADPHONES</a></li>
-                        <li class="subtitle-design-system"><a href="#">SPEAKERS</a></li>
-                        <li class="subtitle-design-system"><a href="#">EARPHONES</a></li>
+                        <li class="subtitle-design-system"><a href="/">HOME</a></li>
+                        <li class="subtitle-design-system"><a href="/headphones">HEADPHONES</a></li>
+                        <li class="subtitle-design-system"><a href="/speakers">SPEAKERS</a></li>
+                        <li class="subtitle-design-system"><a href="/earphones">EARPHONES</a></li>
                     </ul>
                 </nav>
                 <p id="companyBio">

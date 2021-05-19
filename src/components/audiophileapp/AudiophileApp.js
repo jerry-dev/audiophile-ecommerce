@@ -2,7 +2,7 @@ import store from '../../lib/store/index.js';
 import AppHeader from '../appheader/AppHeader.js';
 import HomeSection from '../homesection/src/HomeSection.js';
 import AppFooter from '../appfooter/AppFooter.js';
-// import ProductCategory from '../productCategory/src/ProductCategory.js';
+import ProductCategory from '../productcategory/src/ProductCategory.js';
 
 
 class AudiophileApp extends HTMLElement {
@@ -28,7 +28,6 @@ class AudiophileApp extends HTMLElement {
         this.shadowRoot.innerHTML = `
             <app-header></app-header>
             <output id="routerOutput">
-                <home-section></home-section>
             </output>
             <app-footer></app-footer>
         `;
@@ -51,7 +50,9 @@ class AudiophileApp extends HTMLElement {
         this.router = new Navigo("/");
 
         this.router.on('/', () => {
-            this.routerOutput.innerHTML = `<home-section></home-section>`
+            // this.routerOutput.innerHTML = `<home-section></home-section>`
+            // DEVELOPING THE PRODUCTCATEGORY COMPONENT
+            this.routerOutput.innerHTML = `<product-category></product-category>`
         });
 
         this.router.on('/headphones', () => {
@@ -69,7 +70,6 @@ class AudiophileApp extends HTMLElement {
             // fetch
         });
 
-        this.router.on('/test', () => this.routerOutput.innerHTML = `<h1>TEST</h1>`);
         this.router.resolve();
     }
 
@@ -83,8 +83,6 @@ class AudiophileApp extends HTMLElement {
             case '/speakers': context.router.navigate("/speakers");
                 break;
             case '/earphones': context.router.navigate("/earphones");
-                break;
-            case '/test': context.router.navigate("/test");
                 break;
         }
     }

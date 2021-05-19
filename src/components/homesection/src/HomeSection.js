@@ -44,7 +44,6 @@ export default class HomeSection extends HTMLElement {
 
     observerLinkClicks() {
         this.shadowRoot.addEventListener('click', (event) => {
-            console.log(event.target);
             if (event.target.tagName === 'A') {
                 event.preventDefault();
             }
