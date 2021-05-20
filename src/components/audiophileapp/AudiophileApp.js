@@ -14,9 +14,9 @@ class AudiophileApp extends HTMLElement {
     connectedCallback() {
         this.render();
         this.routerInit();
-        let self = this;
         this.store = store;
         this.store.observer.subscribe('stateChange', () => { this.pathMap(this) });
+        this.store.dispatch('productDataAPIFetch', 'n/a');
     }
 
     render() {
@@ -50,24 +50,19 @@ class AudiophileApp extends HTMLElement {
         this.router = new Navigo("/");
 
         this.router.on('/', () => {
-            // this.routerOutput.innerHTML = `<home-section></home-section>`
-            // DEVELOPING THE PRODUCTCATEGORY COMPONENT
-            this.routerOutput.innerHTML = `<product-category></product-category>`
+            this.routerOutput.innerHTML = `<home-section></home-section>`
         });
 
         this.router.on('/headphones', () => {
-            this.routerOutput.innerHTML = `<product-category></product-category>`
-            // fetch
+            this.routerOutput.innerHTML = `<product-category category="headphones"></product-category>`
         });
 
         this.router.on('/speakers', () => {
-            this.routerOutput.innerHTML = `<product-category></product-category>`
-            // fetch
+            this.routerOutput.innerHTML = `<product-category category="speakers"></product-category>`
         });
 
         this.router.on('/earphones', () => {
-            this.routerOutput.innerHTML = `<product-category></product-category>`
-            // fetch
+            this.routerOutput.innerHTML = `<product-category category="earphones"></product-category>`
         });
 
         this.router.resolve();

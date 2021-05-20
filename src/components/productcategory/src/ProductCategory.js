@@ -1,5 +1,7 @@
 import CategoryNavigator from '../../categorynavigator/CategoryNavigator.js';
 import AboutUs from '../../aboutus/src/AboutUs.js';
+import ProductCategoryHeader from '../../productcategoryheader/src/ProductCategoryHeader.js';
+import store from '../../../lib/store/index.js';
 
 export default class ProductCategory extends HTMLElement {
     constructor() {
@@ -9,14 +11,19 @@ export default class ProductCategory extends HTMLElement {
 
     connectedCallback() {
         this.render();
+        this.store = store;
     }
 
     render() {
         this.HTML();
+        this.CSS();
     }
 
     HTML() {
         this.shadowRoot.innerHTML = `
+            <product-category-header
+                category="${this.getAttribute('category')}"
+            ></product-category-header>
             <category-navigator></category-navigator>
             <about-us></about-us>
         `;
@@ -30,6 +37,18 @@ export default class ProductCategory extends HTMLElement {
                 }
             </style>
         `;
+    }
+
+    SCRIPTS() {
+        let dataContainer = this.categoryHydration(this.getAttribute('category'));
+    }
+
+    categoryHydration(category) {
+        let result = this.store.state.productData.filter((product) => {
+            return (product.category === category) ? true : false;
+        });
+
+        return result;
     }
 }
 
