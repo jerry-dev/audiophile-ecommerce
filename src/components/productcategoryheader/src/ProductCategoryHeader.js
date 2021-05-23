@@ -63,7 +63,7 @@ export default class ProductCategoryHeader extends HTMLElement {
                         width: 87.2%;
                     }
 
-                    #PCHinnerContainer p {
+                    #PCHinnerContainer h2 {
                         font-size: 1.75rem;
                         letter-spacing: 0.125rem;
                         line-height: 2.375rem;
