@@ -1,9 +1,6 @@
 import store from '../../lib/store/index.js';
 import AppHeader from '../appheader/AppHeader.js';
-import HomeSection from '../homesection/src/HomeSection.js';
 import AppFooter from '../appfooter/AppFooter.js';
-import ProductCategory from '../productcategory/src/ProductCategory.js';
-
 
 class AudiophileApp extends HTMLElement {
     constructor() {
@@ -20,11 +17,11 @@ class AudiophileApp extends HTMLElement {
     }
 
     render() {
-        this.html();
-        this.css();
+        this.HTML();
+        this.CSS();
     }
 
-    html() {
+    HTML() {
         this.shadowRoot.innerHTML = `
             <app-header></app-header>
             <output id="routerOutput">
@@ -33,10 +30,11 @@ class AudiophileApp extends HTMLElement {
         `;
     }
 
-    css() {
+    CSS() {
         this.shadowRoot.innerHTML += `
             <style>
                 :host {
+                    background-color: var(--white-1);
                     display: block;
                     min-height: 100%;
                     outline: 4px solid gold;
@@ -49,19 +47,23 @@ class AudiophileApp extends HTMLElement {
         this.routerOutput = this.shadowRoot.querySelector("#routerOutput");
         this.router = new Navigo("/");
 
-        this.router.on('/', () => {
+        this.router.on('/', async () => {
+            await import('../homesection/src/HomeSection.js');
             this.routerOutput.innerHTML = `<home-section></home-section>`
         });
 
-        this.router.on('/headphones', () => {
+        this.router.on('/headphones', async () => {
+            await import('../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="headphones"></product-category>`
         });
 
-        this.router.on('/speakers', () => {
+        this.router.on('/speakers', async () => {
+            await import('../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="speakers"></product-category>`
         });
 
-        this.router.on('/earphones', () => {
+        this.router.on('/earphones', async () => {
+            await import('../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="earphones"></product-category>`
         });
 
