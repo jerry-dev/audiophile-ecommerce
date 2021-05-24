@@ -67,7 +67,6 @@ export default class ProductCategory extends HTMLElement {
         let itemsCount = this.getItemCountPerCategory();
         const groupSize = itemsCount[category];
         
-        let iteration = 0;
         this.store.state.productData.forEach((instance) => {
             if (instance.category === category) {
                 
