@@ -31,7 +31,16 @@ export default class CategoryListing extends HTMLElement {
                         <small class="${this.getAttribute("new")}">NEW PRODUCT</small>
                         <h2 class="h2-design-system">${this.getAttribute("name")}</h2>
                         <p class="subtitle-design-system">${this.getAttribute("description")}</p>
-                        <a href="${this.getAttribute("slug")}">SEE PRODUCT</a>
+                        <a href="/${this.getAttribute("category")}/${this.getAttribute("slug")}">${this.getAttribute("text")}</a>
+                        <div id="price">${this.getAttribute("price")}</div>
+                        <div id="cartControlsContainer">
+                            <div id="controlsContainer">
+                                <button type="button" id="decrementButton" class="quntityControl">-</button>
+                                <input type="number" value="1">
+                                <button type="button" id="incrementButton" class="quntityControl">+</button>
+                            </div>
+                            <button type="button" id="addToCartButton">ADD TO CART</button>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -117,6 +126,63 @@ export default class CategoryListing extends HTMLElement {
                     padding-left: 1.96875rem;
                     padding-right: 1.96875rem;
                     text-decoration: none;
+                }
+
+                :host([cartReady="false"]) .detailsInnerContainer > #price,
+                :host([cartReady="false"]) .detailsInnerContainer > #cartControlsContainer {
+                    display: none;
+                }
+
+                 :host([cartReady="true"]) .detailsInnerContainer > a {
+                    display: none;
+                }
+
+                .detailsInnerContainer > #price {
+                    font-size: 1.125rem;
+                    font-weight: bold;
+                    letter-spacing: 0.080356875rem;
+                    line-height: 1.5625rem;
+                    margin-bottom: 2.9375rem;
+                }
+
+                .detailsInnerContainer > #cartControlsContainer {
+                    align-items: center;
+                    display: flex;
+                    flex-direction: row;
+                    height: 3rem;
+                    justify-content: space-between;
+                    max-width: 18.5rem;
+                }
+
+                #controlsContainer {
+                    background-color: var(--grey-1);
+                    height: 100%;
+                }
+
+                #controlsContainer > button {
+                    color: var(--black-2);
+                    opacity: 0.25;
+                    font-weight: bold;
+                    font-size: 13px;
+                    line-height: 18px;
+                }
+
+                #controlsContainer > button,
+                #controlsContainer > input {
+                    background-color: var(--grey-1);
+                    border: none;
+                    height: 100%;
+                    text-align: center;
+                    width: 2.5rem;
+                }
+
+                #cartControlsContainer > #addToCartButton {
+                    background-color: var(--brown-2);
+                    border: none;
+                    color: var(--white-1);
+                    height: 100%;
+                    padding-left: 2.15625rem;
+                    padding-right: 1.875rem;
                 }
 
                 .detailsInnerContainer > a:hover {

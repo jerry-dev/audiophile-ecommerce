@@ -14,6 +14,7 @@ export default class ProductCategory extends HTMLElement {
     connectedCallback() {
         this.store = store;
         this.render();
+        this.observerLinkClicks();
     }
 
     render() {
@@ -75,6 +76,7 @@ export default class ProductCategory extends HTMLElement {
 
                 listings[itemsCount[category]] =
                 `<category-listing
+                    category="${category}"
                     groupSize="${groupSize}"
                     item="${itemsCount[category]}"
                     imageOrder=${direction}
@@ -85,12 +87,28 @@ export default class ProductCategory extends HTMLElement {
                     name="${instance.name}"
                     description="${instance.description}"
                     slug="${instance.slug}"
+                    price="${new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(instance.price).replace(".00", "")}"
+                    cartReady="false"
+                    text="SEE PRODUCT"
                 ></category-listing>`;
 
                 itemsCount[category]--;
             }
         });
         return listings.join("");
+    }
+
+    observerLinkClicks() {
+        const listings = this.shadowRoot.querySelectorAll('category-listing');
+
+        listings.forEach((listing) => {
+            listing.shadowRoot.addEventListener('click', (event) => {
+                if (event.target.tagName === 'A') {
+                    event.preventDefault();
+                    this.store.dispatch('navigate', event.target.pathname);
+                }
+            });
+        });
     }
 }
 

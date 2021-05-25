@@ -28,7 +28,7 @@ export default class AppHeader extends HTMLElement {
                 <a href="/" id="hamburger">
                     <img alt="hamburger menu icon" src="../src/assets/shared/tablet/icon-hamburger.svg"/>
                 </a>
-                <a id="companyLogoContainer" href="#">
+                <a id="companyLogoContainer" href="/">
                     <img id="companyLogo" alt="company logo" src="../src/assets/shared/desktop/logo.svg"/>
                 </a>
                 <nav>

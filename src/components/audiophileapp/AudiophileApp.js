@@ -12,7 +12,7 @@ class AudiophileApp extends HTMLElement {
         this.render();
         this.routerInit();
         this.store = store;
-        this.store.observer.subscribe('stateChange', () => { this.pathMap(this) });
+        this.store.observer.subscribe('stateChange', () => this.pathMap(this));
         this.store.dispatch('productDataAPIFetch', 'n/a');
     }
 
@@ -49,38 +49,82 @@ class AudiophileApp extends HTMLElement {
 
         this.router.on('/', async () => {
             await import('../homesection/src/HomeSection.js');
-            this.routerOutput.innerHTML = `<home-section></home-section>`
+            this.routerOutput.innerHTML = `<home-section></home-section>`;
         });
 
         this.router.on('/headphones', async () => {
             await import('../productcategory/src/ProductCategory.js');
-            this.routerOutput.innerHTML = `<product-category category="headphones"></product-category>`
+            this.routerOutput.innerHTML = `<product-category category="headphones"></product-category>`;
         });
 
         this.router.on('/speakers', async () => {
             await import('../productcategory/src/ProductCategory.js');
-            this.routerOutput.innerHTML = `<product-category category="speakers"></product-category>`
+            this.routerOutput.innerHTML = `<product-category category="speakers"></product-category>`;
         });
 
         this.router.on('/earphones', async () => {
             await import('../productcategory/src/ProductCategory.js');
-            this.routerOutput.innerHTML = `<product-category category="earphones"></product-category>`
+            this.routerOutput.innerHTML = `<product-category category="earphones"></product-category>`;
+        });
+
+        this.router.on('/headphones/:product', async ({data}) => {
+            await import('../productdetail/src/ProductDetail.js');
+            this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
+        });
+
+        this.router.on('/speakers/:product', async ({data}) => {
+            await import('../productdetail/src/ProductDetail.js');
+            this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
+        });
+
+        this.router.on('/earphones/:product', async ({data}) => {
+            await import('../productdetail/src/ProductDetail.js');
+            this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
         });
 
         this.router.resolve();
     }
 
     pathMap(context) {
-        let path = context.store.state.path;
+        const path = context.store.state.path;
+
         switch (path) {
             case '/': context.router.navigate("/");
                 break;
-            case '/headphones': context.router.navigate("/headphones");
-                break;
-            case '/speakers': context.router.navigate("/speakers");
-                break;
-            case '/earphones': context.router.navigate("/earphones");
-                break;
+        }
+
+        const headphonesRegex = new RegExp(`/headphones`);
+        const speakersRegex = new RegExp(`/speakers`);
+        const earphonesRegex = new RegExp(`/earphones`);
+        
+        if (headphonesRegex.test(path)) {
+            const param = path.replace(headphonesRegex, "");
+            switch (path) {
+                case '/headphones': context.router.navigate("/headphones");
+                    break;
+                case `/headphones${param}`: context.router.navigate(`/headphones${param}`);
+                    break;
+            }
+        }
+
+        if (speakersRegex.test(path)) {
+            const param = path.replace(speakersRegex, "");
+            switch (path) {
+                case '/speakers': context.router.navigate("/speakers");
+                    break;
+                case `/speakers${param}`: context.router.navigate(`/speakers${param}`);
+                    break;
+            }
+        }
+
+        if (earphonesRegex.test(path)) {
+            const param = path.replace(earphonesRegex, "");
+            switch (path) {
+                case '/earphones': context.router.navigate("/earphones");
+                    break;
+                case `/earphones${param}`: context.router.navigate(`/earphones${param}`);
+                    break;
+            }
         }
     }
 }
