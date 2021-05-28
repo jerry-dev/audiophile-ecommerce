@@ -50,11 +50,16 @@ class AudiophileApp extends HTMLElement {
         this.router.on('/', async () => {
             await import('../homesection/src/HomeSection.js');
             this.routerOutput.innerHTML = `<home-section></home-section>`;
+
+            // DELETE
+            setTimeout(() => {this.router.navigate("/headphones/xx99-mark-two-headphones")}, 200);
+
         });
 
         this.router.on('/headphones', async () => {
             await import('../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="headphones"></product-category>`;
+            setTimeout(() => {this.router.navigate("/headphones")}, 200);
         });
 
         this.router.on('/speakers', async () => {

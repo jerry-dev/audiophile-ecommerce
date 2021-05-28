@@ -1,5 +1,6 @@
 import store from '../../../lib/store/index.js';
 import CategoryListing from '../../categorylisting/src/CategoryListing.js';
+import ProductDescription from '../../productdescription/src/ProductDescription.js';
 import CategoryNavigator from '../../categorynavigator/CategoryNavigator.js';
 import AboutUs from '../../aboutus/src/AboutUs.js';
 
@@ -20,9 +21,12 @@ export default class ProductDetail extends HTMLElement {
 
     HTML() {
         const product = this.getListingDataFromStore(this.getAttribute('product'));
+        const list = this.renderItemsList(product.includes);
+        const features = product.features.replace(/[\n\r]+/g, "</br></br>");
+        console.log(`The features post clean up:`, features);
         
-        this.shadowRoot.innerHTML = `
-            <h1>Go Back</h1>
+        let markup =
+            `<h1>Go Back</h1>
             <category-listing
                 desktopImage="../src/${product.image.desktop}"
                 tabletImage="../src/${product.image.tablet}"
@@ -34,19 +38,41 @@ export default class ProductDetail extends HTMLElement {
                 price="${new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(product.price).replace(".00", "")}"
                 cartReady="true"
             ></category-listing>
+            <product-description
+                features="${features}"
+                itemsList="${list}"
+            ></product-description>
             <category-navigator></category-navigator>
             <about-us></about-us>
         `;
+
+        this.shadowRoot.innerHTML = markup;
     }
 
     CSS() {
-        this.shadowRoot.innerHTML += `
-            <style>
+        let markup =
+            `<style>
                 :host {
                     display: block;
                 }
-            </style>
-        `;
+            </style>`;
+
+        this.shadowRoot.innerHTML = markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<");
+    }
+
+    renderItemsList(listArray) {
+        let result = '';
+        listArray.forEach((listPair) => {
+            result +=
+            `<li class='subtitle-design-system'>
+                <span class='quantity'>${listPair.quantity}x</span>
+                <span class='item'>${listPair.item}</span>
+            </li>`;
+
+            result = result.replace(/\n/g, "").replace(/[\t ]+\</g, "<");
+        });
+
+        return result;
     }
 
     getListingDataFromStore(product) {

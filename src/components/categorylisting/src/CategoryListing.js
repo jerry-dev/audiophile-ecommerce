@@ -16,6 +16,9 @@ export default class CategoryListing extends HTMLElement {
         this.CSS();
         this.tabletCSS();
         this.mobileCSS();
+        this.productDetailCSS();
+        this.productDetailTabletCSS();
+        this.productDetailMobileCSS();
     }
 
     HTML() {
@@ -35,9 +38,9 @@ export default class CategoryListing extends HTMLElement {
                         <div id="price">${this.getAttribute("price")}</div>
                         <div id="cartControlsContainer">
                             <div id="controlsContainer">
-                                <button type="button" id="decrementButton" class="quntityControl">-</button>
+                                <button type="button" id="decrementButton" class="quantityControl">-</button>
                                 <input type="number" value="1">
-                                <button type="button" id="incrementButton" class="quntityControl">+</button>
+                                <button type="button" id="incrementButton" class="quantityControl">+</button>
                             </div>
                             <button type="button" id="addToCartButton">ADD TO CART</button>
                         </div>
@@ -133,58 +136,6 @@ export default class CategoryListing extends HTMLElement {
                     display: none;
                 }
 
-                 :host([cartReady="true"]) .detailsInnerContainer > a {
-                    display: none;
-                }
-
-                .detailsInnerContainer > #price {
-                    font-size: 1.125rem;
-                    font-weight: bold;
-                    letter-spacing: 0.080356875rem;
-                    line-height: 1.5625rem;
-                    margin-bottom: 2.9375rem;
-                }
-
-                .detailsInnerContainer > #cartControlsContainer {
-                    align-items: center;
-                    display: flex;
-                    flex-direction: row;
-                    height: 3rem;
-                    justify-content: space-between;
-                    max-width: 18.5rem;
-                }
-
-                #controlsContainer {
-                    background-color: var(--grey-1);
-                    height: 100%;
-                }
-
-                #controlsContainer > button {
-                    color: var(--black-2);
-                    opacity: 0.25;
-                    font-weight: bold;
-                    font-size: 13px;
-                    line-height: 18px;
-                }
-
-                #controlsContainer > button,
-                #controlsContainer > input {
-                    background-color: var(--grey-1);
-                    border: none;
-                    height: 100%;
-                    text-align: center;
-                    width: 2.5rem;
-                }
-
-                #cartControlsContainer > #addToCartButton {
-                    background-color: var(--brown-2);
-                    border: none;
-                    color: var(--white-1);
-                    height: 100%;
-                    padding-left: 2.15625rem;
-                    padding-right: 1.875rem;
-                }
-
                 .detailsInnerContainer > a:hover {
                     background-color: var(--brown-1);
                 }
@@ -205,6 +156,79 @@ export default class CategoryListing extends HTMLElement {
         `;
     }
 
+    productDetailCSS() {
+        const markup =
+            `<style>
+                :host([cartReady="true"]) picture {
+                    width: 48.648%;
+                }
+
+                :host([cartReady="true"]) .listingDetails {
+                    width: 51.351%;
+                }
+
+                :host([cartReady="true"]) .detailsInnerContainer {
+                    width: 78.157%;
+                }
+
+                :host([cartReady="true"]) .detailsInnerContainer > #price {
+                    font-size: 1.125rem;
+                    font-weight: bold;
+                    letter-spacing: 0.080356875rem;
+                    line-height: 1.5625rem;
+                    margin-bottom: 2.9375rem;
+                }
+
+                :host([cartReady="true"]) .detailsInnerContainer > a {
+                    display: none;
+                }
+
+                :host([cartReady="true"]) .detailsInnerContainer #cartControlsContainer {
+                    align-items: center;
+                    display: flex;
+                    flex-direction: row;
+                    height: 3rem;
+                    justify-content: space-between;
+                    width: 66.4421%;
+                }
+
+                :host([cartReady="true"]) #controlsContainer {
+                    background-color: var(--grey-1);
+                    display: flex;
+                    flex-direction: row;
+                    height: 100%;
+                    width: 40.5405%;
+                }
+
+                :host([cartReady="true"]) #controlsContainer button {
+                    color: var(--black-2);
+                    opacity: 0.25;
+                    font-weight: bold;
+                    font-size: 0.8125rem;
+                    line-height: 1.125rem;
+                }
+
+                :host([cartReady="true"]) #controlsContainer button,
+                :host([cartReady="true"]) #controlsContainer input {
+                    background-color: var(--grey-1);
+                    border: none;
+                    height: 100%;
+                    text-align: center;
+                    width: 2.5rem;
+                }
+
+                :host([cartReady="true"]) #cartControlsContainer > #addToCartButton {
+                    background-color: var(--brown-2);
+                    border: none;
+                    color: var(--white-1);
+                    height: 100%;
+                    width: 54.0540%;
+                }
+            </style>`;
+
+        this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<");
+    }
+
     tabletCSS() {
         this.shadowRoot.innerHTML += `
             <style>
@@ -213,21 +237,9 @@ export default class CategoryListing extends HTMLElement {
                         margin-top: 7.5rem;
                     }
 
-                    :host([imageOrder="right"]) > .listingInnerContainer > picture {
-                        order: 1;
-                    }
-    
-                    :host([imageOrder="right"]) .listingDetails > .detailsInnerContainer {
-                        margin-left: auto;
-                    }
-    
-                    :host([imageOrder="right"]) > .listingInnerContainer > .listingDetails {
-                        order: 2;
-                    }
-
                     .listingInnerContainer {
                         flex-direction: column;
-                        width: 89.713%;
+                        width: 89.8437%;
                     }
 
                     picture {
@@ -285,6 +297,84 @@ export default class CategoryListing extends HTMLElement {
         `;
     }
 
+    productDetailTabletCSS() {
+        const markup =
+            `<style>
+                @media screen and (max-width: 768px) {
+                    :host([cartReady="true"]) > .listingInnerContainer {
+                        flex-direction: row;
+                    }
+
+                    :host([cartReady="true"]) picture {
+                        min-height: 30rem;
+                        width: 40.7246%;
+                    }
+
+                    :host([cartReady="true"]) picture img {
+                        max-width: 100%;
+                        height: auto;
+                    }
+    
+                    :host([cartReady="true"]) .listingDetails {
+                        width: 59.2753%;
+                    }
+    
+                    :host([cartReady="true"]) .detailsInnerContainer {
+                        text-align: left;
+                        margin: 0;
+                        margin-bottom: 2.8125rem;
+                        margin-left: auto;
+                        padding-top: 0;
+                        min-width: auto;
+                        width: 83.1295%;
+                    }
+
+                    :host([cartReady="true"]) .detailsInnerContainer > small {
+                        font-size: 0.75rem;
+                        letter-spacing: 0.5357rem;
+                        line-height: 1rem;
+                    }
+
+                    :host([cartReady="true"]) .detailsInnerContainer > h2 {
+                        font-size: 1.75rem;
+                        letter-spacing: 0.0625rem;
+                        line-height: 2rem;
+                        margin: 0;
+                        margin-bottom: 2rem;
+                        margin-right: auto;
+                    }
+
+                    :host([cartReady="true"]) .detailsInnerContainer > p {
+                        line-height: 1.5625rem;
+                        margin: 0;
+                        margin-bottom: 2rem;
+                        max-width: auto;
+                    }
+
+                    :host([cartReady="true"]) .detailsInnerContainer #cartControlsContainer {
+                        justify-content: space-around;
+                        width: 87.0588%;
+                    }
+
+                    :host([cartReady="true"]) #controlsContainer {
+                        width: 40.5405%;
+                        
+                    }
+
+                    :host([cartReady="true"]) #controlsContainer button,
+                    :host([cartReady="true"]) #controlsContainer input {
+                        width: 33.3333%;
+                    }
+                    
+                    :host([cartReady="true"]) #cartControlsContainer #addToCartButton {
+                        width: 54.0540%;
+                    }
+                }
+            </style>`;
+
+        this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<");
+    }
+
     mobileCSS() {
         this.shadowRoot.innerHTML += `
             <style>
@@ -323,8 +413,79 @@ export default class CategoryListing extends HTMLElement {
         `;
     }
 
+    productDetailMobileCSS() {
+        const markup =
+            `<style>
+                @media screen and (max-width: 576px) {
+                    :host([cartReady="true"]) > .listingInnerContainer {
+                        flex-direction: column;
+                    }
+
+                    :host([cartReady="true"]) picture {
+                        min-height: 20.4375rem;
+                        width: 100%;
+                    }
+
+                    :host([cartReady="true"]) .listingDetails {
+                        padding-top: 2rem;
+                        width: 100%;
+                    }
+
+                    :host([cartReady="true"]) .detailsInnerContainer {
+                        margin: 0;
+                        padding: 0;
+                        margin-left: auto;
+                        margin-right: auto;
+                        width: 100%;
+                    }
+
+                    :host([cartReady="true"]) .detailsInnerContainer > small {
+                        font-size: 0.875rem;
+                        letter-spacing: 0.625rem;
+                        line-height: 1.1875rem;
+                        margin-bottom: 1.5rem;
+                    }
+
+                    :host([cartReady="true"]) .detailsInnerContainer > h2 {
+                        font-size: 1.75rem;
+                        letter-spacing: 0.0625rem;
+                        line-height: 2.375rem;
+                        margin: 0;
+                        margin-bottom: 1.5rem;
+                        margin-right: auto;
+                    }
+
+                    :host([cartReady="true"]) .detailsInnerContainer > #price {
+                        letter-spacing: 0.080356875rem;
+                        margin-bottom: 1.9375rem;
+                    }
+
+                    :host([cartReady="true"]) .detailsInnerContainer #cartControlsContainer {
+                        justify-content: space-around;
+                        width: 87.0588%;
+                    }
+
+                    :host([cartReady="true"]) #controlsContainer {
+                        width: 40.5405%;
+                        
+                    }
+
+                    :host([cartReady="true"]) #controlsContainer button,
+                    :host([cartReady="true"]) #controlsContainer input {
+                        width: 33.3333%;
+                    }
+                    
+                    :host([cartReady="true"]) #cartControlsContainer #addToCartButton {
+                        width: 54.0540%;
+                    }
+                }
+            </style>`;
+
+        this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<");
+    }
+
     importedCSS() {
-        this.shadowRoot.innerHTML += `${designSystemImport()}`;
+        this.shadowRoot.innerHTML += designSystemImport();
     }
 }
 
