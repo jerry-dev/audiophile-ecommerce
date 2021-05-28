@@ -159,6 +159,10 @@ export default class CategoryListing extends HTMLElement {
     productDetailCSS() {
         const markup =
             `<style>
+                :host([cartReady="true"])  {
+                    margin-top: 3.5rem;
+                }
+
                 :host([cartReady="true"]) picture {
                     width: 48.648%;
                 }
@@ -301,6 +305,10 @@ export default class CategoryListing extends HTMLElement {
         const markup =
             `<style>
                 @media screen and (max-width: 768px) {
+                    :host([cartReady="true"])  {
+                        margin-top: 1.5rem;
+                    }
+
                     :host([cartReady="true"]) > .listingInnerContainer {
                         flex-direction: row;
                     }
