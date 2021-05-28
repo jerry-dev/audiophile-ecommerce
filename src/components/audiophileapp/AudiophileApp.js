@@ -52,7 +52,7 @@ class AudiophileApp extends HTMLElement {
             this.routerOutput.innerHTML = `<home-section></home-section>`;
 
             // DELETE
-            setTimeout(() => {this.router.navigate("/headphones/xx99-mark-two-headphones")}, 200);
+            // setTimeout(() => {this.router.navigate("/headphones/xx99-mark-two-headphones")}, 200);
 
         });
 

@@ -23,7 +23,6 @@ export default class ProductDetail extends HTMLElement {
         const product = this.getListingDataFromStore(this.getAttribute('product'));
         const list = this.renderItemsList(product.includes);
         const features = product.features.replace(/[\n\r]+/g, "</br></br>");
-        console.log(`The features post clean up:`, features);
         
         let markup =
             `<h1>Go Back</h1>

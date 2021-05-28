@@ -128,7 +128,9 @@ export default class AppHeader extends HTMLElement {
                 }
 
                 #navigationMenu {
+                    background-color: rgba(0, 0, 0, 0.4);
                     display: none;
+                    height: 100vh;
                     position: absolute;
                     left: 0;
                     top: 96px;
