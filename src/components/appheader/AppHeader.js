@@ -241,6 +241,10 @@ export default class AppHeader extends HTMLElement {
                             this.closeNav();
                         }
                     });
+
+                    window.addEventListener(`scroll`, () => {
+                        this.closeNav();
+                    });
                 }
             }
         });
