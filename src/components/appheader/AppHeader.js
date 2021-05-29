@@ -25,9 +25,9 @@ export default class AppHeader extends HTMLElement {
     HTML() {
         this.shadowRoot.innerHTML = `
             <div id="header-inner-container">
-                <a href="/" id="hamburger">
-                    <img alt="hamburger menu icon" src="../src/assets/shared/tablet/icon-hamburger.svg"/>
-                </a>
+                <button id="hamburger">
+                    <img alt="hamburger menu icon" id="hamburgerIcon" src="../src/assets/shared/tablet/icon-hamburger.svg"/>
+                </button>
                 <a id="companyLogoContainer" href="/">
                     <img id="companyLogo" alt="company logo" src="../src/assets/shared/desktop/logo.svg"/>
                 </a>
@@ -83,6 +83,8 @@ export default class AppHeader extends HTMLElement {
                 }
 
                 #hamburger {
+                    background-color: var(--black-1);
+                    border: none;
                     display: none;
                 }
 
@@ -157,6 +159,10 @@ export default class AppHeader extends HTMLElement {
                     #header-inner-container {
                         width: 89.713%;
                     }
+
+                    :host(.showingNav) #navigationMenu {
+                        display: block;
+                    }
                 }
             </style>
         `;
@@ -178,17 +184,33 @@ export default class AppHeader extends HTMLElement {
                     #companyLogoContainer {
                         margin-left: auto;
                     }
+
+                    :host(.showingNav) #navigationMenu {
+                        display: block;
+                    }
                 }
             </style>
         `;
     }
 
     importedCSS() {
-        this.shadowRoot.innerHTML += `${designSystemImport()}`;
+        this.shadowRoot.innerHTML += designSystemImport();
     }
 
     SCRIPTS() {
         this.observerLinkClicks();
+    }
+
+    isShowingNav() {
+        return (this.classList.contains('showingNav')) ? true : false;
+    }
+
+    closeNav() {
+        this.classList.remove('showingNav');
+    }
+
+    overlayClicked(event) {
+        return (event.target.id === `navigationMenu`) ? true : false;
     }
 
     observerLinkClicks() {
@@ -196,6 +218,30 @@ export default class AppHeader extends HTMLElement {
             if (event.target.tagName === 'A') {
                 event.preventDefault();
                 this.store.dispatch('navigate', event.target.pathname);
+            }
+
+            if (this.isShowingNav() && this.overlayClicked(event)) {
+                this.closeNav();
+            }
+
+            if (this.isShowingNav() && this.overlayClicked(event)) {
+                this.closeNav();
+            }
+
+            if (event.target.tagName === 'IMG' && event.target.id === 'hamburgerIcon') {
+                this.classList.toggle('showingNav');
+
+                if (this.isShowingNav()) {        
+                    window.addEventListener(`keydown`, (event) => {
+                        (event.key === `Escape`) ? this.closeNav() : "";
+                    });
+
+                    window.addEventListener(`resize`, () => {
+                        if (window.innerWidth > 768) {
+                            this.closeNav();
+                        }
+                    });
+                }
             }
         });
     }
