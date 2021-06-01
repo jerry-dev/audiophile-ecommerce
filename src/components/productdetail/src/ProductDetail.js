@@ -1,6 +1,7 @@
 import store from '../../../lib/store/index.js';
 import CategoryListing from '../../categorylisting/src/CategoryListing.js';
 import ProductDescription from '../../productdescription/src/ProductDescription.js';
+import LifestyleGallery from '../../lifestylegallery/src/LifestyleGallery.js';
 import CategoryNavigator from '../../categorynavigator/CategoryNavigator.js';
 import AboutUs from '../../aboutus/src/AboutUs.js';
 
@@ -41,6 +42,18 @@ export default class ProductDetail extends HTMLElement {
                 features="${features}"
                 itemsList="${list}"
             ></product-description>
+            <lifestyle-gallery
+                product="${product.name}"
+                desktopImage1="../src/${product.gallery.first.desktop}"
+                tabletImage1="../src/${product.gallery.first.tablet}"
+                mobileImage1="../src/${product.gallery.first.mobile}"
+                desktopImage2="../src/${product.gallery.second.desktop}"
+                tabletImage2="../src/${product.gallery.second.tablet}"
+                mobileImage2="../src/${product.gallery.second.mobile}"
+                desktopImage3="../src/${product.gallery.third.desktop}"
+                tabletImage3="../src/${product.gallery.third.tablet}"
+                mobileImage3="../src/${product.gallery.third.mobile}"
+            ></lifestyle-gallery>
             <category-navigator></category-navigator>
             <about-us></about-us>
         `;
