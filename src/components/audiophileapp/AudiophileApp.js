@@ -11,9 +11,7 @@ class AudiophileApp extends HTMLElement {
     connectedCallback() {
         this.render();
         this.routerInit();
-        this.store = store;
-        this.store.observer.subscribe('stateChange', () => this.pathMap(this));
-        this.store.dispatch('productDataAPIFetch', 'n/a');
+        this.storeInit();
     }
 
     render() {
@@ -88,6 +86,12 @@ class AudiophileApp extends HTMLElement {
         });
 
         this.router.resolve();
+    }
+
+    storeInit() {
+        this.store = store;
+        this.store.observer.subscribe('stateChange', () => this.pathMap(this));
+        this.store.dispatch('productDataAPIFetch', 'n/a');
     }
 
     pathMap(context) {
