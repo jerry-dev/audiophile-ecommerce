@@ -145,8 +145,7 @@ export default class RecommendedProducts extends HTMLElement {
         `<style>
             @media screen and (max-width: 768px) {
                 :host {
-                    display: block;
-                    margin-bottom: 0rem;
+                    margin-bottom: 7.5rem;
                     margin-top: 7.5rem;
                     width: 89.84375%;
                 }
@@ -170,9 +169,6 @@ export default class RecommendedProducts extends HTMLElement {
         `<style>
             @media screen and (max-width: 576px) {
                 :host {
-                    display: block;
-                    margin-bottom: 0rem;
-                    margin-top: 7.5rem;
                     width: 87.2%;
                 }
 
