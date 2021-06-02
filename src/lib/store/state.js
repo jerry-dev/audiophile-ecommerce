@@ -1,4 +1,5 @@
 export default {
 	path: '/',
-	productData: []
+	productData: [],
+	cart: []
 };
