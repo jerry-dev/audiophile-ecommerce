@@ -2,6 +2,7 @@ import store from '../../../lib/store/index.js';
 import CategoryListing from '../../categorylisting/src/CategoryListing.js';
 import ProductDescription from '../../productdescription/src/ProductDescription.js';
 import LifestyleGallery from '../../lifestylegallery/src/LifestyleGallery.js';
+import RecommendedProducts from '../../recommendedproducts/src/RecommendedProducts.js';
 import CategoryNavigator from '../../categorynavigator/CategoryNavigator.js';
 import AboutUs from '../../aboutus/src/AboutUs.js';
 
@@ -24,7 +25,8 @@ export default class ProductDetail extends HTMLElement {
         const product = this.getListingDataFromStore(this.getAttribute('product'));
         const list = this.renderItemsList(product.includes);
         const features = product.features.replace(/[\n\r]+/g, "</br></br>");
-        
+        const recommendedProductsData = this.getRecommendedProductsData(product.id);
+
         let markup =
             `<h1>Go Back</h1>
             <category-listing
@@ -54,6 +56,23 @@ export default class ProductDetail extends HTMLElement {
                 tabletImage3="../src/${product.gallery.third.tablet}"
                 mobileImage3="../src/${product.gallery.third.mobile}"
             ></lifestyle-gallery>
+            <recommended-products
+                product-1="${recommendedProductsData[0].name}"
+                slug-1="${recommendedProductsData[0].slug}"
+                product-1-desktopImage="../src/assets/shared/desktop/image-${recommendedProductsData[0].slug}.jpg"
+                product-1-tabletImage="../src/assets/shared/tablet/image-${recommendedProductsData[0].slug}.jpg"
+                product-1-mobileImage="../src/assets/shared/mobile/image-${recommendedProductsData[0].slug}.jpg"
+                product-2="${recommendedProductsData[1].name}"
+                slug-2="${recommendedProductsData[1].slug}"
+                product-2-desktopImage="../src/assets/shared/desktop/image-${recommendedProductsData[1].slug}.jpg"
+                product-2-tabletImage="../src/assets/shared/tablet/image-${recommendedProductsData[1].slug}.jpg"
+                product-2-mobileImage="../src/assets/shared/mobile/image-${recommendedProductsData[1].slug}.jpg"
+                product-3="${recommendedProductsData[2].name}"
+                slug-3="${recommendedProductsData[2].slug}"
+                product-3-desktopImage="../src/assets/shared/desktop/image-${recommendedProductsData[2].slug}.jpg"
+                product-3-tabletImage="../src/assets/shared/tablet/image-${recommendedProductsData[2].slug}.jpg"
+                product-3-mobileImage="../src/assets/shared/mobile/image-${recommendedProductsData[2].slug}.jpg"
+            ></recommended-products>
             <category-navigator></category-navigator>
             <about-us></about-us>
         `;
@@ -95,6 +114,39 @@ export default class ProductDetail extends HTMLElement {
                 return this.store.state.productData[i];
             }
         }
+    }
+
+    getRecommendedProductsData(skipThisID) {
+        let recommendedProducts = [];
+        const max = this.store.state.productData.length;
+
+        while (recommendedProducts.length < 3) {
+            let productId = Math.floor(Math.random() * max);
+            if (skipThisID !== productId) {
+                
+                for (let i = 0; i < this.store.state.productData.length; i++) {
+                    if (this.store.state.productData[i].id === productId) {
+                        let itemPresent = false;
+                        for (let j = 0; j < recommendedProducts.length; j++) {
+                            if (this.store.state.productData[i].id === recommendedProducts[j].id) {
+                                itemPresent = true;
+                            }
+                        }
+                        if (!itemPresent) {
+                            recommendedProducts[recommendedProducts.length] = this.store.state.productData[i];
+                        }
+                    }
+                }
+            }
+        }
+
+        for (let y = 0; y < recommendedProducts.length; y++) {
+            recommendedProducts[y].name = recommendedProducts[y].name.replace(" Headphones", "");
+            recommendedProducts[y].name = recommendedProducts[y].name.replace(" Earphones", " Earphone");
+            recommendedProducts[y].name = recommendedProducts[y].name.replace(" Wireless", "");
+        }
+
+        return recommendedProducts;
     }
 }
 
