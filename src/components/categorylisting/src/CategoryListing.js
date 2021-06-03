@@ -45,7 +45,7 @@ export default class CategoryListing extends HTMLElement {
                         <div id="cartControlsContainer">
                             <form id="controlsContainer">
                                 <button type="button" id="decrementButton" class="quantityControl">-</button>
-                                <input type="number" min=1 max=10 value=1>
+                                <input type="number" min=1 max=10 value=1 disabled>
                                 <button type="button" id="incrementButton" class="quantityControl">+</button>
                             </form>
                             <button type="button" id="addToCartButton">ADD TO CART</button>
@@ -135,6 +135,10 @@ export default class CategoryListing extends HTMLElement {
                     padding-left: 1.96875rem;
                     padding-right: 1.96875rem;
                     text-decoration: none;
+                }
+
+                .detailsInnerContainer > #cartControlsContainer button {
+                    cursor: pointer;
                 }
 
                 :host([cartReady="false"]) .detailsInnerContainer > #price,
