@@ -37,11 +37,11 @@ export default class CategoryListing extends HTMLElement {
                         <a href="/${this.getAttribute("category")}/${this.getAttribute("slug")}">${this.getAttribute("text")}</a>
                         <div id="price">${this.getAttribute("price")}</div>
                         <div id="cartControlsContainer">
-                            <div id="controlsContainer">
+                            <form id="controlsContainer">
                                 <button type="button" id="decrementButton" class="quantityControl">-</button>
-                                <input type="number" value="1">
+                                <input type="number" min=1 max=10 value="1">
                                 <button type="button" id="incrementButton" class="quantityControl">+</button>
-                            </div>
+                            </form>
                             <button type="button" id="addToCartButton">ADD TO CART</button>
                         </div>
                     </div>
