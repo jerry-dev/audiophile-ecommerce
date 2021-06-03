@@ -6,6 +6,12 @@ export default class CategoryListing extends HTMLElement {
         this.attachShadow({mode: 'open'});
     }
 
+    attributeChangedCallback(attrName, oldValue, newValue) {
+		if (oldValue !== newValue) {
+			this[attrName] = this.hasAttribute(attrName);
+		}
+    }
+
     connectedCallback() {
         this.render();
     }
@@ -39,7 +45,7 @@ export default class CategoryListing extends HTMLElement {
                         <div id="cartControlsContainer">
                             <form id="controlsContainer">
                                 <button type="button" id="decrementButton" class="quantityControl">-</button>
-                                <input type="number" min=1 max=10 value="1">
+                                <input type="number" min=1 max=10 value=1>
                                 <button type="button" id="incrementButton" class="quantityControl">+</button>
                             </form>
                             <button type="button" id="addToCartButton">ADD TO CART</button>

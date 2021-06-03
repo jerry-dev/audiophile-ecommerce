@@ -19,6 +19,7 @@ export default class ProductDetail extends HTMLElement {
 
     render() {
         this.HTML();
+        this.observerLinkClicks();
     }
 
     HTML() {
@@ -147,6 +148,41 @@ export default class ProductDetail extends HTMLElement {
         }
 
         return recommendedProducts;
+    }
+
+    observerLinkClicks() {
+        const listing = this.shadowRoot.querySelector('category-listing');
+
+        listing.shadowRoot.addEventListener('click', (event) => {
+            (event.target.tagName === 'BUTTON') ? this.buttonHandler(event.target.id) : "";
+        });
+    }
+
+    buttonHandler(id) {
+        switch (id) {
+            case 'decrementButton': this.decrementInputQuantityValue(); break;
+            case 'incrementButton': this.incrementInputQuantityValue(); break;
+            case 'addToCartButton': 'Launch the cart modal'; break;
+            default: ""; break;
+        }
+    }
+
+    decrementInputQuantityValue() {
+        const input = this.shadowRoot.querySelector('category-listing').shadowRoot
+            .querySelector('#controlsContainer > input');
+
+        if (Number(input.getAttribute('value')) > 1) {
+            input.setAttribute('value', Number(input.getAttribute('value')) - 1);
+        }
+    }
+
+    incrementInputQuantityValue() {
+        const input = this.shadowRoot.querySelector('category-listing').shadowRoot
+            .querySelector('#controlsContainer > input');
+
+        if (Number(input.getAttribute('value')) < 10) {
+            input.setAttribute('value', Number(input.getAttribute('value')) + 1);
+        }
     }
 }
 
