@@ -162,7 +162,7 @@ export default class ProductDetail extends HTMLElement {
         switch (id) {
             case 'decrementButton': this.decrementInputQuantityValue(); break;
             case 'incrementButton': this.incrementInputQuantityValue(); break;
-            case 'addToCartButton': 'Launch the cart modal'; break;
+            case 'addToCartButton': this.addToCart(); break;
             default: ""; break;
         }
     }
@@ -182,6 +182,27 @@ export default class ProductDetail extends HTMLElement {
 
         if (Number(input.getAttribute('value')) < 10) {
             input.setAttribute('value', Number(input.getAttribute('value')) + 1);
+        }
+    }
+
+    clearInput() {
+        const input = this.shadowRoot.querySelector('category-listing').shadowRoot
+            .querySelector('#controlsContainer > input');
+
+        input.setAttribute('value', 1);
+    }
+
+    addToCart() {
+        const input = this.shadowRoot.querySelector('category-listing').shadowRoot
+            .querySelector('#controlsContainer > input');
+
+        if (Number(input.getAttribute('value')) >= 1 && Number(input.getAttribute('value')) <= 10) {
+            const productId = this.getListingDataFromStore(this.getAttribute('product')).id;
+            this.store.dispatch('addToCart', {id: productId, quantity: Number(input.getAttribute('value'))});
+            this.clearInput();
+            
+        } else {
+            console.log(`Too much or too little`);
         }
     }
 }

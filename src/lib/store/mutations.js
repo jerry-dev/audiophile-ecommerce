@@ -11,4 +11,11 @@ export default {
 		sessionStorage.setItem('productData', JSON.stringify(newState));
 		return newState;
 	},
+
+	addToCart(state, payload) {
+		const {...newState} = state;
+		newState.cart[newState.cart.length] = payload;
+		sessionStorage.setItem('shoppingCart', JSON.stringify(newState));
+		return newState;
+	},
 }
