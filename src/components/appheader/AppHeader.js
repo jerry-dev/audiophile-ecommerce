@@ -42,6 +42,9 @@ export default class AppHeader extends HTMLElement {
                 <button id="cartIconWrapper">
                     <img id="cartIcon" alt="shopping cart icon" src="../src/assets/shared/desktop/icon-cart.svg"/>
                 </button>
+                <span id="shoppingCartContainer">
+                    <shopping-cart></shopping-cart>
+                </span>
                 <span id="navigationMenu">
                     <category-navigator></category-navigator>
                 </span>
@@ -136,7 +139,8 @@ export default class AppHeader extends HTMLElement {
                     width: 1.458125rem;
                 }
 
-                #navigationMenu {
+                #navigationMenu,
+                #shoppingCartContainer {
                     background-color: rgba(0, 0, 0, 0.4);
                     display: none;
                     height: 100vh;
