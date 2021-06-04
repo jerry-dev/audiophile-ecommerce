@@ -39,9 +39,9 @@ export default class AppHeader extends HTMLElement {
                         <li class="subtitle-design-system"><a href="/earphones">EARPHONES</a></li>
                     </ul>
                 </nav>
-                <a id="cartIconWrapper" href="#">
+                <button id="cartIconWrapper">
                     <img id="cartIcon" alt="shopping cart icon" src="../src/assets/shared/desktop/icon-cart.svg"/>
-                </a>
+                </button>
                 <span id="navigationMenu">
                     <category-navigator></category-navigator>
                 </span>
@@ -53,6 +53,11 @@ export default class AppHeader extends HTMLElement {
         this.shadowRoot.innerHTML += `
             <style>
                 *, *::before, *::after {padding:0; margin:0;}
+
+                button#cartIconWrapper {
+                    background: none;
+                    border: none;
+                }
 
                 :host {
                     align-items: center;
@@ -121,6 +126,8 @@ export default class AppHeader extends HTMLElement {
                 }
 
                 #cartIconWrapper {
+                    background: none;
+                    border: none;
                     margin-left: auto;
                 }
 

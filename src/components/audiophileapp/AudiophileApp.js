@@ -51,7 +51,6 @@ class AudiophileApp extends HTMLElement {
 
             // DELETE
             // setTimeout(() => {this.router.navigate("/headphones/xx99-mark-two-headphones")}, 200);
-
         });
 
         this.router.on('/headphones', async () => {
