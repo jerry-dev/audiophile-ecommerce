@@ -20,25 +20,23 @@ class AudiophileApp extends HTMLElement {
     }
 
     HTML() {
-        this.shadowRoot.innerHTML = `
-            <app-header></app-header>
+        this.shadowRoot.innerHTML =
+            `<app-header></app-header>
             <output id="routerOutput">
             </output>
-            <app-footer></app-footer>
-        `;
+            <app-footer></app-footer>`;
     }
 
     CSS() {
-        this.shadowRoot.innerHTML += `
-            <style>
+        this.shadowRoot.innerHTML +=
+            `<style>
                 :host {
                     background-color: var(--white-1);
                     display: block;
                     min-height: 100%;
                     outline: 4px solid gold;
                 }
-            </style>
-        `;
+            </style>`;
     }
 
     routerInit() {

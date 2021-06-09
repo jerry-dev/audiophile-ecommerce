@@ -23,8 +23,8 @@ export default class AppHeader extends HTMLElement {
     }
 
     HTML() {
-        this.shadowRoot.innerHTML = `
-            <div id="header-inner-container">
+        this.shadowRoot.innerHTML =
+            `<div id="header-inner-container">
                 <button id="hamburger">
                     <img alt="hamburger menu icon" id="hamburgerIcon" src="../src/assets/shared/tablet/icon-hamburger.svg"/>
                 </button>
@@ -42,8 +42,10 @@ export default class AppHeader extends HTMLElement {
                 <button id="cartIconWrapper">
                     <img id="cartIcon" alt="shopping cart icon" src="../src/assets/shared/desktop/icon-cart.svg"/>
                 </button>
-                <span id="shoppingCartContainer">
-                    <shopping-cart></shopping-cart>
+                <span id="shoppingCartOverlay">
+                    <div id="shoppingCartOverlayInnerContainer">
+                        <shopping-cart></shopping-cart>
+                    </div>
                 </span>
                 <span id="navigationMenu">
                     <category-navigator></category-navigator>
@@ -60,7 +62,12 @@ export default class AppHeader extends HTMLElement {
                 button#cartIconWrapper {
                     background: none;
                     border: none;
+                    cursor: pointer;
                 }
+
+                button > * {
+                    pointer-events: none;
+                  }
 
                 :host {
                     align-items: center;
@@ -140,7 +147,7 @@ export default class AppHeader extends HTMLElement {
                 }
 
                 #navigationMenu,
-                #shoppingCartContainer {
+                #shoppingCartOverlay {
                     background-color: rgba(0, 0, 0, 0.4);
                     display: none;
                     height: 100vh;
@@ -149,6 +156,21 @@ export default class AppHeader extends HTMLElement {
                     top: 96px;
                     width: 100%;
                     z-index: 500;
+                }
+
+                #shoppingCartOverlayInnerContainer {
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 77.08333%;
+                }
+
+                #shoppingCartOverlay.visible {
+                    display: block;
+                }
+
+                shopping-cart {
+                    margin-left: auto;
+                    margin-top: 2rem;
                 }
             </style>
         `;
@@ -212,6 +234,17 @@ export default class AppHeader extends HTMLElement {
         this.observerLinkClicks();
     }
 
+    async toggleCartVisibility() {
+        const cartOverlay = this.shadowRoot.querySelector('#shoppingCartOverlay');
+
+        if (!cartOverlay.classList.contains('visible')) {
+            cartOverlay.classList.add('visible');
+            return (await import('../shoppingcart/src/ShoppingCart.js')).default;
+        } else {
+            cartOverlay.classList.remove('visible');
+        }
+    }
+
     isShowingNav() {
         return (this.classList.contains('showingNav')) ? true : false;
     }
@@ -226,13 +259,13 @@ export default class AppHeader extends HTMLElement {
 
     observerLinkClicks() {
         this.shadowRoot.addEventListener('click', (event) => {
+            if (event.target.id === 'cartIconWrapper') {
+                this.toggleCartVisibility();
+            }
+ 
             if (event.target.tagName === 'A') {
                 event.preventDefault();
                 this.store.dispatch('navigate', event.target.pathname);
-            }
-
-            if (this.isShowingNav() && this.overlayClicked(event)) {
-                this.closeNav();
             }
 
             if (this.isShowingNav() && this.overlayClicked(event)) {
@@ -259,6 +292,33 @@ export default class AppHeader extends HTMLElement {
                 }
             }
         });
+    }
+
+    buttonHandler(id) {
+        switch (id) {
+            case 'decrementButton': this.decrementInputQuantityValue(); break;
+            case 'incrementButton': this.incrementInputQuantityValue(); break;
+            case 'addToCartButton': this.addToCart(); break;
+            default: ""; break;
+        }
+    }
+
+    decrementInputQuantityValue() {
+        const input = this.shadowRoot.querySelector('category-listing').shadowRoot
+            .querySelector('#controlsContainer > input');
+
+        if (Number(input.getAttribute('value')) > 1) {
+            input.setAttribute('value', Number(input.getAttribute('value')) - 1);
+        }
+    }
+
+    incrementInputQuantityValue() {
+        const input = this.shadowRoot.querySelector('category-listing').shadowRoot
+            .querySelector('#controlsContainer > input');
+
+        if (Number(input.getAttribute('value')) < 10) {
+            input.setAttribute('value', Number(input.getAttribute('value')) + 1);
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 export default {
 	path: '/',
 	productData: [],
-	cart: []
+	cartItems: [],
+	cartCalculations: { totalCost: 0, numberOfDistinctItems: 0 }
 };

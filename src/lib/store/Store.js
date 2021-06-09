@@ -34,6 +34,7 @@ export default class Store {
 	}
 	
 	dispatch(actionKey, payload) {
+		console.log(`${actionKey} DISPATCH PAYLOAD:`, payload);
 		let self = this;
 		console.log(`Executing the dispatch method with "${actionKey}" as the action key, and "${payload}" as the payload.`);
 		if (typeof self.actions[actionKey] !== 'function') {
@@ -57,8 +58,7 @@ export default class Store {
 		
 		self.status = 'mutation';
 		let newState = self.mutations[mutationKey](self.state, payload);
-		console.log(`The newState:`, newState);
-		self.state = Object.assign(self.state, newState);
+		Object.assign(self.state, newState);
 		return true;
 	}
 }

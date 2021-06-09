@@ -143,7 +143,7 @@ export default class ProductDetail extends HTMLElement {
 
         for (let y = 0; y < recommendedProducts.length; y++) {
             recommendedProducts[y].name = recommendedProducts[y].name.replace(" Headphones", "");
-            recommendedProducts[y].name = recommendedProducts[y].name.replace(" Earphones", " Earphone");
+            recommendedProducts[y].name = recommendedProducts[y].name.replace(" Earphones", "");
             recommendedProducts[y].name = recommendedProducts[y].name.replace(" Wireless", "");
         }
 
@@ -198,7 +198,19 @@ export default class ProductDetail extends HTMLElement {
 
         if (Number(input.getAttribute('value')) >= 1 && Number(input.getAttribute('value')) <= 10) {
             const productId = this.getListingDataFromStore(this.getAttribute('product')).id;
-            this.store.dispatch('addToCart', {id: productId, quantity: Number(input.getAttribute('value'))});
+            const productName = this.getListingDataFromStore(this.getAttribute('product')).name;
+            const productPrice = this.getListingDataFromStore(this.getAttribute('product')).price;
+            const productImage = this.getListingDataFromStore(this.getAttribute('product')).image.mobile;
+
+            const cartItem = {
+                id: productId,
+                quantity: Number(input.getAttribute('value')),
+                name: productName,
+                image: productImage,
+                price: productPrice,
+            }
+
+            this.store.dispatch('addToCart', cartItem);
             this.clearInput();
             
         } else {

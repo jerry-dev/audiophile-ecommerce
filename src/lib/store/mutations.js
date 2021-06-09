@@ -14,8 +14,38 @@ export default {
 
 	addToCart(state, payload) {
 		const {...newState} = state;
-		newState.cart[newState.cart.length] = payload;
+		newState.cartItems[newState.cartItems.length] = payload;
 		sessionStorage.setItem('shoppingCart', JSON.stringify(newState));
 		return newState;
 	},
+
+	updateQuantity(state, payload) {
+		const {...newState} = state;
+		newState.cartItems = payload;
+		sessionStorage.setItem('shoppingCart', JSON.stringify(newState));
+		return newState;
+	},
+
+	updateCartCalculations(state, payload) {
+		const {...newState} = state;
+		newState.cartCalculations.totalCost = payload.totalCost;
+		newState.cartCalculations.numberOfDistinctItems = payload.numberOfDistinctItems;
+		sessionStorage.setItem('cartCalculations', JSON.stringify(newState));
+		return newState;
+	},
+
+	clearCart(state, payload) {
+		const {...newState} = state;
+		newState.cartItems = payload;
+		sessionStorage.setItem('shoppingCart', JSON.stringify(newState));
+		return newState;
+	},
+
+	clearCartCalculations(state, payload) {
+		const {...newState} = state;
+		newState.cartCalculations.totalCost = payload.totalCost;
+		newState.cartCalculations.numberOfDistinctItems = payload.numberOfDistinctItems;
+		sessionStorage.setItem('cartCalculations', JSON.stringify(newState));
+		return newState;
+	}
 }
