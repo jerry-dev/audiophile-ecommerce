@@ -67,6 +67,10 @@ export default class ItemCounter extends HTMLElement {
                 opacity: 0.5;
                 text-decoration-line: underline;
             }
+
+            button:hover {
+                color: var(--brown-2);
+            }
         </style>`;
 
         this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
