@@ -34,7 +34,6 @@ export default class Store {
 	}
 	
 	dispatch(actionKey, payload) {
-		console.log(`${actionKey} DISPATCH PAYLOAD:`, payload);
 		let self = this;
 		console.log(`Executing the dispatch method with "${actionKey}" as the action key, and "${payload}" as the payload.`);
 		if (typeof self.actions[actionKey] !== 'function') {

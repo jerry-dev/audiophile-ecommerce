@@ -4,8 +4,6 @@ export default class PubSub {
 	}
 
 	subscribe(event, callback) {
-		console.log(`The event being subscribed to: "${event}".`);
-		console.log(`The callback being subscribed to: "${callback}".`);
 		if (!Array.isArray( this.events[event] )) {
 			this.events[event] = [];
 		}
