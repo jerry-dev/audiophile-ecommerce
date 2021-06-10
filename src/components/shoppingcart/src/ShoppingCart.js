@@ -21,6 +21,7 @@ export default class ShoppingCart extends HTMLElement {
     render() {
         this.HTML();
         this.CSS();
+        this.mobileCSS();
         this.SCRIPTS();
     }
 
@@ -58,6 +59,23 @@ export default class ShoppingCart extends HTMLElement {
 
             cart-item:not(:last-child) {
                 margin-bottom: 1.5rem;
+            }
+        </style>`;
+
+        this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
+    }
+
+    mobileCSS() {
+        const markup =
+        `<style>
+            @media screen and (max-width: 576px) {
+                :host {
+                    min-width: 20.4375rem;
+                }
+
+                #CartInnerContainer {
+                    width: 82.87461%;
+                }
             }
         </style>`;
 
