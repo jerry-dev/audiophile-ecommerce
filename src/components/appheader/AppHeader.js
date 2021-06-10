@@ -224,6 +224,10 @@ export default class AppHeader extends HTMLElement {
                     :host(.showingNav) #navigationMenu {
                         display: block;
                     }
+
+                    #shoppingCartOverlayInnerContainer {
+                        width: 87.2%;
+                    }
                 }
             </style>`;
 
