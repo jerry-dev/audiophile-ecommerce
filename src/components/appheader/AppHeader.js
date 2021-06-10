@@ -23,7 +23,7 @@ export default class AppHeader extends HTMLElement {
     }
 
     HTML() {
-        this.shadowRoot.innerHTML =
+        const markup =
             `<div id="header-inner-container">
                 <button id="hamburger">
                     <img alt="hamburger menu icon" id="hamburgerIcon" src="../src/assets/shared/tablet/icon-hamburger.svg"/>
@@ -50,13 +50,14 @@ export default class AppHeader extends HTMLElement {
                 <span id="navigationMenu">
                     <category-navigator></category-navigator>
                 </span>
-            </div>
-        `;
+            </div>`;
+
+        this.shadowRoot.innerHTML = markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<");
     }
 
     CSS() {
-        this.shadowRoot.innerHTML += `
-            <style>
+        const markup =
+            `<style>
                 *, *::before, *::after {padding:0; margin:0;}
 
                 button#cartIconWrapper {
@@ -172,13 +173,14 @@ export default class AppHeader extends HTMLElement {
                     margin-left: auto;
                     margin-top: 2rem;
                 }
-            </style>
-        `;
+            </style>`;
+
+        this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
     }
 
     tabletCSS() {
-        this.shadowRoot.innerHTML += `
-            <style>
+        const markup =
+            `<style>
                 @media screen and (max-width: 768px) {
                     nav {
                         display: none;
@@ -197,13 +199,14 @@ export default class AppHeader extends HTMLElement {
                         display: block;
                     }
                 }
-            </style>
-        `;
+            </style>`;
+
+        this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
     }
 
     mobileCSS() {
-        this.shadowRoot.innerHTML += `
-            <style>
+        const markup =
+            `<style>
                 @media screen and (max-width: 576px) {
                     #hamburger {
                         display: block;
@@ -222,8 +225,9 @@ export default class AppHeader extends HTMLElement {
                         display: block;
                     }
                 }
-            </style>
-        `;
+            </style>`;
+
+        this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
     }
 
     importedCSS() {
