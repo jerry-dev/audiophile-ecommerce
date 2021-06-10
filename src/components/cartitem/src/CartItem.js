@@ -103,6 +103,12 @@ export default class CartItem extends HTMLElement {
                 font-weight: bold;
                 font-size: 0.8125rem;
                 line-height: 1.125rem;
+                text-align: center;
+            }
+
+            #controlsContainer button:hover {
+                color: var(--brown-2);
+                cursor: pointer;
             }
 
             #controlsContainer button,
