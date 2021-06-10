@@ -280,7 +280,7 @@ export default class AppHeader extends HTMLElement {
                 this.closeNav();
             }
 
-            if (event.target.tagName === 'IMG' && event.target.id === 'hamburgerIcon') {
+            if (event.target.id === 'hamburger') {
                 this.classList.toggle('showingNav');
 
                 if (this.isShowingNav()) {        
