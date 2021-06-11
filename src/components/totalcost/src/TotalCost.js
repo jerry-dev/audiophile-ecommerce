@@ -6,20 +6,18 @@ export default class TotalCost extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({mode:'open'});
-        this.render();
     }
 
     attributeChangedCallback(attrName, oldValue, newValue) {
 		if (oldValue !== newValue) {
 			this[attrName] = this.hasAttribute(attrName);
 
-            if (attrName === 'cost') {
-                this.shadowRoot.querySelector('output').innerText = this.getAttribute('cost');
-            }
+            this.attributeRefresh(attrName);
 		}
     }
 
     connectedCallback() {
+        this.render();
     }
 
     render() {
@@ -64,6 +62,14 @@ export default class TotalCost extends HTMLElement {
         </style>`;
 
         this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
+    }
+
+    attributeRefresh(attribute) {
+        return {
+            cost: (this.shadowRoot.querySelector('output'))
+            ? this.shadowRoot.querySelector('output').innerText = this.getAttribute('cost')
+            : "",
+        }[attribute]
     }
 }
 

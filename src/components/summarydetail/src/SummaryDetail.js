@@ -1,6 +1,6 @@
 export default class SummaryDetail extends HTMLElement {
     static get observedAttributes() {
-		return ['text, amount'];
+		return ['text', 'amount'];
     }
 
     constructor() {
@@ -11,7 +11,6 @@ export default class SummaryDetail extends HTMLElement {
     attributeChangedCallback(attrName, oldValue, newValue) {
 		if (oldValue !== newValue) {
 			this[attrName] = this.hasAttribute(attrName);
-            
             this.attributeRefresh(attrName);
 		}
     }
@@ -41,8 +40,6 @@ export default class SummaryDetail extends HTMLElement {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
-                margin-top: 2rem;
-                margin-bottom: 1.5rem;
                 width: 100%;
             }
 
@@ -58,6 +55,14 @@ export default class SummaryDetail extends HTMLElement {
                 font-size: 1.125rem;
                 font-weight: bold;
                 line-height: 1.5625rem;
+            }
+
+            :host([text="GRAND TOTAL"]) output {
+                color: var(--brown-2);
+            }
+
+            :host([text="GRAND TOTAL"]) {
+                margin-top: 1.5rem;
             }
         </style>`;
 
@@ -76,6 +81,4 @@ export default class SummaryDetail extends HTMLElement {
     }
 }
 
-if (!window.customElements.get('summary-detail')) {
-    window.customElements.define('summary-detail', SummaryDetail)
-}
+window.customElements.define('summary-detail', SummaryDetail)

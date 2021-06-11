@@ -4,6 +4,7 @@ import CartItem from '../../cartitem/src/CartItem.js';
 import TotalCost from '../../totalcost/src/TotalCost.js';
 import ButtonTemplate from '../../buttontemplate/src/ButtonTemplate.js';
 
+
 export default class ShoppingCart extends HTMLElement {
     constructor() {
         super();
