@@ -58,6 +58,8 @@ export default class Store {
 		self.status = 'mutation';
 		let newState = self.mutations[mutationKey](self.state, payload);
 		Object.assign(self.state, newState);
+		console.log(`state.cartCalculations:`, self.state.cartCalculations);
+		console.log(`state.cartItems:`, self.state.cartItems);
 		return true;
 	}
 }

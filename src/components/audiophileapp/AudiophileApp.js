@@ -46,15 +46,11 @@ class AudiophileApp extends HTMLElement {
         this.router.on('/', async () => {
             await import('../homesection/src/HomeSection.js');
             this.routerOutput.innerHTML = `<home-section></home-section>`;
-
-            // DELETE
-            // setTimeout(() => {this.router.navigate("/headphones/xx99-mark-two-headphones")}, 200);
         });
 
         this.router.on('/headphones', async () => {
             await import('../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="headphones"></product-category>`;
-            setTimeout(() => {this.router.navigate("/headphones")}, 200);
         });
 
         this.router.on('/speakers', async () => {
@@ -82,6 +78,11 @@ class AudiophileApp extends HTMLElement {
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
         });
 
+        this.router.on('/checkout', async () => {
+            await import('../checkoutdetails/src/CheckoutDetails.js');
+            this.routerOutput.innerHTML = `<checkout-details></checkout-details>`;
+        });
+
         this.router.resolve();
     }
 
@@ -95,8 +96,8 @@ class AudiophileApp extends HTMLElement {
         const path = context.store.state.path;
 
         switch (path) {
-            case '/': context.router.navigate("/");
-                break;
+            case '/': context.router.navigate("/"); break;
+            case 'checkout': context.router.navigate("/checkout"); break;
         }
 
         const headphonesRegex = new RegExp(`/headphones`);

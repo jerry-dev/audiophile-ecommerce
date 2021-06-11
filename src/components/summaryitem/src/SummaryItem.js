@@ -97,8 +97,8 @@ export default class SummaryItem extends HTMLElement {
 
     attributeRefresh(attribute) {
         return {
-            quantity: (this.shadowRoot.querySelector('#controlsContainer input'))
-            ? this.shadowRoot.querySelector('#controlsContainer input').setAttribute('value', this.getAttribute('quantity'))
+            quantity: (this.shadowRoot.querySelector('#quantity'))
+            ? this.shadowRoot.querySelector('#quantity').innerText = this.getAttribute('quantity')
             : "",
         }[attribute]
     }

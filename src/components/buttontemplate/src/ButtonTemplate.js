@@ -15,7 +15,7 @@ export default class ButtonTemplate extends HTMLElement {
 
     HTML() {
         const markup =
-        `<button type="button">${this.getAttribute('text')}</button>`;
+        `<button id="${this.getAttribute('id')}" type="button">${this.getAttribute('text')}</button>`;
 
         this.shadowRoot.innerHTML = markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<");
     }

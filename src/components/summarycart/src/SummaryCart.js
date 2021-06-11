@@ -163,7 +163,6 @@ export default class SummaryCart extends HTMLElement {
                     break;
             }
         });
-        
     }
 
     hydrateItemQuantity() {
@@ -172,7 +171,7 @@ export default class SummaryCart extends HTMLElement {
 
         summaryItems.forEach((item, index) => {
             let quantity = summaryItemsData[index].quantity;
-            item.shadowRoot.querySelector('#quantity').innerText = `x${quantity}`;
+            item.setAttribute('quantity', `x${quantity}`);
         });
     }
 

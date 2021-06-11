@@ -4,7 +4,6 @@ import CartItem from '../../cartitem/src/CartItem.js';
 import TotalCost from '../../totalcost/src/TotalCost.js';
 import ButtonTemplate from '../../buttontemplate/src/ButtonTemplate.js';
 
-
 export default class ShoppingCart extends HTMLElement {
     constructor() {
         super();
@@ -32,7 +31,7 @@ export default class ShoppingCart extends HTMLElement {
                 <item-counter count="0"></item-counter>
                 <span id="listOfCartItems"></span>
                 <total-cost cost="$0"></total-cost>
-                <button-template text="CHECKOUT"></button-template>
+                <button-template id="checkout" text="CHECKOUT"></button-template>
             </div>`;
             
         this.shadowRoot.innerHTML = markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<");
@@ -96,22 +95,24 @@ export default class ShoppingCart extends HTMLElement {
     }
 
     clickManager() {
-        const itemCounter = this.shadowRoot.querySelector('item-counter');
-
-        itemCounter.shadowRoot.addEventListener('click', (event) => {
-            if (event.target.id === `clearCart`) {
-                this.store.dispatch(`clearCart`);
-            }
-        });
-
         this.shadowRoot.addEventListener('click', (event) => {
-            const productID = Number(event.composedPath()[0].getAttribute('data-productId'));
-            const editType = event.composedPath()[0].className;
+            if (event.composedPath()[0].id === `clearCart`) {
+                return this.store.dispatch(`clearCart`);
+            }
 
-            const payload = { id: productID };
-            (editType === `increment`)
-                ? this.store.dispatch(`incrementQuantity`, payload)
-                : this.store.dispatch(`decrementQuantity`, payload);
+            if (event.composedPath()[0].id === `checkout`) {
+                return this.store.dispatch('navigate', `checkout`);
+            }
+
+            if (event.composedPath()[0].hasAttribute('data-productid')) {
+                const productID = Number(event.composedPath()[0].getAttribute('data-productId'));
+                const editType = event.composedPath()[0].className;
+
+                const payload = { id: productID };
+                (editType === `increment`)
+                    ? this.store.dispatch(`incrementQuantity`, payload)
+                    : this.store.dispatch(`decrementQuantity`, payload);
+            }
         });
     }
 
