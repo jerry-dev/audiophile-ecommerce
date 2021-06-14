@@ -36,6 +36,26 @@ export default class CheckoutForm extends HTMLElement {
                         <input type="tel" id="telephone" name="telephone" placeholder="+1 202-555-0136">
                     </div>
                 </section>
+
+                <h6 class="subtitle-design-system title">SHIPPING INFO</h6>
+                <section id="shippingInfo">
+                    <div class="labelInputCombo" id="labelInputAddressCombo">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" placeholder="1137 Williams Avenue">
+                    </div>
+                    <div class="labelInputCombo" id="labelInputZipCodeCombo">
+                        <label for="zipcode">Zip Code</label>
+                        <input type="number" id="zipcode" name="zipcode" placeholder="10001">
+                    </div>
+                    <div class="labelInputCombo" id="labelInputCityCombo">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" placeholder="New York">
+                    </div>
+                    <div class="labelInputCombo" id="labelInputCountryCombo">
+                        <label for="country">City</label>
+                        <input type="text" id="country" name="country" placeholder="United States">
+                    </div>
+                </section>
             </form>
         </div>`;
         this.shadowRoot.innerHTML = markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<");
@@ -55,13 +75,18 @@ export default class CheckoutForm extends HTMLElement {
             #checkoutFormInnerContainer {
                 margin-left: auto;
                 margin-right: auto;
+                padding-bottom: 3rem;
+                padding-top: 3.375rem;
                 width: 86.84931%;
+            }
+
+            h3 {
+                margin-bottom: 2.5625rem;
             }
 
             .title {
                 color: var(--brown-2);
                 margin-bottom: 1rem;
-                margin-top: 2.5625rem;
             }
 
             section {
@@ -69,6 +94,14 @@ export default class CheckoutForm extends HTMLElement {
                 grid-template-columns: repeat(2, 1fr);
                 grid-column-gap: 1rem;
                 grid-row-gap: 1.5rem;
+            }
+
+            #billingDetails {
+                margin-bottom: 3.3125rem;
+            }
+
+            #shippingInfo {
+                margin-bottom: 3.8125rem;
             }
 
             label {
@@ -96,6 +129,10 @@ export default class CheckoutForm extends HTMLElement {
             .labelInputCombo {
                 display: flex;
                 flex-direction: column;
+            }
+
+            #labelInputAddressCombo {
+                grid-column: 1 / span 2;
             }
         </style>`;
 
