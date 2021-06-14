@@ -1,3 +1,4 @@
+import CheckoutForm from '../../checkoutform/src/CheckoutForm.js';
 import SummaryCart from '../../summarycart/src/SummaryCart.js';
 
 export default class CheckoutDetails extends HTMLElement {
@@ -18,6 +19,7 @@ export default class CheckoutDetails extends HTMLElement {
     HTML() {
         const markup =
         `<div id="checkoutDetailsInnerContainer">
+            <checkout-form></checkout-form>
             <summary-cart></summary-cart>
         </div>`;
         this.shadowRoot.innerHTML = markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<");
@@ -29,6 +31,15 @@ export default class CheckoutDetails extends HTMLElement {
             :host {
                 background-color: var(--grey-1);
                 display: block;
+            }
+
+            #checkoutDetailsInnerContainer {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin-left: auto;
+                margin-right: auto;
+                width: 77.08333%;
             }
         </style>`;
 

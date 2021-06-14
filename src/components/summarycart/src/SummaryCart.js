@@ -35,7 +35,7 @@ export default class SummaryCart extends HTMLElement {
                 <summary-detail text="SHIPPING" amount="$0"></summary-detail>
                 <summary-detail text="VAT (INCLUDED)" amount="$0"></summary-detail>
                 <summary-detail text="GRAND TOTAL" amount="$0"></summary-detail>
-                <button-template text="CONTINUE & PAY"></button-template>
+                <button-template id="pay" text="CONTINUE & PAY"></button-template>
             </div>`;
             
         this.shadowRoot.innerHTML = markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<");
@@ -48,7 +48,7 @@ export default class SummaryCart extends HTMLElement {
                 background-color: var(--white-1);
                 border-radius: 0.5rem;
                 display: block;
-                max-width: 21.875rem;
+                width: 21.875rem;
             }
 
             #CartInnerContainer {
@@ -120,14 +120,7 @@ export default class SummaryCart extends HTMLElement {
 
     clickManager() {
         this.shadowRoot.addEventListener('click', (event) => {
-            console.log(`Clicked:`, event.composedPath()[0]);
-            // const productID = Number(event.composedPath()[0].getAttribute('data-productId'));
-            // const editType = event.composedPath()[0].className;
-
-            // const payload = { id: productID };
-            // (editType === `increment`)
-            //     ? this.store.dispatch(`incrementQuantity`, payload)
-            //     : this.store.dispatch(`decrementQuantity`, payload);
+            console.log(`Clicked element's id:`, event.target.id);
         });
     }
 
