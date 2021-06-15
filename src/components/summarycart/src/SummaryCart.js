@@ -22,6 +22,7 @@ export default class SummaryCart extends HTMLElement {
     render() {
         this.HTML();
         this.CSS();
+        this.tabletCSS();
         this.mobileCSS();
         this.SCRIPTS();
     }
@@ -48,7 +49,8 @@ export default class SummaryCart extends HTMLElement {
                 background-color: var(--white-1);
                 border-radius: 0.5rem;
                 display: block;
-                width: 21.875rem;
+                height: auto;
+                width: 31.53153%;
             }
 
             #CartInnerContainer {
@@ -90,16 +92,33 @@ export default class SummaryCart extends HTMLElement {
         this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
     }
 
+    tabletCSS() {
+        const markup =
+        `<style>
+            @media screen and (max-width: 768px) {
+                :host {
+                    width: 100%;
+                }
+
+                #CartInnerContainer {
+                    width: 90.42089%;
+                }
+            }
+        </style>`;
+
+        this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
+    }
+
     mobileCSS() {
         const markup =
         `<style>
             @media screen and (max-width: 576px) {
                 :host {
-                    min-width: 20.4375rem;
+                    width: 100%;
                 }
 
                 #CartInnerContainer {
-                    width: 82.87461%;
+                    width: 85.32110%;
                 }
             }
         </style>`;

@@ -33,9 +33,11 @@ export default class CheckoutDetails extends HTMLElement {
             :host {
                 background-color: var(--grey-1);
                 display: block;
+                padding-bottom: 8.8125rem;
             }
 
             #checkoutDetailsInnerContainer {
+                align-items: flex-start;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
@@ -52,6 +54,10 @@ export default class CheckoutDetails extends HTMLElement {
         const markup =
         `<style>
             @media screen and (max-width: 768px) {
+                :host {
+                    padding-bottom: 7.25rem;
+                }
+
                 #checkoutDetailsInnerContainer {
                     flex-direction: column;
                     width: 89.71354%;
@@ -66,6 +72,10 @@ export default class CheckoutDetails extends HTMLElement {
         const markup =
         `<style>
             @media screen and (max-width: 375px) {
+                :host {
+                    padding-bottom: 6.0625rem;
+                }
+
                 #checkoutDetailsInnerContainer {
                     width: 87.2%;
                 }
