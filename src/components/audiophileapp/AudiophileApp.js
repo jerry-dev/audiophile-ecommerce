@@ -43,10 +43,10 @@ class AudiophileApp extends HTMLElement {
         this.routerOutput = this.shadowRoot.querySelector("#routerOutput");
         this.router = new Navigo("/");
 
-        // this.router.on('/', async () => {
-        //     await import('../homesection/src/HomeSection.js');
-        //     this.routerOutput.innerHTML = `<home-section></home-section>`;
-        // });
+        this.router.on('/', async () => {
+            await import('../homesection/src/HomeSection.js');
+            this.routerOutput.innerHTML = `<home-section></home-section>`;
+        });
 
         this.router.on('/headphones', async () => {
             await import('../productcategory/src/ProductCategory.js');
@@ -78,7 +78,7 @@ class AudiophileApp extends HTMLElement {
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
         });
 
-        this.router.on('/', async () => {
+        this.router.on('/checkout', async () => {
             await import('../checkoutdetails/src/CheckoutDetails.js');
             this.routerOutput.innerHTML = `<checkout-details></checkout-details>`;
         });

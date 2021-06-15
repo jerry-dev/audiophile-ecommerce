@@ -14,6 +14,8 @@ export default class CheckoutDetails extends HTMLElement {
     render() {
         this.HTML();
         this.CSS();
+        this.tabletCSS();
+        this.mobileCSS();
     }
 
     HTML() {
@@ -40,6 +42,33 @@ export default class CheckoutDetails extends HTMLElement {
                 margin-left: auto;
                 margin-right: auto;
                 width: 77.08333%;
+            }
+        </style>`;
+
+        this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
+    }
+
+    tabletCSS() {
+        const markup =
+        `<style>
+            @media screen and (max-width: 768px) {
+                #checkoutDetailsInnerContainer {
+                    flex-direction: column;
+                    width: 89.71354%;
+                }
+            }
+        </style>`;
+
+        this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
+    }
+
+    mobileCSS() {
+        const markup =
+        `<style>
+            @media screen and (max-width: 375px) {
+                #checkoutDetailsInnerContainer {
+                    width: 87.2%;
+                }
             }
         </style>`;
 

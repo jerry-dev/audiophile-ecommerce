@@ -1,7 +1,6 @@
 
 const designSystemImport = () => {
-    return `
-    <style>
+    return`<style>
         .h1-design-system {
             font-size: 3.5rem;
             font-weight: bold;
@@ -56,8 +55,7 @@ const designSystemImport = () => {
             line-height: 1.5625rem;
             text-transform: uppercase;
         }
-    </style>
-    `;
+    </style>`;
 }
 
 export default designSystemImport;
