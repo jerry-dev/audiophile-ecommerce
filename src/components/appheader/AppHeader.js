@@ -110,9 +110,9 @@ export default class AppHeader extends HTMLElement {
                 }
 
                 nav {
-                    margin-left: 17.747%;
-                    max-width: 26.8125rem;
-                    width: 38.648%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 26.8125rem;
                 }
 
                 ul {
