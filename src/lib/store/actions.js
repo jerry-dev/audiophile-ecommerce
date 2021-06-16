@@ -109,7 +109,6 @@ export default {
 	},
 
     incrementQuantity(context, payload) {
-        console.log(`INCREMENTING`);
         const cartItems = context.state.cartItems;
         const cartCalculations = context.state.cartCalculations;
 
@@ -126,7 +125,6 @@ export default {
     },
 
     decrementQuantity(context, payload) {
-        console.log(`DECREMENTING`);
         const cartItems = context.state.cartItems;
         const cartCalculations = context.state.cartCalculations;
 
@@ -148,5 +146,9 @@ export default {
 
         context.commit('updateQuantity', cartItems);
         context.commit('updateCartCalculations', cartCalculations);
+    },
+
+    processOrder(context, payload) {
+        context.commit('processOrder', payload);
     }
 }

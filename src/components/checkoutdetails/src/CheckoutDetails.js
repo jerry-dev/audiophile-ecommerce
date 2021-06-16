@@ -1,5 +1,7 @@
+import store from '../../../lib/store/index.js';
 import CheckoutForm from '../../checkoutform/src/CheckoutForm.js';
 import SummaryCart from '../../summarycart/src/SummaryCart.js';
+import OrderConfirmed from '../../orderconfirmed/src/OrderConfirmed.js';
 
 export default class CheckoutDetails extends HTMLElement {
     constructor() {
@@ -8,6 +10,10 @@ export default class CheckoutDetails extends HTMLElement {
     }
 
     connectedCallback() {
+        this.store = store;
+        this.store.observer.subscribe('stateChange', () => {
+            this.componentHydration();
+        });
         this.render();
     }
 
@@ -23,6 +29,9 @@ export default class CheckoutDetails extends HTMLElement {
         `<div id="checkoutDetailsInnerContainer">
             <checkout-form></checkout-form>
             <summary-cart></summary-cart>
+            <order-confirmed
+                activated="false">
+            </order-confirmed>
         </div>`;
         this.shadowRoot.innerHTML = markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<");
     }
@@ -83,6 +92,16 @@ export default class CheckoutDetails extends HTMLElement {
         </style>`;
 
         this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
+    }
+
+    componentHydration() {
+        this.activateOrderConfirmationModal();
+    }
+
+    activateOrderConfirmationModal() {
+        if (this.store.state.order.success) {
+            this.shadowRoot.querySelector('order-confirmed').setAttribute('activated', true);
+        }
     }
 }
 

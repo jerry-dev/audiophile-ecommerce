@@ -47,5 +47,11 @@ export default {
 		newState.cartCalculations.numberOfDistinctItems = payload.numberOfDistinctItems;
 		sessionStorage.setItem('cartCalculations', JSON.stringify(newState));
 		return newState;
+	},
+
+	processOrder(state, payload) {
+		const {...newState} = state;
+		newState.order = payload;
+		return newState;
 	}
 }

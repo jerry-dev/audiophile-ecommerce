@@ -9,6 +9,7 @@ export default class SummaryCart extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({mode: 'open'});
+        this.order = {};
     }
 
     connectedCallback() {
@@ -139,7 +140,11 @@ export default class SummaryCart extends HTMLElement {
 
     clickManager() {
         this.shadowRoot.addEventListener('click', (event) => {
-            console.log(`Clicked element's id:`, event.target.id);
+            console.log(`Clicked:`, event.target);
+
+            const payload = { order: this.order, success: true };
+
+            (event.target.id === `pay`) ? this.store.dispatch(`processOrder`, payload) : "";
         });
     }
 
@@ -172,6 +177,7 @@ export default class SummaryCart extends HTMLElement {
                     break;
                 case 3:
                     detail.setAttribute('amount', grandTotalReformatted);
+                    this.order.grandTotal = grandTotalReformatted;
                     break;
             }
         });
@@ -188,13 +194,18 @@ export default class SummaryCart extends HTMLElement {
     }
 
     renderCartItems() {
+        const summaryItemsData = this.store.state.cartItems;
         let itemsMarkup = ``;
+        this.order.items = [];
         
-        this.store.state.cartItems.forEach((item) => {
+        this.store.state.cartItems.forEach((item, index) => {
             const itemPriceReformatted = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(item.price).replace(".00", "");
-            itemsMarkup += `<summary-item image="${item.image}" productId="${item.id}" product="${item.name}" price="${itemPriceReformatted}" quantity="0"></summary-item>`;
+            itemsMarkup += `<summary-item image="${item.image}" productId="${item.id}" product="${item.name}" price="${itemPriceReformatted}" quantity="${summaryItemsData[index].quantity}"></summary-item>`;
+
+            this.order.items[this.order.items.length] = item;
         });
 
+        this.order.numberOfItems = this.order.items.length;
         this.shadowRoot.querySelector('#listOfCartItems').innerHTML = itemsMarkup;
     }
 }
