@@ -46,41 +46,49 @@ class AudiophileApp extends HTMLElement {
         this.router.on('/', async () => {
             await import('../homesection/src/HomeSection.js');
             this.routerOutput.innerHTML = `<home-section></home-section>`;
+            this.scrollToTop();
         });
 
         this.router.on('/headphones', async () => {
             await import('../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="headphones"></product-category>`;
+            this.scrollToTop();
         });
 
         this.router.on('/speakers', async () => {
             await import('../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="speakers"></product-category>`;
+            this.scrollToTop();
         });
 
         this.router.on('/earphones', async () => {
             await import('../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="earphones"></product-category>`;
+            this.scrollToTop();
         });
 
         this.router.on('/headphones/:product', async ({data}) => {
             await import('../productdetail/src/ProductDetail.js');
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
+            this.scrollToTop();
         });
 
         this.router.on('/speakers/:product', async ({data}) => {
             await import('../productdetail/src/ProductDetail.js');
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
+            this.scrollToTop();
         });
 
         this.router.on('/earphones/:product', async ({data}) => {
             await import('../productdetail/src/ProductDetail.js');
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
+            this.scrollToTop();
         });
 
         this.router.on('/checkout', async () => {
             await import('../checkoutdetails/src/CheckoutDetails.js');
             this.routerOutput.innerHTML = `<checkout-details></checkout-details>`;
+            this.scrollToTop();
         });
 
         this.router.resolve();
@@ -133,6 +141,10 @@ class AudiophileApp extends HTMLElement {
                     break;
             }
         }
+    }
+
+    scrollToTop() {
+        this.shadowRoot.querySelector('app-header').scrollIntoView({behavior: "smooth"});
     }
 }
 
