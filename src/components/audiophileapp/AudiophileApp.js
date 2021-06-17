@@ -47,48 +47,56 @@ class AudiophileApp extends HTMLElement {
             await import('../homesection/src/HomeSection.js');
             this.routerOutput.innerHTML = `<home-section></home-section>`;
             this.scrollToTop();
+            this.closeShoppingCart();
         });
 
         this.router.on('/headphones', async () => {
             await import('../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="headphones"></product-category>`;
             this.scrollToTop();
+            this.closeShoppingCart();
         });
 
         this.router.on('/speakers', async () => {
             await import('../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="speakers"></product-category>`;
             this.scrollToTop();
+            this.closeShoppingCart();
         });
 
         this.router.on('/earphones', async () => {
             await import('../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="earphones"></product-category>`;
             this.scrollToTop();
+            this.closeShoppingCart();
         });
 
         this.router.on('/headphones/:product', async ({data}) => {
             await import('../productdetail/src/ProductDetail.js');
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
             this.scrollToTop();
+            this.closeShoppingCart();
         });
 
         this.router.on('/speakers/:product', async ({data}) => {
             await import('../productdetail/src/ProductDetail.js');
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
             this.scrollToTop();
+            this.closeShoppingCart();
         });
 
         this.router.on('/earphones/:product', async ({data}) => {
             await import('../productdetail/src/ProductDetail.js');
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
             this.scrollToTop();
+            this.closeShoppingCart();
         });
 
         this.router.on('/checkout', async () => {
             await import('../checkoutdetails/src/CheckoutDetails.js');
             this.routerOutput.innerHTML = `<checkout-details></checkout-details>`;
             this.scrollToTop();
+            this.closeShoppingCart();
         });
 
         this.router.resolve();
@@ -145,6 +153,15 @@ class AudiophileApp extends HTMLElement {
 
     scrollToTop() {
         this.shadowRoot.querySelector('app-header').scrollIntoView({behavior: "smooth"});
+    }
+
+    closeShoppingCart() {
+        const shoppingCartOverlay = this.shadowRoot.querySelector('app-header')
+            .shadowRoot.querySelector('#shoppingCartOverlay');
+
+        if (shoppingCartOverlay.classList.contains('visible')) {
+            shoppingCartOverlay.classList.remove('visible');
+        }
     }
 }
 
