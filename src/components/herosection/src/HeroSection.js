@@ -16,6 +16,7 @@ export default class HeroSection extends HTMLElement {
         this.importedCSS();
         this.tabletCSS();
         this.mobileCSS();
+        this.animations();
     }
 
     html() {
@@ -179,7 +180,86 @@ export default class HeroSection extends HTMLElement {
     }
 
     importedCSS() {
-        this.shadowRoot.innerHTML += `${designSystemImport()}`;
+        this.shadowRoot.innerHTML += designSystemImport();
+    }
+
+    animations() {
+        this.shadowRoot.innerHTML += `
+            <style>
+                .opaque {
+                    color: var(--brown-2);
+                }
+
+                .opaque.clear {
+                    animation-name: visible;
+                    animation-duration: 2.5s;
+                    animation-iteration-count: 1;
+                }
+
+                @keyframes visible {
+                    0% {
+                        color: var(--brown-2);
+                    }
+                    100% {
+                        color: var(--white-1);
+                    }
+                }
+
+                .opaque:hover {
+                    opacity: 1;
+                }
+
+                .short {
+                    transform: scaleY(0.1);
+                    transform-origin: bottom;
+                    transition: transform 0.30s ease-out;
+                }
+
+                .short.fullSize {
+                    transform: scaleY(1);
+                }
+
+                .startLeft {
+                    transform: translateX(-150px);
+                    transition: transform 0.40s ease-out;
+                }
+
+                .startLeft.comeIn {
+                    transform: translateX(0px);
+                }
+            </style>`;
+
+        const newProduct = this.shadowRoot.querySelector('#heroContent > small');
+        const paragraph = this.shadowRoot.querySelector('#heroContent > p');
+        const headingOne = this.shadowRoot.querySelector('#heroContent > h1');
+        
+        newProduct.classList.add('opaque');
+        paragraph.classList.add('short');
+        headingOne.classList.add('startLeft');
+
+        const clearObserver = new IntersectionObserver((entry, observer) => {
+            if (entry[0].isIntersecting) {
+                entry[0].target.classList.add('clear');
+            }
+        });
+
+        clearObserver.observe(newProduct);
+
+        const fullSizeObserver = new IntersectionObserver((entry, observer) => {
+            if (entry[0].isIntersecting) {
+                entry[0].target.classList.add('fullSize');
+            }
+        });
+
+        fullSizeObserver.observe(paragraph);
+
+        const comeInObserver = new IntersectionObserver((entry, observer) => {
+            if (entry[0].isIntersecting) {
+                entry[0].target.classList.add('comeIn');
+            }
+        });
+
+        comeInObserver.observe(headingOne);
     }
 }
 
