@@ -22,6 +22,7 @@ export default class CheckoutDetails extends HTMLElement {
         this.CSS();
         this.tabletCSS();
         this.mobileCSS();
+        this.SCRIPTS();
     }
 
     HTML() {
@@ -102,6 +103,179 @@ export default class CheckoutDetails extends HTMLElement {
         if (this.store.state.order.success) {
             this.shadowRoot.querySelector('order-confirmed').setAttribute('activated', true);
         }
+    }
+
+    SCRIPTS() {
+        this.clickManager();
+        this.formValidationManager();
+    }
+
+    formValidationManager() {
+        this.shadowRoot.addEventListener('input', (event) => {
+            if (event.composedPath()[0].id === `name`) {
+                const theNameInput = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#name');
+                const errrorMessageContainer = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#labelInputNameCombo span.error');
+                
+                if (theNameInput.validity.valid) {
+                    errrorMessageContainer.textContent = "";
+                    theNameInput.classList.remove("error");
+                    theNameInput.previousElementSibling.classList.remove("error");
+                } else {
+                    this.showError('name', theNameInput, errrorMessageContainer);
+                }
+            }
+
+            if (event.composedPath()[0].id === `email`) {
+                const errrorMessageContainer = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#labelInputEmailCombo span.error');
+                const emailInput = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#email');
+                
+                if (emailInput.validity.valid) {
+                    errrorMessageContainer.textContent = "";
+                    emailInput.classList.remove("error");
+                    emailInput.previousElementSibling.classList.remove("error");
+                } else {
+                    this.showError('email', emailInput, errrorMessageContainer);
+                }
+            }
+
+            if (event.composedPath()[0].id === `telephone`) {
+                const errrorMessageContainer = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#labelInputTelephoneCombo span.error');
+                const telephoneInput = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#telephone');
+                
+                if (telephoneInput.validity.valid) {
+                    errrorMessageContainer.textContent = "";
+                    telephoneInput.classList.remove("error");
+                    telephoneInput.previousElementSibling.classList.remove("error");
+                } else {
+                    this.showError('telephone', telephoneInput, errrorMessageContainer);
+                }
+            }
+
+            if (event.composedPath()[0].id === `address`) {
+                const errrorMessageContainer = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#labelInputAddressCombo span.error');
+                const addressInput = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#address');
+                
+                if (addressInput.validity.valid) {
+                    errrorMessageContainer.textContent = "";
+                    addressInput.classList.remove("error");
+                    addressInput.previousElementSibling.classList.remove("error");
+                } else {
+                    this.showError('address', addressInput, errrorMessageContainer);
+                }
+            }
+
+            if (event.composedPath()[0].id === `zipcode`) {
+                const errrorMessageContainer = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#labelInputZipCodeCombo span.error');
+                const zipcodeInput = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#zipcode');
+                
+                if (zipcodeInput.validity.valid) {
+                    errrorMessageContainer.textContent = "";
+                    zipcodeInput.classList.remove("error");
+                    zipcodeInput.previousElementSibling.classList.remove("error");
+                } else {
+                    this.showError('zipcode', zipcodeInput, errrorMessageContainer);
+                }
+            }
+
+            if (event.composedPath()[0].id === `city`) {
+                const errrorMessageContainer = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#labelInputCityCombo span.error');
+                const cityInput = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#city');
+                
+                if (cityInput.validity.valid) {
+                    errrorMessageContainer.textContent = "";
+                    cityInput.classList.remove("error");
+                    cityInput.previousElementSibling.classList.remove("error");
+                } else {
+                    this.showError('city', cityInput, errrorMessageContainer);
+                }
+            }
+
+            if (event.composedPath()[0].id === `country`) {
+                const errrorMessageContainer = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#labelInputCountryCombo span.error');
+                const countryInput = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#country');
+                
+                if (countryInput.validity.valid) {
+                    errrorMessageContainer.textContent = "";
+                    countryInput.classList.remove("error");
+                    countryInput.previousElementSibling.classList.remove("error");
+                } else {
+                    this.showError('country', countryInput, errrorMessageContainer);
+                }
+            }
+            
+            if (event.composedPath()[0].id === `enumber`) {
+                const errrorMessageContainer = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#labelInputEmoneyCombo span.error');
+                const enumberInput = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#enumber');
+                
+                if (enumberInput.validity.valid) {
+                    errrorMessageContainer.textContent = "";
+                    enumberInput.classList.remove("error");
+                    enumberInput.previousElementSibling.classList.remove("error");
+                } else {
+                    this.showError('enumber', enumberInput, errrorMessageContainer);
+                }
+            }
+
+            if (event.composedPath()[0].id === `enumberPin`) {
+                const errrorMessageContainer = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#labelInputEmoneyPinCombo span.error');
+                const enumberInput = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('#enumberPin');
+                
+                if (enumberInput.validity.valid) {
+                    errrorMessageContainer.textContent = "";
+                    enumberInput.classList.remove("error");
+                    enumberInput.previousElementSibling.classList.remove("error");
+                } else {
+                    this.showError('enumberPin', enumberInput, errrorMessageContainer);
+                }
+            }
+        });
+    }
+
+    showError(field, input, messageContainer) {
+        if (input.validity.typeMismatch) {
+            messageContainer.textContent = "Wrong format";
+        } else if (input.validity.tooShort) {
+            messageContainer.textContent = `The ${field} should be at least ${input.minLength} characters`;
+        } else if (input.validity.valueMissing) {
+            messageContainer.textContent = "This field is required";
+        } else if (field === "email" && input.validity.patternMismatch) {
+            messageContainer.textContent = "Missing details";
+        } else if (field === "name" && input.validity.patternMismatch) {
+            messageContainer.textContent = "Alphabet characters only";
+        } else if (field === "telephone" && input.validity.patternMismatch) {
+            messageContainer.textContent = "Numeric characters only";
+        } else if (field === "address" && input.validity.patternMismatch) {
+            messageContainer.textContent = "Wrong format";
+        } else if (field === "zipcode" && input.validity.patternMismatch) {
+            messageContainer.textContent = "Wrong format";
+        } else if (field === "city" && input.validity.patternMismatch) {
+            messageContainer.textContent = "Wrong format";
+        } else if (field === "country" && input.validity.patternMismatch) {
+            messageContainer.textContent = "Wrong format";
+        } else if (field === "enumber" && input.validity.patternMismatch) {
+            messageContainer.textContent = "Numeric characters only";
+        } else if (field === "enumberPin" && input.validity.patternMismatch) {
+            messageContainer.textContent = "Numeric characters only";
+        }
+
+        input.classList.add("error");
+        input.previousElementSibling.classList.add("error");
+        
+    }
+
+    clickManager() {
+        this.shadowRoot.addEventListener('click', (event) => {
+            // const payload = { order: this.order, success: true };
+            //  (event.composedPath()[0].id === `pay`) ? this.store.dispatch(`processOrder`, payload) : "";
+            if (event.composedPath()[0].id === `pay`) {
+                const theForm = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('form');
+                
+            }
+
+            // Submit the purchas order with form details
+            // processOrder
+            // (event.target.id === `pay`) ? this.store.dispatch(`processOrder`, payload) : "";
+        });
     }
 }
 

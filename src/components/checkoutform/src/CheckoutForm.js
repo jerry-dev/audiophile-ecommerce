@@ -23,40 +23,47 @@ export default class CheckoutForm extends HTMLElement {
         const markup =
         `<div id="checkoutFormInnerContainer">
             <h3 class="h3-design-system">CHECKOUT</h3>
-            <form>
+            <form novalidate>
                 <h6 class="subtitle-design-system title">BILLING DETAILS</h6>
                 <section id="billingDetails">
                     <div class="labelInputCombo" id="labelInputNameCombo">
-                        <label for="customerName">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Alexei Ward">
+                        <label for="customerName">Name<span class="error" aria-live="polite"></span></label>
+                        <input type="text" id="name" name="name" placeholder="Alexei Ward"
+                        required minlength="5" maxlength="50" pattern="[a-zA-Z ]*">
                     </div>
                     <div class="labelInputCombo" id="labelInputEmailCombo">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="alexei@mail.com">
+                        <label for="email">Email Address<span class="error" aria-live="polite"></span></label>
+                        <input type="email" id="email" name="email" placeholder="alexei@mail.com"
+                        required minlength="8" maxlength="62" pattern=".*\.(com|net|org|gov|edu|de)$">
                     </div>
                     <div class="labelInputCombo" id="labelInputTelephoneCombo">
-                        <label for="telephone">Phone Number</label>
-                        <input type="tel" id="telephone" name="telephone" placeholder="+1 202-555-0136">
+                        <label for="telephone">Phone Number<span class="error" aria-live="polite"></span></label>
+                        <input type="tel" id="telephone" name="telephone" placeholder="+1 202-555-0136"
+                        required minlength="10" maxlength="15" pattern="[\+0-9- ]*">
                     </div>
                 </section>
 
                 <h6 class="subtitle-design-system title">SHIPPING INFO</h6>
                 <section id="shippingInfo">
                     <div class="labelInputCombo" id="labelInputAddressCombo">
-                        <label for="address">Address</label>
-                        <input type="text" id="address" name="address" placeholder="1137 Williams Avenue">
+                        <label for="address">Address<span class="error" aria-live="polite"></span></label>
+                        <input type="text" id="address" name="address" placeholder="1137 Williams Avenue"
+                        required minlength="8" maxlength="62" pattern="[a-zA-Z0-9- .'#@%&/]*">
                     </div>
                     <div class="labelInputCombo" id="labelInputZipCodeCombo">
-                        <label for="zipcode">Zip Code</label>
-                        <input type="text" id="zipcode" name="zipcode" placeholder="10001">
+                        <label for="zipcode">Zip Code<span class="error" aria-live="polite"></span></label>
+                        <input type="text" id="zipcode" name="zipcode" placeholder="10001"
+                        required pattern="([0-9]{5}|[0-9]{5}-[0-9]{4})">
                     </div>
                     <div class="labelInputCombo" id="labelInputCityCombo">
-                        <label for="city">City</label>
-                        <input type="text" id="city" name="city" placeholder="New York">
+                        <label for="city">City<span class="error" aria-live="polite"></span></label>
+                        <input type="text" id="city" name="city" placeholder="New York"
+                        required minlength="5" maxlength="40" pattern="[a-zA-Z- '\.]*">
                     </div>
                     <div class="labelInputCombo" id="labelInputCountryCombo">
-                        <label for="country">Country</label>
-                        <input type="text" id="country" name="country" placeholder="United States">
+                        <label for="country">Country<span class="error" aria-live="polite"></span></label>
+                        <input type="text" id="country" name="country" placeholder="United States"
+                        required minlength="5" maxlength="40" pattern="[a-zA-Z- '\.]*">
                     </div>
                 </section>
 
@@ -66,21 +73,23 @@ export default class CheckoutForm extends HTMLElement {
                     <label id="paymentLabel">Payment Method</label>
                     <ul class="labelInputCombo" id="paymentOptions">
                         <li class="checked">
-                            <label id="eMoneyLabel" class="paymentRadio">e-Money</label>
+                            <label id="eMoneyLabel" class="paymentRadio">e-Money<span class="error" aria-live="polite"></span></label>
                             <input type="radio" id="eMoney" name="paymentMethod" checked>
                         </li>
                         <li>
-                            <label id="cashLabel" class="paymentRadio">Cash on Delivery</label>
+                            <label id="cashLabel" class="paymentRadio">Cash on Delivery<span class="error" aria-live="polite"></span></label>
                             <input type="radio" id="cash" name="paymentMethod">
                         </li>
                     </ul>
                     <div class="labelInputCombo" id="labelInputEmoneyCombo">
-                        <label for="enumber">e-Money Number</label>
-                        <input type="password" id="enumber" name="enumber" placeholder="238521993">
+                        <label for="enumber">e-Money Number<span class="error" aria-live="polite"></span></label>
+                        <input type="password" id="enumber" name="enumber" placeholder="238521993"
+                        required minlength="9" maxlength="9" pattern="[0-9]{9}">
                     </div>
                     <div class="labelInputCombo" id="labelInputEmoneyPinCombo">
-                        <label for="enumberPin">e-Money PIN</label>
-                        <input type="password" id="enumberPin" name="enumberPin" placeholder="6891">
+                        <label for="enumberPin">e-Money PIN<span class="error" aria-live="polite"></span></label>
+                        <input type="password" id="enumberPin" name="enumberPin" placeholder="6891"
+                        required minlength="4" maxlength="4" pattern="[0-9]{4}">
                     </div>
 
                     <article id="cashArticle">
@@ -144,6 +153,9 @@ export default class CheckoutForm extends HTMLElement {
             }
 
             label {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
                 font-size: 0.75rem;
                 font-weight: bold;
                 letter-spacing: -0.013392875rem;
@@ -162,6 +174,10 @@ export default class CheckoutForm extends HTMLElement {
                 border-radius: 0.5rem;
                 height: 3.5rem;
                 padding-left: 7.76699%;
+            }
+
+            .labelInputCombo input {
+                cursor: pointer;
             }
 
             #labelInputAddressCombo input {
@@ -306,6 +322,18 @@ export default class CheckoutForm extends HTMLElement {
             .removed {
                 display: none;
             }
+
+            .labelInputCombo input.error {
+                border: 2px solid #CD2C2C;
+            }
+
+            .labelInputCombo label.error {
+                color: #CD2C2C;
+            }
+
+            .labelInputCombo span.error {
+                color: #CD2C2C;
+            }
         </style>`;
 
         this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
@@ -376,8 +404,6 @@ export default class CheckoutForm extends HTMLElement {
                     padding-left: 1.5rem;
                 }
 
-
-
                 #eMoneyLabel::after {
                     left: -90px;
                 }
@@ -386,8 +412,6 @@ export default class CheckoutForm extends HTMLElement {
                     left: -24px;
                 }
 
-
-    
                 #cashLabel::after {
                     left: -134px;
                 }

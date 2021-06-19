@@ -135,16 +135,15 @@ export default class SummaryCart extends HTMLElement {
 
     SCRIPTS() {
         this.componentHydration();
-        this.clickManager();
+        // this.clickManager();
     }
 
     clickManager() {
         this.shadowRoot.addEventListener('click', (event) => {
-            console.log(`Clicked:`, event.target);
-
             const payload = { order: this.order, success: true };
+            console.log(`this.parentNode:`, this.parentNode);
 
-            (event.target.id === `pay`) ? this.store.dispatch(`processOrder`, payload) : "";
+            // (event.target.id === `pay`) ? this.store.dispatch(`processOrder`, payload) : "";
         });
     }
 
