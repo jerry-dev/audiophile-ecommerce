@@ -17,6 +17,7 @@ class AudiophileApp extends HTMLElement {
     render() {
         this.HTML();
         this.CSS();
+        this.SCRIPTS();
     }
 
     HTML() {
@@ -162,6 +163,18 @@ class AudiophileApp extends HTMLElement {
         if (shoppingCartOverlay.classList.contains('visible')) {
             shoppingCartOverlay.classList.remove('visible');
         }
+    }
+
+    SCRIPTS() {
+        this.linksManager();
+    }
+
+    linksManager() {
+        this.shadowRoot.addEventListener('click', (event) => {
+            event.preventDefault();
+            const path = event.composedPath()[0].getAttribute('data-path');
+            (path) ? this.store.dispatch('navigate', path) : "";
+        });
     }
 }
 

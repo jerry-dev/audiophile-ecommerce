@@ -16,7 +16,6 @@ export default class HomeSection extends HTMLElement {
     render() {
         this.HTML();
         this.CSS();
-        // this.SCRIPTS();
     }
 
     HTML() {
@@ -36,18 +35,6 @@ export default class HomeSection extends HTMLElement {
                 }
             </style>
         `;
-    }
-
-    SCRIPTS() {
-        this.observerLinkClicks();
-    }
-
-    observerLinkClicks() {
-        this.shadowRoot.addEventListener('click', (event) => {
-            if (event.target.tagName === 'A') {
-                event.preventDefault();
-            }
-        });
     }
 }
 

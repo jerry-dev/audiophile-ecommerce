@@ -30,7 +30,7 @@ export default class FeaturedProducts extends HTMLElement {
                             Upgrade to premium speakers that are phenomenally built
                             to deliver truly remarkable sound.
                         </p>
-                        <button id="ZX9" type="button">SEE PRODUCT</button>
+                        <button data-path="/speakers/zx9-speaker" id="ZX9" type="button">SEE PRODUCT</button>
                     </div>
                 </div>
 
@@ -39,7 +39,7 @@ export default class FeaturedProducts extends HTMLElement {
                         <h4 class="h4-design-system">
                             ZX7 SPEAKER
                         </h4>
-                        <button id="ZX7" type="button">SEE PRODUCT</button>
+                        <button data-path="/speakers/zx7-speaker" id="ZX7" type="button">SEE PRODUCT</button>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@ export default class FeaturedProducts extends HTMLElement {
                         <h4 class="h4-design-system">
                             YX1 EARPHONES
                         </h4>
-                        <button id="YX1" type="button">SEE PRODUCT</button>
+                        <button data-path="/earphones/yx1-earphones" id="YX1" type="button">SEE PRODUCT</button>
                     </div>
                 </div>
             </div>
@@ -305,7 +305,7 @@ export default class FeaturedProducts extends HTMLElement {
     }
 
     importedCSS() {
-        this.shadowRoot.innerHTML += `${designSystemImport()}`;
+        this.shadowRoot.innerHTML += designSystemImport();
     }
 }
 

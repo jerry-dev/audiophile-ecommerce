@@ -29,7 +29,7 @@ export default class HeroSection extends HTMLElement {
                         Experience natural, lifelike audio and exceptional build quality
                         made for the passionate music enthusiast.
                     </p>
-                    <button type="submit">SEE PRODUCT</button>
+                    <button data-path="/headphones/xx99-mark-two-headphones" type="submit">SEE PRODUCT</button>
                 </div>
             </div>
         `;
