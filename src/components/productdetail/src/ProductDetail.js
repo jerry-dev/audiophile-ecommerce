@@ -63,16 +63,19 @@ export default class ProductDetail extends HTMLElement {
                 product-1-desktopImage="../src/assets/shared/desktop/image-${recommendedProductsData[0].slug}.jpg"
                 product-1-tabletImage="../src/assets/shared/tablet/image-${recommendedProductsData[0].slug}.jpg"
                 product-1-mobileImage="../src/assets/shared/mobile/image-${recommendedProductsData[0].slug}.jpg"
+                product-1-path="/${recommendedProductsData[0].category}/${recommendedProductsData[0].slug}"
                 product-2="${recommendedProductsData[1].name}"
                 slug-2="${recommendedProductsData[1].slug}"
                 product-2-desktopImage="../src/assets/shared/desktop/image-${recommendedProductsData[1].slug}.jpg"
                 product-2-tabletImage="../src/assets/shared/tablet/image-${recommendedProductsData[1].slug}.jpg"
                 product-2-mobileImage="../src/assets/shared/mobile/image-${recommendedProductsData[1].slug}.jpg"
+                product-2-path="/${recommendedProductsData[1].category}/${recommendedProductsData[1].slug}"
                 product-3="${recommendedProductsData[2].name}"
                 slug-3="${recommendedProductsData[2].slug}"
                 product-3-desktopImage="../src/assets/shared/desktop/image-${recommendedProductsData[2].slug}.jpg"
                 product-3-tabletImage="../src/assets/shared/tablet/image-${recommendedProductsData[2].slug}.jpg"
                 product-3-mobileImage="../src/assets/shared/mobile/image-${recommendedProductsData[2].slug}.jpg"
+                product-3-path="/${recommendedProductsData[2].category}/${recommendedProductsData[2].slug}"
             ></recommended-products>
             <category-navigator></category-navigator>
             <about-us></about-us>
@@ -151,20 +154,13 @@ export default class ProductDetail extends HTMLElement {
     }
 
     observerLinkClicks() {
-        const listing = this.shadowRoot.querySelector('category-listing');
-
-        listing.shadowRoot.addEventListener('click', (event) => {
-            (event.target.tagName === 'BUTTON') ? this.buttonHandler(event.target.id) : "";
+        this.shadowRoot.addEventListener('click', (event) => {
+            event.preventDefault();
+            (event.composedPath()[0].id === 'decrementButton') ? this.decrementInputQuantityValue() : "";
+            (event.composedPath()[0].id === 'incrementButton') ? this.incrementInputQuantityValue() : "";
+            (event.composedPath()[0].id === 'addToCartButton') ? this.addToCart() : "";
+            (event.composedPath()[0].innerText === 'SEE PRODUCT') ? this.store.dispatch('navigate', event.composedPath()[0].getAttribute('href')) : "";
         });
-    }
-
-    buttonHandler(id) {
-        switch (id) {
-            case 'decrementButton': this.decrementInputQuantityValue(); break;
-            case 'incrementButton': this.incrementInputQuantityValue(); break;
-            case 'addToCartButton': this.addToCart(); break;
-            default: ""; break;
-        }
     }
 
     decrementInputQuantityValue() {
