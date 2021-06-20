@@ -113,7 +113,6 @@ export default class CheckoutDetails extends HTMLElement {
     formValidationManager() {
         this.shadowRoot.addEventListener('input', (event) => {
             const inputId = event.composedPath()[0].id;
-
             const targetInput = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector(`#${inputId}`);
             const labelInputContainerId = targetInput.parentNode.id;
             const errrorMessageContainer = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector(`#${labelInputContainerId} span.error`);
@@ -135,46 +134,49 @@ export default class CheckoutDetails extends HTMLElement {
             messageContainer.textContent = `The ${field} should be at least ${input.minLength} characters`;
         } else if (input.validity.valueMissing) {
             messageContainer.textContent = "This field is required";
-        } else if (field === "email" && input.validity.patternMismatch) {
-            messageContainer.textContent = "Missing details";
-        } else if (field === "name" && input.validity.patternMismatch) {
-            messageContainer.textContent = "Alphabet characters only";
-        } else if (field === "telephone" && input.validity.patternMismatch) {
-            messageContainer.textContent = "Numeric characters only";
-        } else if (field === "address" && input.validity.patternMismatch) {
-            messageContainer.textContent = "Wrong format";
-        } else if (field === "zipcode" && input.validity.patternMismatch) {
-            messageContainer.textContent = "Wrong format";
-        } else if (field === "city" && input.validity.patternMismatch) {
-            messageContainer.textContent = "Wrong format";
-        } else if (field === "country" && input.validity.patternMismatch) {
-            messageContainer.textContent = "Wrong format";
-        } else if (field === "enumber" && input.validity.patternMismatch) {
-            messageContainer.textContent = "Numeric characters only";
-        } else if (field === "enumberPin" && input.validity.patternMismatch) {
-            messageContainer.textContent = "Numeric characters only";
         }
 
         input.classList.add("error");
         input.previousElementSibling.classList.add("error");
-        
+
+        const patternErrorMessageLookup = {
+            email: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Missing details": "",
+            name: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Alphabet characters only": "",
+            telephone: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Numeric characters only": "",
+            address: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Wrong format": "",
+            zipcode: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Wrong format": "",
+            city: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Wrong format": "",
+            country: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Wrong format": "",
+            enumber: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Numeric characters only": "",
+            enumberPin: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Numeric characters only": "",
+        };
+
+        patternErrorMessageLookup[field]();
     }
 
     clickManager() {
         this.shadowRoot.addEventListener('click', (event) => {
-            // const payload = { order: this.order, success: true };
-            //  (event.composedPath()[0].id === `pay`) ? this.store.dispatch(`processOrder`, payload) : "";
+            event.preventDefault();
             if (event.composedPath()[0].id === `pay`) {
-                const theForm = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('form');
-                // check if the form is valid. If so, dispatch with payload
-                // Add form details with payload?
-                
+                this.continueAndPay();
             }
-
-            // Submit the purchas order with form details
-            // processOrder
-            // (event.target.id === `pay`) ? this.store.dispatch(`processOrder`, payload) : "";
         });
+    }
+
+    continueAndPay() {
+        const theForm = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('form');
+                
+        if (theForm.checkValidity()) {
+            this.postFormData(theForm);
+            const theOrder = this.shadowRoot.querySelector('summary-cart').order;
+            const payload = { order: theOrder, success: true };
+            this.store.dispatch(`processOrder`, payload)
+        }
+    }
+
+    postFormData(form) {
+        const formData = new FormData(form);
+        // fetch(url, {method: 'POST', body: formData});
     }
 }
 
