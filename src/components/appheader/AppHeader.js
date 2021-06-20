@@ -257,6 +257,10 @@ export default class AppHeader extends HTMLElement {
         return (this.classList.contains('showingNav')) ? true : false;
     }
 
+    isAtCheckout() {
+        return (this.store.state.path === `checkout`) ? true: false;
+    }
+
     closeNav() {
         this.classList.remove('showingNav');
     }
@@ -268,7 +272,7 @@ export default class AppHeader extends HTMLElement {
     observerLinkClicks() {
         this.shadowRoot.addEventListener('click', (event) => {
             if (event.target.id === 'cartIconWrapper') {
-                this.toggleCartVisibility();
+                (!this.isAtCheckout()) ? this.toggleCartVisibility() : "";
             }
  
             if (event.target.tagName === 'A') {
