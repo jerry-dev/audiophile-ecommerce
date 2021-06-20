@@ -1,4 +1,5 @@
 import designSystemImport from '../../lib/designSystem.js';
+import store from '../../lib/store/index.js';
 
 export default class AppFooter extends HTMLElement {
     constructor() {
@@ -7,6 +8,7 @@ export default class AppFooter extends HTMLElement {
     }
 
     connectedCallback() {
+        this.store = store;
         this.render();
     }
 
@@ -16,6 +18,7 @@ export default class AppFooter extends HTMLElement {
         this.importedCSS();
         this.tabletCSS();
         this.mobileCSS();
+        this.SCRIPTS();
     }
 
     HTML() {
@@ -264,8 +267,21 @@ export default class AppFooter extends HTMLElement {
         `;
     }
 
+    SCRIPTS() {
+        this.linkManager();
+    }
+
+    linkManager() {
+        this.shadowRoot.addEventListener('click', (event) => {
+            event.preventDefault();
+            if (event.target.tagName === 'A') {
+                this.store.dispatch('navigate', event.target.pathname);
+            }
+        });
+    }
+
     importedCSS() {
-        this.shadowRoot.innerHTML += `${designSystemImport()}`;
+        this.shadowRoot.innerHTML += designSystemImport();
     }
 }
 
