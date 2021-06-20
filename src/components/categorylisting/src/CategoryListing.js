@@ -306,6 +306,10 @@ export default class CategoryListing extends HTMLElement {
                         margin-right: auto;
                         max-width: 60ch;
                     }
+
+                    :host([imageOrder="right"]) > .listingInnerContainer > picture {
+                        order: 1;
+                    }
                 }
             </style>
         `;
