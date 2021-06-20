@@ -101,7 +101,8 @@ export default class ShoppingCart extends HTMLElement {
             }
 
             if (event.composedPath()[0].id === `checkout`) {
-                return this.store.dispatch('navigate', `checkout`);
+                const numberOfItemsInCart = this.store.state.cartCalculations.numberOfDistinctItems;
+                (numberOfItemsInCart > 0) ? this.store.dispatch('navigate', `checkout`) : "";
             }
 
             if (event.composedPath()[0].hasAttribute('data-productid')) {
