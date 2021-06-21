@@ -21,35 +21,35 @@ export default class CategoryNavigator extends HTMLElement {
                 <ul>
                     <li>
                         <article>
-                            <span class="articleInnerContainer">
-                                <img class="categoryImage" id="headphonesCategory" alt="headphones link icon" src="../src/assets/shared/desktop/image-headphones.png">
-                                <h3>HEADPHONES</h3>
-                                <a class="linkContainer" href="#">
-                                    <p>SHOP<img alt="arrow symbol" src="../src/assets/shared/desktop/icon-arrow-right.svg"/></p>
-                                </a>
-                            </span>
+                            <a class="linkContainer" href="headphones">
+                                <span class="articleInnerContainer">
+                                    <img class="categoryImage" id="headphonesCategory" alt="headphones link icon" src="../src/assets/shared/desktop/image-headphones.png">
+                                    <h3>HEADPHONES</h3>
+                                        <p>SHOP<img alt="arrow symbol" src="../src/assets/shared/desktop/icon-arrow-right.svg"/></p>
+                                </span>
+                            </a>
                         </article>
                     </li>
                     <li>
                         <article>
-                            <span class="articleInnerContainer">
-                                <img class="categoryImage" id="speakersCategory" alt="Speakers link icon" src="../src/assets/shared/desktop/image-speakers.png">
-                                <h3>SPEAKERS</h3>
-                                <a class="linkContainer" href="#">
+                            <a class="linkContainer" href="speakers">
+                                <span class="articleInnerContainer">
+                                    <img class="categoryImage" id="speakersCategory" alt="Speakers link icon" src="../src/assets/shared/desktop/image-speakers.png">
+                                    <h3>SPEAKERS</h3>
                                     <p>SHOP<img alt="arrow symbol" src="../src/assets/shared/desktop/icon-arrow-right.svg"/></p>
-                                </a>
-                            </span>
+                                </span>
+                            </a>
                         </article>
                     </li>
                     <li>
                         <article>
-                            <span class="articleInnerContainer">
-                                <img class="categoryImage" id="earphonesCategory" alt="Speakers link icon" src="../src/assets/shared/desktop/image-earphones.png">
-                                <h3>EARPHONES</h3>
-                                <a class="linkContainer" href="#">
+                            <a class="linkContainer" href="earphones">
+                                <span class="articleInnerContainer">
+                                    <img class="categoryImage" id="earphonesCategory" alt="Earphones link icon" src="../src/assets/shared/desktop/image-earphones.png">
+                                    <h3>EARPHONES</h3>
                                     <p>SHOP<img alt="arrow symbol" src="../src/assets/shared/desktop/icon-arrow-right.svg"/></p>
-                                </a>
-                            </span>
+                                </span>
+                            </a>
                         </article>
                     </li>
                 </ul>
@@ -136,6 +136,7 @@ export default class CategoryNavigator extends HTMLElement {
                 }
 
                 :host > nav article a {
+                    color: var(--black-2);
                     text-decoration: none;
                 }
 
@@ -143,8 +144,8 @@ export default class CategoryNavigator extends HTMLElement {
                     align-items: center;
                     display: flex;
                     flex-direction: row;
-                    max-height: 1.125rem;
-                    min-width: 3.5825rem;
+                    height: 100%;
+                    width: 100%;
                 }
 
                 :host > nav .linkContainer p {
