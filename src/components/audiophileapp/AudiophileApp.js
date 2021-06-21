@@ -1,4 +1,5 @@
 import store from '../../lib/store/index.js';
+import Navigo from '../../lib/router/es/index.js';
 import AppHeader from '../appheader/AppHeader.js';
 import AppFooter from '../appfooter/AppFooter.js';
 
@@ -176,8 +177,10 @@ class AudiophileApp extends HTMLElement {
             (path) ? this.store.dispatch('navigate', path) : "";
         });
     }
+
 }
 
 if (!window.customElements.get('audiophile-app')) {
     window.customElements.define('audiophile-app', AudiophileApp)
 }
+
