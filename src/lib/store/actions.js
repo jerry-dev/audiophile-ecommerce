@@ -150,5 +150,10 @@ export default {
 
     processOrder(context, payload) {
         context.commit('processOrder', payload);
+    },
+
+    backToHome(context, payload) {
+        context.dispatch(`navigate`, payload);
+        context.dispatch(`clearCart`);
     }
 }

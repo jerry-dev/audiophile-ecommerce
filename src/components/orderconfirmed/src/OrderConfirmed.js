@@ -273,7 +273,9 @@ export default class OrderConfirmed extends HTMLElement {
     }
 
     componentHydration() {
-        this.activateOrderConfirmationModal();
+        if (this.store.state.path === "checkout") {
+            this.activateOrderConfirmationModal();
+        }
     }
 
     activateOrderConfirmationModal() {

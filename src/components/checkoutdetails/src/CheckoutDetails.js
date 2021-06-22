@@ -105,6 +105,10 @@ export default class CheckoutDetails extends HTMLElement {
         }
     }
 
+    deactivateOrderConfirmationModal() {
+        this.shadowRoot.querySelector('order-confirmed').setAttribute('activated', false);
+    }
+
     SCRIPTS() {
         this.clickManager();
         this.formValidationManager();
@@ -140,26 +144,25 @@ export default class CheckoutDetails extends HTMLElement {
         input.previousElementSibling.classList.add("error");
 
         const patternErrorMessageLookup = {
-            email: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Missing details": "",
-            name: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Alphabet characters only": "",
-            telephone: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Numeric characters only": "",
-            address: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Wrong format": "",
-            zipcode: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Wrong format": "",
-            city: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Wrong format": "",
-            country: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Wrong format": "",
-            enumber: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Numeric characters only": "",
-            enumberPin: () => (input.validity.patternMismatch) ? messageContainer.textContent = "Numeric characters only": "",
+            email: () => messageContainer.textContent = "Missing details",
+            name: () => messageContainer.textContent = "Alphabet characters only",
+            telephone: () => messageContainer.textContent = "Numeric characters only",
+            address: () => messageContainer.textContent = "Wrong format",
+            zipcode: () => messageContainer.textContent = "Wrong format",
+            city: () => messageContainer.textContent = "Wrong format",
+            country: () => messageContainer.textContent = "Wrong format",
+            enumber: () => messageContainer.textContent = "Numeric characters only",
+            enumberPin: () => messageContainer.textContent = "Numeric characters only",
         };
 
-        patternErrorMessageLookup[field]();
+        (input.validity.patternMismatch) ? patternErrorMessageLookup[field]() : "";
     }
 
     clickManager() {
         this.shadowRoot.addEventListener('click', (event) => {
             event.preventDefault();
-            if (event.composedPath()[0].id === `pay`) {
-                this.continueAndPay();
-            }
+            (event.composedPath()[0].id === `pay`) ? this.continueAndPay() : "";
+            (event.composedPath()[0].id === `jumpHome`) ? this.backToHome() : "";
         });
     }
 
@@ -177,6 +180,11 @@ export default class CheckoutDetails extends HTMLElement {
     postFormData(form) {
         const formData = new FormData(form);
         // fetch(url, {method: 'POST', body: formData});
+    }
+
+    backToHome() {
+        this.deactivateOrderConfirmationModal();
+        this.store.dispatch('backToHome', "/");
     }
 }
 
