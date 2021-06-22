@@ -20,37 +20,37 @@ export default class CategoryNavigator extends HTMLElement {
             <nav>
                 <ul>
                     <li>
-                        <article>
-                            <a class="linkContainer" href="headphones">
+                        <a class="linkContainer" href="headphones">
+                            <article>
                                 <span class="articleInnerContainer">
                                     <img class="categoryImage" id="headphonesCategory" alt="headphones link icon" src="../src/assets/shared/desktop/image-headphones.png">
                                     <h3>HEADPHONES</h3>
                                         <p>SHOP<img alt="arrow symbol" src="../src/assets/shared/desktop/icon-arrow-right.svg"/></p>
                                 </span>
-                            </a>
-                        </article>
+                            </article>
+                        </a>
                     </li>
                     <li>
-                        <article>
-                            <a class="linkContainer" href="speakers">
+                        <a class="linkContainer" href="speakers">
+                            <article>
                                 <span class="articleInnerContainer">
                                     <img class="categoryImage" id="speakersCategory" alt="Speakers link icon" src="../src/assets/shared/desktop/image-speakers.png">
                                     <h3>SPEAKERS</h3>
                                     <p>SHOP<img alt="arrow symbol" src="../src/assets/shared/desktop/icon-arrow-right.svg"/></p>
                                 </span>
-                            </a>
-                        </article>
+                            </article>
+                        </a>
                     </li>
                     <li>
-                        <article>
-                            <a class="linkContainer" href="earphones">
+                        <a class="linkContainer" href="earphones">
+                            <article>
                                 <span class="articleInnerContainer">
                                     <img class="categoryImage" id="earphonesCategory" alt="Earphones link icon" src="../src/assets/shared/desktop/image-earphones.png">
                                     <h3>EARPHONES</h3>
                                     <p>SHOP<img alt="arrow symbol" src="../src/assets/shared/desktop/icon-arrow-right.svg"/></p>
                                 </span>
-                            </a>
-                        </article>
+                            </article>
+                        </a>
                     </li>
                 </ul>
             </nav>
@@ -91,6 +91,8 @@ export default class CategoryNavigator extends HTMLElement {
                     border-radius: 0.5rem;
                     padding-bottom: 1.875rem;
                     padding-top: 7.25rem;
+                    height: 100%;
+                    width: 100%;
                 }
 
                 :host .articleInnerContainer {
@@ -135,7 +137,7 @@ export default class CategoryNavigator extends HTMLElement {
                     margin-right: 0.625rem;
                 }
 
-                :host > nav article a {
+                :host > nav a {
                     color: var(--black-2);
                     text-decoration: none;
                 }
@@ -144,8 +146,10 @@ export default class CategoryNavigator extends HTMLElement {
                     align-items: center;
                     display: flex;
                     flex-direction: row;
-                    height: 100%;
-                    width: 100%;
+                }
+
+                :host > nav .linkContainer > * {
+                    pointer-events: none;
                 }
 
                 :host > nav .linkContainer p {

@@ -175,6 +175,8 @@ class AudiophileApp extends HTMLElement {
             event.preventDefault();
             const path = event.composedPath()[0].getAttribute('data-path');
             (path) ? this.store.dispatch('navigate', path) : "";
+            (event.composedPath()[0].className === `linkContainer`)
+                ? this.store.dispatch('navigate', `/${event.composedPath()[0].getAttribute('href')}`) : "";
         });
     }
 
