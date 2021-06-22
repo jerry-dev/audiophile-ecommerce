@@ -27,7 +27,8 @@ export default class CheckoutDetails extends HTMLElement {
 
     HTML() {
         const markup =
-        `<div id="checkoutDetailsInnerContainer">
+        `<div id="goBackLinkWrapper"><a id="goBack" href="/">Go Back</a></div>
+        <div id="checkoutDetailsInnerContainer">
             <checkout-form></checkout-form>
             <summary-cart></summary-cart>
             <order-confirmed
@@ -44,6 +45,7 @@ export default class CheckoutDetails extends HTMLElement {
                 background-color: var(--grey-1);
                 display: block;
                 padding-bottom: 8.8125rem;
+                padding-top: 4.9375rem;
             }
 
             #checkoutDetailsInnerContainer {
@@ -55,6 +57,21 @@ export default class CheckoutDetails extends HTMLElement {
                 margin-right: auto;
                 width: 77.08333%;
             }
+
+            #goBackLinkWrapper {
+                margin-bottom: 2.375rem;
+                margin-left: auto;
+                margin-right: auto;
+                width: 77.08333%;
+            }
+
+            #goBack {
+                color: var(--black-2);
+                font-size: 0.9375rem;
+                line-height: 1.5625rem;
+                text-decoration: none;
+                opacity: 0.5;
+            }
         </style>`;
 
         this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
@@ -65,7 +82,13 @@ export default class CheckoutDetails extends HTMLElement {
         `<style>
             @media screen and (max-width: 768px) {
                 :host {
+                    padding-top: 3rem;
                     padding-bottom: 7.25rem;
+                }
+
+                #goBackLinkWrapper {
+                    margin-bottom: 1.5rem;
+                    width: 89.71354%;
                 }
 
                 #checkoutDetailsInnerContainer {
@@ -83,7 +106,12 @@ export default class CheckoutDetails extends HTMLElement {
         `<style>
             @media screen and (max-width: 375px) {
                 :host {
+                    padding-top: 1rem;
                     padding-bottom: 6.0625rem;
+                }
+
+                #goBackLinkWrapper {
+                    width: 87.2%;
                 }
 
                 #checkoutDetailsInnerContainer {
