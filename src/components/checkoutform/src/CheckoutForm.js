@@ -73,14 +73,15 @@ export default class CheckoutForm extends HTMLElement {
                     <label id="paymentLabel">Payment Method</label>
                     <ul class="labelInputCombo" id="paymentOptions">
                         <li class="checked">
-                            <label id="eMoneyLabel" class="paymentRadio">e-Money<span class="error" aria-live="polite"></span></label>
+                            <label id="eMoneyLabel" class="paymentRadio"><span class="radioCheckOutLine"><span class="radioCheck"></span></span>e-Money<span class="error" aria-live="polite"></span></label>
                             <input type="radio" id="eMoney" name="paymentMethod" checked>
                         </li>
                         <li>
-                            <label id="cashLabel" class="paymentRadio">Cash on Delivery<span class="error" aria-live="polite"></span></label>
+                            <label id="cashLabel" class="paymentRadio"><span class="radioCheckOutLine"><span class="radioCheck"></span></span>Cash on Delivery<span class="error" aria-live="polite"></span></label>
                             <input type="radio" id="cash" name="paymentMethod">
                         </li>
                     </ul>
+
                     <div class="labelInputCombo" id="labelInputEmoneyCombo">
                         <label for="enumber">e-Money Number<span class="error" aria-live="polite"></span></label>
                         <input type="password" id="enumber" name="enumber" placeholder="238521993"
@@ -168,12 +169,15 @@ export default class CheckoutForm extends HTMLElement {
                 border: 0.0625rem solid var(--brown-2);
             }
 
+            input {
+                padding-left: 7.76699%;
+            }
+
             input,
             #paymentOptions li {
                 border: 0.0625rem solid rgba(207, 207, 207, 1);
                 border-radius: 0.5rem;
                 height: 3.5rem;
-                padding-left: 7.76699%;
             }
 
             .labelInputCombo input {
@@ -228,7 +232,8 @@ export default class CheckoutForm extends HTMLElement {
             }
 
             #paymentOptions label {
-                padding-left: 16.82847%;
+                padding-left: 2.52365%;
+                justify-content: left;
             }
 
             #paymentOptions li input[type="radio"] {
@@ -243,10 +248,6 @@ export default class CheckoutForm extends HTMLElement {
                 margin-bottom: 1rem;
             }
 
-            #paymentOptions input {
-                XXXmargin-right: 1rem;
-            }
-
             .paymentRadio {
                 align-items: center;
                 cursor: pointer;
@@ -255,48 +256,28 @@ export default class CheckoutForm extends HTMLElement {
                 width: 100%;
             }
 
-            .paymentRadio::after {
+            .radioCheckOutLine {
+                align-items: center;
                 border: 1px solid #CFCFCF;
                 border-radius: 50%;
-                content: "";
-                position: relative;
-                width: 20px;
+                display: flex;
                 height: 20px;
-                z-index: 80;
+                margin-right: 1rem;
+                width: 20px;
             }
 
-            #paymentOptions li .paymentRadio::before {
-                background-color: var(--white-1);
-                border-radius: 50%;
-                content: "";
-                position: relative;
-                width: 10px;
-                height: 10px;
-                z-index: 90;
-            }
-
-            .checked {
-                border: 1px solid var(--brown-2);
-            }
-
-            #paymentOptions li.checked .paymentRadio::before {
+            .radioCheckOutLine > .radioCheck {
                 background-color: var(--brown-2);
+                border-radius: 50%;
+                display: none;
+                height: 10px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 10px;
             }
 
-            #eMoneyLabel::after {
-                left: -80px;
-            }
-
-            #eMoneyLabel::before {
-                left: -15px;
-            }
-
-            #cashLabel::after {
-                left: -125px;
-            }
-
-            #cashLabel::before {
-                left: -16px;
+            .labelInputCombo li.checked .radioCheck {
+                display: block;
             }
 
             #cashArticle {
@@ -353,6 +334,10 @@ export default class CheckoutForm extends HTMLElement {
                     padding-top: 1.875rem;
                     width: 92.01741%;
                 }
+
+                #paymentOptions label {
+                    padding-left: 5.17799%;
+                }
             }
         </style>`;
 
@@ -393,15 +378,19 @@ export default class CheckoutForm extends HTMLElement {
                 input,
                 #labelInputAddressCombo input,
                 #paymentOptions li {
+                    XXXpadding-left: 8.57142%;
+                }
+
+
+                input,
+                #labelInputAddressCombo input {
                     padding-left: 8.57142%;
                 }
 
                 #paymentOptions label {
-                    padding-left: 16.82847%;
-                }
-
-                #paymentOptions label {
-                    padding-left: 1.5rem;
+                    padding-left: 1rem;
+                    padding-left: 5.71428%;
+                    width: 100%;
                 }
 
                 #eMoneyLabel::after {
