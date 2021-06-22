@@ -19,6 +19,7 @@ export default class ProductDetail extends HTMLElement {
 
     render() {
         this.HTML();
+        this.CSS();
         this.observerLinkClicks();
     }
 
@@ -29,7 +30,7 @@ export default class ProductDetail extends HTMLElement {
         const recommendedProductsData = this.getRecommendedProductsData(product.id);
 
         let markup =
-            `<h1>Go Back</h1>
+            `<div id="goBackLinkWrapper"><a id="goBack" href="/${product.category}">Go Back</a></div>
             <category-listing
                 desktopImage="../src/${product.image.desktop}"
                 tabletImage="../src/${product.image.tablet}"
@@ -78,8 +79,7 @@ export default class ProductDetail extends HTMLElement {
                 product-3-path="/${recommendedProductsData[2].category}/${recommendedProductsData[2].slug}"
             ></recommended-products>
             <category-navigator></category-navigator>
-            <about-us></about-us>
-        `;
+            <about-us></about-us>`;
 
         this.shadowRoot.innerHTML = markup;
     }
@@ -89,10 +89,45 @@ export default class ProductDetail extends HTMLElement {
             `<style>
                 :host {
                     display: block;
+                    padding-top: 4.9375rem;
+                }
+
+                #goBackLinkWrapper {
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 77.083%;
+                }
+
+                #goBack {
+                    color: var(--black-2);
+                    font-size: 0.9375rem;
+                    line-height: 1.5625rem;
+                    text-decoration: none;
+                    opacity: 0.5;
+                }
+
+                @media screen and (max-width: 768px) {
+                    :host {
+                        padding-top: 2.0625rem;
+                    }
+
+                    #goBackLinkWrapper {
+                        width: 89.8437%;
+                    }
+                }
+
+                @media screen and (max-width: 576px) {
+                    :host {
+                        padding-top: 1rem;
+                    }
+
+                    #goBackLinkWrapper {
+                        width: 87.2%;
+                    }
                 }
             </style>`;
 
-        this.shadowRoot.innerHTML = markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<");
+        this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<");
     }
 
     renderItemsList(listArray) {
@@ -160,6 +195,7 @@ export default class ProductDetail extends HTMLElement {
             (event.composedPath()[0].id === 'incrementButton') ? this.incrementInputQuantityValue() : "";
             (event.composedPath()[0].id === 'addToCartButton') ? this.addToCart() : "";
             (event.composedPath()[0].innerText === 'SEE PRODUCT') ? this.store.dispatch('navigate', event.composedPath()[0].getAttribute('href')) : "";
+            (event.composedPath()[0].id === 'goBack') ? this.store.dispatch('navigate', event.composedPath()[0].getAttribute('href')) : "";
         });
     }
 
