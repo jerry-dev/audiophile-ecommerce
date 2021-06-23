@@ -36,7 +36,6 @@ class AudiophileApp extends HTMLElement {
                     background-color: var(--white-1);
                     display: block;
                     min-height: 100%;
-                    outline: 4px solid gold;
                 }
             </style>`;
     }
