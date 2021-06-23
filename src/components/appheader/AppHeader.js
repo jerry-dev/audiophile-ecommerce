@@ -93,8 +93,6 @@ export default class AppHeader extends HTMLElement {
                     position: relative;
                 }
 
-                
-
                 #header-inner-container {
                     align-items: center;
                     display: flex;
@@ -193,6 +191,42 @@ export default class AppHeader extends HTMLElement {
 
                 :host([backgroundColor="none"]) {
                     background: none;
+                }
+
+                #companyLogoContainer,
+                nav li,
+                #cartIconWrapper {
+                    animation-duration: 1s;
+                    animation-iteration-count: 1;
+                    animation-name: fadeIntoView;
+                    animation-timing-function: ease-out;
+                }
+
+                #header-inner-container::after {
+                    animation-duration: 1s;
+                    animation-iteration-count: 1;
+                    animation-name: scaleToView;
+                    animation-timing-function: linear;
+                }
+
+                @keyframes fadeIntoView {
+                    0% {
+                        opacity: 0;
+                        transform: translateY(-200px);
+                    } 100% {
+                        opacity: 1;
+                        transform: translateY(0px);
+                    }
+                }
+
+                @keyframes scaleToView {
+                    0% {
+                        background-color: var(--brown-2);
+                        transform: scaleX(0);
+                    } 100% {
+                        background-color: var(--white-1-opaque-1);
+                        transform: scaleX(1);
+                    }
                 }
             </style>`;
 
