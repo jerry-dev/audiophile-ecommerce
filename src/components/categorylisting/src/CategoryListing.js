@@ -25,6 +25,7 @@ export default class CategoryListing extends HTMLElement {
         this.productDetailCSS();
         this.productDetailTabletCSS();
         this.productDetailMobileCSS();
+        this.animations();
     }
 
     HTML() {
@@ -40,7 +41,7 @@ export default class CategoryListing extends HTMLElement {
                         <small class="${this.getAttribute("new")}">NEW PRODUCT</small>
                         <h2 class="h2-design-system">${this.getAttribute("name")}</h2>
                         <p class="subtitle-design-system">${this.getAttribute("description")}</p>
-                        <a href="/${this.getAttribute("category")}/${this.getAttribute("slug")}">${this.getAttribute("text")}</a>
+                        <a class="linkButton" href="/${this.getAttribute("category")}/${this.getAttribute("slug")}">${this.getAttribute("text")}</a>
                         <div id="price">${this.getAttribute("price")}</div>
                         <div id="cartControlsContainer">
                             <form id="controlsContainer">
@@ -163,8 +164,10 @@ export default class CategoryListing extends HTMLElement {
                     order: 1;
                 }
 
-                button:active {
+                #addToCartButton:active,
+                .linkButton:active {
                     transform: scale(0.9);
+                    background-color: blue;
                 }
             </style>
         `;
@@ -508,6 +511,153 @@ export default class CategoryListing extends HTMLElement {
             </style>`;
 
         this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<");
+    }
+
+    animations() {
+        this.shadowRoot.innerHTML += `
+            <style>
+                .translateFromRight {
+                    animation-duration: 1s;
+                    animation-iteration-count: 1;
+                    animation-name: translateFromRight;
+                }
+
+                @keyframes translateFromRight {
+                    0% {
+                        opacity: 0;
+                        transform: translateX(200px);
+                    } 100% {
+                        opacity: 1;
+                        transform: translateX(0px);
+                    }
+                }
+
+                .fadeIn {
+                    animation-duration: 1s;
+                    animation-iteration-count: 1;
+                    animation-name: fadeIn;
+                }
+
+                @keyframes fadeIn {
+                    0% {
+                        opacity: 0;
+                    } 100% {
+                        opacity: 0.4;
+                    }
+                }
+
+                .expand {
+                    animation-duration: 0.6s;
+                    animation-iteration-count: 1;
+                    animation-name: expand;
+                    animation-timing-function: ease-out;
+                }
+
+                @keyframes expand {
+                    0% {
+                        transform: scaleX(0.7);
+                        transform-origin: left;
+                    } 100% {
+                        transform: scaleX(1);
+                        transform-origin: left;
+                    }
+                }
+
+                .fadeIn2 {
+                    animation-duration: 1s;
+                    animation-iteration-count: 1;
+                    animation-name: fadeIn;
+                    animation-timing-function: ease;
+                }
+
+                @keyframes fadeIn2 {
+                    0% {
+                        opacity: 0;
+                    } 100% {
+                        opacity: 1;
+                    }
+                }
+
+
+                .expand2 {
+                    animation-duration: 1s;
+                    animation-iteration-count: 1;
+                    animation-name: expand2;
+                    animation-timing-function: ease;
+                }
+
+                @keyframes expand2 {
+                    0% {
+                        transform: scaleY(0);
+                        transform-origin: center;
+                    } 100% {
+                        transform: scaleY(1);
+                        transform-origin: center;
+                    }
+                }
+            </style>`;
+
+        const title = this.shadowRoot.querySelector('.detailsInnerContainer h2');
+        const paragraph = this.shadowRoot.querySelector('.detailsInnerContainer p');
+        const newProductText = this.shadowRoot.querySelector('small');
+        const seeProductButton = this.shadowRoot.querySelector('.linkButton');
+
+        const h2ObserverOptions = { 
+            root: this.shadowRoot.querySelector('.detailsInnerContainer'),
+            rootMargin: `0px`,
+            threshold: 1
+        };
+
+        const paragraphObserverOptions = { 
+            root: this.shadowRoot.querySelector('.detailsInnerContainer'),
+            rootMargin: `0px`,
+            threshold: 1
+        };
+
+        const newProductObserverOptions = { 
+            root: this.shadowRoot.querySelector('.detailsInnerContainer'),
+            rootMargin: `0px`,
+            threshold: 1
+        };
+
+        const seeProductButtonObserverOptions = { 
+            root: this.shadowRoot.querySelector('.detailsInnerContainer'),
+            rootMargin: `0px`,
+            threshold: 1
+        };
+
+        const titleObserver = new IntersectionObserver((entry, observer) => {
+            if (entry[0].isIntersecting) {
+                entry[0].target.classList.add('translateFromRight');
+            }
+        });
+
+        const paragraphObserver = new IntersectionObserver((entry, observer) => {
+            if (entry[0].isIntersecting) {
+                entry[0].target.classList.add('fadeIn');
+            } else {
+                entry[0].target.classList.remove('fadeIn');
+            }
+        });
+
+        const newProductTextObserver = new IntersectionObserver((entry, observer) => {
+            if (entry[0].isIntersecting) {
+                entry[0].target.classList.add('fadeIn2');
+            } else {
+                entry[0].target.classList.remove('fadeIn2');
+            }
+        });
+
+        const seeProductButtonObserver = new IntersectionObserver((entry, observer) => {
+            if (entry[0].isIntersecting) {
+                entry[0].target.classList.add('expand2');
+            }
+        });
+
+        newProductTextObserver.observe(newProductText, newProductObserverOptions);
+        titleObserver.observe(title, titleObserver);
+        paragraphObserver.observe(paragraph, paragraphObserverOptions);
+        seeProductButtonObserver.observe(seeProductButton, seeProductButtonObserverOptions);
     }
 
     importedCSS() {
