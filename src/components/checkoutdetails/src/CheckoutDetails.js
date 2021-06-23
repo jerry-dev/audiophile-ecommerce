@@ -201,6 +201,8 @@ export default class CheckoutDetails extends HTMLElement {
             const theOrder = this.shadowRoot.querySelector('summary-cart').order;
             const payload = { order: theOrder, success: true };
             this.store.dispatch(`processOrder`, payload)
+        } else {
+            this.showAllInputErrors();
         }
     }
 
@@ -212,6 +214,17 @@ export default class CheckoutDetails extends HTMLElement {
     backToHome() {
         this.deactivateOrderConfirmationModal();
         this.store.dispatch('backToHome', "/");
+    }
+
+    showAllInputErrors() {
+        const theInputs = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('form').querySelectorAll('input');
+
+        theInputs.forEach((aInput) => {
+            if (!aInput.validity.valid) {
+                this.showError(aInput.getAttribute('name'), aInput, aInput.previousElementSibling.querySelector('span.error'));
+            }
+        });
+        
     }
 }
 
