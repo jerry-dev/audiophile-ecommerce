@@ -481,16 +481,20 @@ export default class CheckoutForm extends HTMLElement {
     }
 
     showEmoneyInputs() {
+        this.addRequiredAttributeFromEmoneyInputs();
+
         this.shadowRoot.querySelector('#labelInputEmoneyCombo').classList.remove('removed');
         this.shadowRoot.querySelector('#labelInputEmoneyPinCombo').classList.remove('removed');
-
-        this.shadowRoot.querySelector('#labelInputEmoneyCombo > input').setAttribute('required', "");
-        this.shadowRoot.querySelector('#labelInputEmoneyPinCombo > input').setAttribute('required', "");
     }
 
     removeRequiredAttributeFromEmoneyInputs() {
         this.shadowRoot.querySelector('#labelInputEmoneyCombo > input').removeAttribute('required');
         this.shadowRoot.querySelector('#labelInputEmoneyPinCombo > input').removeAttribute('required');
+    }
+
+    addRequiredAttributeFromEmoneyInputs() {
+        this.shadowRoot.querySelector('#labelInputEmoneyCombo > input').setAttribute('required', "");
+        this.shadowRoot.querySelector('#labelInputEmoneyPinCombo > input').setAttribute('required', "");
     }
 }
 
