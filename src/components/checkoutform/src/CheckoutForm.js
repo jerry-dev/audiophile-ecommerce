@@ -74,11 +74,11 @@ export default class CheckoutForm extends HTMLElement {
                     <ul class="labelInputCombo" id="paymentOptions">
                         <li class="checked">
                             <label id="eMoneyLabel" class="paymentRadio"><span class="radioCheckOutLine"><span class="radioCheck"></span></span>e-Money<span class="error" aria-live="polite"></span></label>
-                            <input type="radio" id="eMoney" name="paymentMethod" checked>
+                            <input type="radio" id="eMoney" name="paymentMethod" value="eMoney" checked>
                         </li>
                         <li>
                             <label id="cashLabel" class="paymentRadio"><span class="radioCheckOutLine"><span class="radioCheck"></span></span>Cash on Delivery<span class="error" aria-live="polite"></span></label>
-                            <input type="radio" id="cash" name="paymentMethod">
+                            <input type="radio" id="cash" name="paymentMethod" value="cashOnDemand">
                         </li>
                     </ul>
 
@@ -455,9 +455,11 @@ export default class CheckoutForm extends HTMLElement {
 
         for (let i = 0; i < theListElements.length; i++) {
             theListElements[i].classList.remove('checked');
+            theListElements[i].querySelector('input').removeAttribute('checked');
         }
 
         event.target.parentNode.classList.add('checked');
+        event.target.nextElementSibling.setAttribute('checked', "");
 
         this.removeEmoneyInputsAndCashArticle();
 
@@ -465,6 +467,8 @@ export default class CheckoutForm extends HTMLElement {
     }
 
     removeEmoneyInputsAndCashArticle() {
+        this.removeRequiredAttributeFromEmoneyInputs();
+
         this.shadowRoot.querySelector('#labelInputEmoneyCombo').classList.add('removed');
         this.shadowRoot.querySelector('#labelInputEmoneyPinCombo').classList.add('removed');
         this.shadowRoot.querySelector('#cashArticle img').classList.add('removed');
@@ -479,6 +483,14 @@ export default class CheckoutForm extends HTMLElement {
     showEmoneyInputs() {
         this.shadowRoot.querySelector('#labelInputEmoneyCombo').classList.remove('removed');
         this.shadowRoot.querySelector('#labelInputEmoneyPinCombo').classList.remove('removed');
+
+        this.shadowRoot.querySelector('#labelInputEmoneyCombo > input').setAttribute('required', "");
+        this.shadowRoot.querySelector('#labelInputEmoneyPinCombo > input').setAttribute('required', "");
+    }
+
+    removeRequiredAttributeFromEmoneyInputs() {
+        this.shadowRoot.querySelector('#labelInputEmoneyCombo > input').removeAttribute('required');
+        this.shadowRoot.querySelector('#labelInputEmoneyPinCombo > input').removeAttribute('required');
     }
 }
 

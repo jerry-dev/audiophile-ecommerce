@@ -196,7 +196,6 @@ export default class CheckoutDetails extends HTMLElement {
 
     continueAndPay() {
         const theForm = this.shadowRoot.querySelector('Checkout-Form').shadowRoot.querySelector('form');
-                
         if (theForm.checkValidity()) {
             this.postFormData(theForm);
             const theOrder = this.shadowRoot.querySelector('summary-cart').order;
