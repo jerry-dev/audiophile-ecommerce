@@ -24,7 +24,7 @@ export default class AppFooter extends HTMLElement {
     HTML() {
         this.shadowRoot.innerHTML = `
             <div id="footer-inner-container">
-                <a href="/">
+                <a id="companyLogoLink" href="/">
                     <img id="companyLogo" alt="company logo" src="../src/assets/shared/desktop/logo.svg"/>
                 </a>
                 <nav id="appNav">
@@ -163,6 +163,10 @@ export default class AppFooter extends HTMLElement {
                     grid-row: 3;
                     opacity: 0.5;
                 }
+
+                #companyLogoLink > * {
+                    pointer-events: none;
+                }
             </style>
         `;
     }
@@ -274,6 +278,13 @@ export default class AppFooter extends HTMLElement {
     linkManager() {
         this.shadowRoot.addEventListener('click', (event) => {
             event.preventDefault();
+
+            console.log(event.target);
+
+            if (event.target.id === 'companyLogoLink') {
+                this.store.dispatch('navigate', "/");
+            }
+
             if (event.target.tagName === 'A') {
                 this.store.dispatch('navigate', event.target.pathname);
             }

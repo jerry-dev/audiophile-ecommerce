@@ -119,6 +119,10 @@ export default class AppHeader extends HTMLElement {
                     display: none;
                 }
 
+                #companyLogoContainer > * {
+                    pointer-events: none;
+                }
+
                 #companyLogo {
                     height: 1.5625rem;
                     width: 8.9375rem;
@@ -332,6 +336,11 @@ export default class AppHeader extends HTMLElement {
         this.shadowRoot.addEventListener('click', (event) => {
             if (event.target.id === 'cartIconWrapper') {
                 (!this.isAtCheckout()) ? this.toggleCartVisibility() : "";
+            }
+
+            if (event.target.id === 'companyLogoContainer') {
+                event.preventDefault();
+                this.store.dispatch('navigate', "/");
             }
  
             if (event.target.tagName === 'A') {
