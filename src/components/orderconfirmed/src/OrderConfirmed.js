@@ -198,6 +198,21 @@ export default class OrderConfirmed extends HTMLElement {
                 font-weight: bold;
                 line-height: 1.5625rem;
             }
+
+            #dialogBox {
+                animation-duration: 0.6s;
+                animation-iteration-count: 1;
+                animation-name: popIn;
+                animation-timing-function: ease;
+            }
+
+            @keyframes popIn {
+                0% {
+                    transform: scale(7);
+                } 100% {
+                    transform: scale(1);
+                }
+            }
         </style>`;
 
         this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
