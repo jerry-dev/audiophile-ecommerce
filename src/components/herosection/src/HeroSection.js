@@ -112,7 +112,7 @@ export default class HeroSection extends HTMLElement {
                         background-image: url("../src/assets/home/tablet/image-header.jpg");
                         background-size: cover;
                         padding-bottom: 10.4375rem;
-                        padding-top: 7.875rem;
+                        padding-top: 13.5rem;
                     }
     
                     #heroSectionInnerContainer {
@@ -148,6 +148,7 @@ export default class HeroSection extends HTMLElement {
                         background-size: cover;
                         padding-bottom: 7rem;
                         padding-top: 6.75rem;
+                        padding-top: 12.375rem;
                     }
     
                     #heroSectionInnerContainer {

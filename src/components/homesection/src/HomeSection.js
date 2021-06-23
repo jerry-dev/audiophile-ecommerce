@@ -23,8 +23,7 @@ export default class HomeSection extends HTMLElement {
             <hero-section></hero-section>
             <category-navigator></category-navigator>
             <featured-products></featured-products>
-            <about-us></about-us>
-        `;
+            <about-us></about-us>`;
     }
 
     CSS() {
@@ -32,6 +31,10 @@ export default class HomeSection extends HTMLElement {
             <style>
                 :host {
                     display: block;
+                }
+
+                hero-section {
+                    margin-top: -6.0625rem;
                 }
             </style>
         `;

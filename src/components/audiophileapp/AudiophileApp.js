@@ -23,7 +23,7 @@ class AudiophileApp extends HTMLElement {
 
     HTML() {
         this.shadowRoot.innerHTML =
-            `<app-header></app-header>
+            `<app-header backgroundColor="on"></app-header>
             <output id="routerOutput">
             </output>
             <app-footer></app-footer>`;

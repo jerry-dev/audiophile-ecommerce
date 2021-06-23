@@ -3,14 +3,29 @@ import CategoryNavigator from '../categorynavigator/CategoryNavigator.js';
 import store from '../../lib/store/index.js';
 
 export default class AppHeader extends HTMLElement {
+    static get observedAttributes() {
+        return [ 'backgroundColor' ];
+    }
+
     constructor() {
         super();
+        self = this;
         this.attachShadow({mode: 'open'});
     }
 
+    attributeChangedCallback(attrName, oldValue, newValue) {
+        console.log(`***Executing attributeChangedCallback***`);
+		if (newValue !== oldValue) {
+			this[attrName] = this.hasAttribute(attrName);
+		}
+
+        this.attributeSync(attrName);
+    }
+
     connectedCallback() {
-        this.render();
         this.store = store;
+        this.store.observer.subscribe('stateChange', () => self.backgroundColorAdjust());
+        this.render();
     }
 
     render() {
@@ -68,7 +83,7 @@ export default class AppHeader extends HTMLElement {
 
                 button > * {
                     pointer-events: none;
-                  }
+                }
 
                 :host {
                     align-items: center;
@@ -77,6 +92,8 @@ export default class AppHeader extends HTMLElement {
                     height: 6rem;
                     position: relative;
                 }
+
+                
 
                 #header-inner-container {
                     align-items: center;
@@ -173,6 +190,10 @@ export default class AppHeader extends HTMLElement {
                     margin-left: auto;
                     margin-top: 2rem;
                 }
+
+                :host([backgroundColor="none"]) {
+                    background: none;
+                }
             </style>`;
 
         this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
@@ -197,6 +218,10 @@ export default class AppHeader extends HTMLElement {
 
                     :host(.showingNav) #navigationMenu {
                         display: block;
+                    }
+
+                    :host([backgroundColor="none"]) {
+                        background: none;
                     }
                 }
             </style>`;
@@ -331,6 +356,20 @@ export default class AppHeader extends HTMLElement {
         if (Number(input.getAttribute('value')) < 10) {
             input.setAttribute('value', Number(input.getAttribute('value')) + 1);
         }
+    }
+
+    backgroundColorAdjust() {
+        if (this.store.state.path === "/" ) {
+            this.setAttribute('backgroundColor', "none");
+        } else {
+            this.setAttribute('backgroundColor', "on");
+        }
+    }
+
+    attributeSync(attribute) {
+        return {
+            backgroundColor: self.backgroundColorAdjust,
+        }[attribute]();
     }
 }
 
