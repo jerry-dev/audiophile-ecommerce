@@ -162,6 +162,10 @@ export default class CategoryListing extends HTMLElement {
                 :host([imageOrder="right"]) > .listingInnerContainer > .listingDetails {
                     order: 1;
                 }
+
+                button:active {
+                    transform: scale(0.9);
+                }
             </style>
         `;
     }

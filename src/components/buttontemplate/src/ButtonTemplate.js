@@ -49,6 +49,10 @@ export default class ButtonTemplate extends HTMLElement {
             button:hover {
                 background-color: var(--brown-1);
             }
+
+            button:active {
+                transform: scale(0.9);
+            }
         </style>`;
 
         this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");

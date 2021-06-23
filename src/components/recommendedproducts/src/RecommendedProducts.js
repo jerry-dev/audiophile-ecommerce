@@ -31,7 +31,7 @@ export default class RecommendedProducts extends HTMLElement {
                     </picture>
                     <section class="details">
                         <h2>${this.getAttribute('product-1')}</h2>
-                        <a href="${this.getAttribute('product-1-path')}">SEE PRODUCT</a>
+                        <a class="linkButton" href="${this.getAttribute('product-1-path')}">SEE PRODUCT</a>
                     </section>
                 </article>
                 <article>
@@ -42,7 +42,7 @@ export default class RecommendedProducts extends HTMLElement {
                     </picture>
                     <section class="details">
                         <h2>${this.getAttribute('product-2')}</h2>
-                        <a href="${this.getAttribute('product-2-path')}">SEE PRODUCT</a>
+                        <a class="linkButton" href="${this.getAttribute('product-2-path')}">SEE PRODUCT</a>
                     </section>
                 </article>
                 <article>
@@ -53,7 +53,7 @@ export default class RecommendedProducts extends HTMLElement {
                     </picture>
                     <section class="details">
                         <h2>${this.getAttribute('product-3')}</h2>
-                        <a href="${this.getAttribute('product-3-path')}">SEE PRODUCT</a>
+                        <a class="linkButton" href="${this.getAttribute('product-3-path')}">SEE PRODUCT</a>
                     </section>
                 </article>
             </section>
@@ -134,6 +134,10 @@ export default class RecommendedProducts extends HTMLElement {
 
             #recommendedProducts article .details a:hover {
                 background-color: var(--brown-1);
+            }
+
+            .linkButton:active {
+                transform: scale(0.9);
             }
         </style>`;
 

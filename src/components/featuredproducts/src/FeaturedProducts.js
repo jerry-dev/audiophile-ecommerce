@@ -195,6 +195,10 @@ export default class FeaturedProducts extends HTMLElement {
                     padding-top: 0.9375rem;
                     padding-left: 1.96875rem;
                 }
+
+                button:active {
+                    transform: scale(0.9);
+                }
             </style>
         `;
     }

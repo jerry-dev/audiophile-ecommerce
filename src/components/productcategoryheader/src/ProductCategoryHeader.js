@@ -74,7 +74,7 @@ export default class ProductCategoryHeader extends HTMLElement {
     }
 
     importedCSS() {
-        this.shadowRoot.innerHTML += `${designSystemImport()}`;
+        this.shadowRoot.innerHTML += designSystemImport();
     }
 }
 
