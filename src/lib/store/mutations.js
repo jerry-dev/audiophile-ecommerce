@@ -53,5 +53,5 @@ export default {
 		const {...newState} = state;
 		newState.order = payload;
 		return newState;
-	}
+	},
 }

@@ -49,6 +49,7 @@ class AudiophileApp extends HTMLElement {
             this.routerOutput.innerHTML = `<home-section></home-section>`;
             this.scrollToTop();
             this.closeShoppingCart();
+            this.unlockScrolling();
         });
 
         this.router.on('/headphones', async () => {
@@ -56,6 +57,7 @@ class AudiophileApp extends HTMLElement {
             this.routerOutput.innerHTML = `<product-category category="headphones"></product-category>`;
             this.scrollToTop();
             this.closeShoppingCart();
+            this.unlockScrolling();
         });
 
         this.router.on('/speakers', async () => {
@@ -63,6 +65,7 @@ class AudiophileApp extends HTMLElement {
             this.routerOutput.innerHTML = `<product-category category="speakers"></product-category>`;
             this.scrollToTop();
             this.closeShoppingCart();
+            this.unlockScrolling();
         });
 
         this.router.on('/earphones', async () => {
@@ -70,6 +73,7 @@ class AudiophileApp extends HTMLElement {
             this.routerOutput.innerHTML = `<product-category category="earphones"></product-category>`;
             this.scrollToTop();
             this.closeShoppingCart();
+            this.unlockScrolling();
         });
 
         this.router.on('/headphones/:product', async ({data}) => {
@@ -77,6 +81,7 @@ class AudiophileApp extends HTMLElement {
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
             this.scrollToTop();
             this.closeShoppingCart();
+            this.unlockScrolling();
         });
 
         this.router.on('/speakers/:product', async ({data}) => {
@@ -84,6 +89,7 @@ class AudiophileApp extends HTMLElement {
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
             this.scrollToTop();
             this.closeShoppingCart();
+            this.unlockScrolling();
         });
 
         this.router.on('/earphones/:product', async ({data}) => {
@@ -91,6 +97,7 @@ class AudiophileApp extends HTMLElement {
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
             this.scrollToTop();
             this.closeShoppingCart();
+            this.unlockScrolling();
         });
 
         this.router.on('/checkout', async () => {
@@ -98,6 +105,7 @@ class AudiophileApp extends HTMLElement {
             this.routerOutput.innerHTML = `<checkout-details></checkout-details>`;
             this.scrollToTop();
             this.closeShoppingCart();
+            this.unlockScrolling();
         });
 
         this.router.resolve();
@@ -179,6 +187,12 @@ class AudiophileApp extends HTMLElement {
         });
     }
 
+    unlockScrolling() {
+        if (document.querySelector('body').classList.contains('locked')) {
+            document.querySelector('body').classList.remove('locked');
+        }
+        
+    }
 }
 
 if (!window.customElements.get('audiophile-app')) {

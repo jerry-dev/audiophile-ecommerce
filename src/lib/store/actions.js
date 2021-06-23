@@ -155,5 +155,5 @@ export default {
     backToHome(context, payload) {
         context.dispatch(`navigate`, payload);
         context.dispatch(`clearCart`);
-    }
+    },
 }
