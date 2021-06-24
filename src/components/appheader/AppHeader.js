@@ -26,6 +26,7 @@ export default class AppHeader extends HTMLElement {
         this.store.observer.subscribe('stateChange', () => {
             self.backgroundColorAdjust();
             self.closeNav();
+            self.counterManager();
         });
         this.render();
     }
@@ -57,6 +58,7 @@ export default class AppHeader extends HTMLElement {
                     </ul>
                 </nav>
                 <button id="cartIconWrapper">
+                    <span id="itemsCount" class="empty"></span>
                     <img id="cartIcon" alt="shopping cart icon" src="../src/assets/shared/desktop/icon-cart.svg"/>
                 </button>
                 <span id="shoppingCartOverlay">
@@ -166,6 +168,36 @@ export default class AppHeader extends HTMLElement {
                 #cartIcon {
                     height: 1.25rem;
                     width: 1.458125rem;
+                }
+
+                #itemsCount {
+                    align-items: center;
+                    background-color: var(--brown-2);
+                    border-radius: 50%;
+                    color: var(--white-1);
+                    display: flex;
+                    font-weight: bold;
+                    height: 20px;
+                    justify-content: center;
+                    margin-top: -18px;
+                    margin-left: 5px;
+                    width: 20px;
+                    animation-duration: 1s;
+                    animation-iteration-count: 1;
+                    animation-name: dropIn;
+                    animation-timing-function: ease;
+                }
+
+                #itemsCount.empty {
+                    display: none;
+                }
+
+                @keyframes dropIn {
+                    0% {
+                        transform: translateY(-200px);
+                    } 100% {
+                        transform: translateY(0px);
+                    }
                 }
 
                 #navigationMenu,
@@ -349,6 +381,18 @@ export default class AppHeader extends HTMLElement {
                 this.classList.remove('showingNav');
                 this.shadowRoot.querySelector('#navigationMenu').classList.remove('shrinkAway');
             }, 1000);
+        }
+    }
+
+    counterManager() {
+        let count = this.store.state.cartCalculations.numberOfDistinctItems;
+
+        if (count > 0) {
+            this.shadowRoot.querySelector('#itemsCount').textContent = count;
+            this.shadowRoot.querySelector('#itemsCount').classList.remove('empty');
+        } else {
+            this.shadowRoot.querySelector('#itemsCount').textContent = "";
+            this.shadowRoot.querySelector('#itemsCount').classList.add('empty');
         }
     }
 
