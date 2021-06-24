@@ -3,7 +3,7 @@ import CategoryListing from '../../categorylisting/src/CategoryListing.js';
 import ProductDescription from '../../productdescription/src/ProductDescription.js';
 import LifestyleGallery from '../../lifestylegallery/src/LifestyleGallery.js';
 import RecommendedProducts from '../../recommendedproducts/src/RecommendedProducts.js';
-import CategoryNavigator from '../../categorynavigator/CategoryNavigator.js';
+import CategoryNavigator from '../../categorynavigator/src/CategoryNavigator.js';
 import AboutUs from '../../aboutus/src/AboutUs.js';
 
 export default class ProductDetail extends HTMLElement {

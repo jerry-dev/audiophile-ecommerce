@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "navigo": "^8.11.1"
+    "navigo": "^8.11.1",
+    "rollup": "^2.52.2"
   }
 }

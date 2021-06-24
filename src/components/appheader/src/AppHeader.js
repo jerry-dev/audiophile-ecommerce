@@ -1,6 +1,6 @@
-import designSystemImport from '../../lib/designSystem.js';
-import CategoryNavigator from '../categorynavigator/CategoryNavigator.js';
-import store from '../../lib/store/index.js';
+import designSystemImport from '../../../lib/designSystem.js';
+import CategoryNavigator from '../../categorynavigator/src/CategoryNavigator.js';
+import store from '../../../lib/store/index.js';
 
 export default class AppHeader extends HTMLElement {
     static get observedAttributes() {
@@ -360,7 +360,7 @@ export default class AppHeader extends HTMLElement {
 
         if (!cartOverlay.classList.contains('visible')) {
             cartOverlay.classList.add('visible');
-            return (await import('../shoppingcart/src/ShoppingCart.js')).default;
+            return (await import('../../shoppingcart/src/ShoppingCart.js')).default;
         } else {
             cartOverlay.classList.remove('visible');
         }

@@ -1,7 +1,7 @@
 import store from '../../../lib/store/index.js';
 import ProductCategoryHeader from '../../productcategoryheader/src/ProductCategoryHeader.js';
 import CategoryListing from '../../categorylisting/src/CategoryListing.js';
-import CategoryNavigator from '../../categorynavigator/CategoryNavigator.js';
+import CategoryNavigator from '../../categorynavigator/src/CategoryNavigator.js';
 import AboutUs from '../../aboutus/src/AboutUs.js';
 
 

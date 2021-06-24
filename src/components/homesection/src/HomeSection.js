@@ -1,5 +1,5 @@
 import HeroSection from '../../herosection/src/HeroSection.js';
-import CategoryNavigator from '../../categorynavigator/CategoryNavigator.js';
+import CategoryNavigator from '../../categorynavigator/src/CategoryNavigator.js';
 import FeaturedProducts from '../../featuredproducts/src/FeaturedProducts.js';
 import AboutUs from '../../aboutus/src/AboutUs.js';
 

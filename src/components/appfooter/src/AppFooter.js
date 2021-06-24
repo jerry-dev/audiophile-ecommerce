@@ -1,5 +1,5 @@
-import designSystemImport from '../../lib/designSystem.js';
-import store from '../../lib/store/index.js';
+import designSystemImport from '../../../lib/designSystem.js';
+import store from '../../../lib/store/index.js';
 
 export default class AppFooter extends HTMLElement {
     constructor() {
@@ -278,8 +278,6 @@ export default class AppFooter extends HTMLElement {
     linkManager() {
         this.shadowRoot.addEventListener('click', (event) => {
             event.preventDefault();
-
-            console.log(event.target);
 
             if (event.target.id === 'companyLogoLink') {
                 this.store.dispatch('navigate', "/");

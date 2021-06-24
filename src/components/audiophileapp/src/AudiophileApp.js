@@ -1,7 +1,7 @@
-import store from '../../lib/store/index.js';
-import Navigo from '../../lib/router/es/index.js';
-import AppHeader from '../appheader/AppHeader.js';
-import AppFooter from '../appfooter/AppFooter.js';
+import store from '../../../lib/store/index.js';
+import Navigo from '../../../lib/router/es/index.js';
+import AppHeader from '../../appheader/src/AppHeader.js';
+import AppFooter from '../../appfooter/src/AppFooter.js';
 
 class AudiophileApp extends HTMLElement {
     constructor() {
@@ -10,6 +10,7 @@ class AudiophileApp extends HTMLElement {
     }
 
     connectedCallback() {
+        console.log(`TEST`);
         this.render();
         this.routerInit();
         this.storeInit();
@@ -45,7 +46,7 @@ class AudiophileApp extends HTMLElement {
         this.router = new Navigo("/");
 
         this.router.on('/', async () => {
-            await import('../homesection/src/HomeSection.js');
+            await import('../../homesection/src/HomeSection.js');
             this.routerOutput.innerHTML = `<home-section></home-section>`;
             this.scrollToTop();
             this.closeShoppingCart();
@@ -53,7 +54,7 @@ class AudiophileApp extends HTMLElement {
         });
 
         this.router.on('/headphones', async () => {
-            await import('../productcategory/src/ProductCategory.js');
+            await import('../../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="headphones"></product-category>`;
             this.scrollToTop();
             this.closeShoppingCart();
@@ -61,7 +62,7 @@ class AudiophileApp extends HTMLElement {
         });
 
         this.router.on('/speakers', async () => {
-            await import('../productcategory/src/ProductCategory.js');
+            await import('../../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="speakers"></product-category>`;
             this.scrollToTop();
             this.closeShoppingCart();
@@ -69,7 +70,7 @@ class AudiophileApp extends HTMLElement {
         });
 
         this.router.on('/earphones', async () => {
-            await import('../productcategory/src/ProductCategory.js');
+            await import('../../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="earphones"></product-category>`;
             this.scrollToTop();
             this.closeShoppingCart();
@@ -77,7 +78,7 @@ class AudiophileApp extends HTMLElement {
         });
 
         this.router.on('/headphones/:product', async ({data}) => {
-            await import('../productdetail/src/ProductDetail.js');
+            await import('../../productdetail/src/ProductDetail.js');
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
             this.scrollToTop();
             this.closeShoppingCart();
@@ -85,7 +86,7 @@ class AudiophileApp extends HTMLElement {
         });
 
         this.router.on('/speakers/:product', async ({data}) => {
-            await import('../productdetail/src/ProductDetail.js');
+            await import('../../productdetail/src/ProductDetail.js');
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
             this.scrollToTop();
             this.closeShoppingCart();
@@ -93,7 +94,7 @@ class AudiophileApp extends HTMLElement {
         });
 
         this.router.on('/earphones/:product', async ({data}) => {
-            await import('../productdetail/src/ProductDetail.js');
+            await import('../../productdetail/src/ProductDetail.js');
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
             this.scrollToTop();
             this.closeShoppingCart();
@@ -101,7 +102,7 @@ class AudiophileApp extends HTMLElement {
         });
 
         this.router.on('/checkout', async () => {
-            await import('../checkoutdetails/src/CheckoutDetails.js');
+            await import('../../checkoutdetails/src/CheckoutDetails.js');
             this.routerOutput.innerHTML = `<checkout-details></checkout-details>`;
             this.scrollToTop();
             this.closeShoppingCart();
@@ -180,7 +181,6 @@ class AudiophileApp extends HTMLElement {
     linksManager() {
         this.shadowRoot.addEventListener('click', (event) => {
             event.preventDefault();
-            console.log(`event.composedPath()[0]:`, event.composedPath()[0]);
             const path = event.composedPath()[0].getAttribute('data-path');
             (path) ? this.store.dispatch('navigate', path) : "";
             if (event.composedPath()[0].className === `linkContainer`) {
@@ -200,4 +200,3 @@ class AudiophileApp extends HTMLElement {
 if (!window.customElements.get('audiophile-app')) {
     window.customElements.define('audiophile-app', AudiophileApp)
 }
-
