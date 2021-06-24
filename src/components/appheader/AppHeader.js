@@ -14,7 +14,6 @@ export default class AppHeader extends HTMLElement {
     }
 
     attributeChangedCallback(attrName, oldValue, newValue) {
-        console.log(`***Executing attributeChangedCallback***`);
 		if (newValue !== oldValue) {
 			this[attrName] = this.hasAttribute(attrName);
 		}
@@ -24,7 +23,10 @@ export default class AppHeader extends HTMLElement {
 
     connectedCallback() {
         this.store = store;
-        this.store.observer.subscribe('stateChange', () => self.backgroundColorAdjust());
+        this.store.observer.subscribe('stateChange', () => {
+            self.backgroundColorAdjust();
+            self.closeNav();
+        });
         this.render();
     }
 
@@ -62,9 +64,9 @@ export default class AppHeader extends HTMLElement {
                         <shopping-cart></shopping-cart>
                     </div>
                 </span>
-                <span id="navigationMenu">
+                <div id="navigationMenu">
                     <category-navigator></category-navigator>
-                </span>
+                </div>
             </div>`;
 
         this.shadowRoot.innerHTML = markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<");
@@ -232,6 +234,22 @@ export default class AppHeader extends HTMLElement {
                         transform: scaleX(1);
                     }
                 }
+
+                .shrinkAway {
+                    animation-duration: 0.35s;
+                    animation-iteration-count: 1;
+                    animation-name: shrinkAway;
+                    animation-timing-function: ease;
+                    animation-fill-mode: forwards;
+                }
+
+                @keyframes shrinkAway {
+                    0% {
+                        transform: translateX(0px);
+                    } 100% {
+                        transform: translateX(-800px);
+                        display: none;
+                    }
             </style>`;
 
         this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
@@ -325,7 +343,13 @@ export default class AppHeader extends HTMLElement {
     }
 
     closeNav() {
-        this.classList.remove('showingNav');
+        if (this.classList.contains('showingNav')) {
+            this.shadowRoot.querySelector('#navigationMenu').classList.add('shrinkAway');
+            setTimeout(() => {
+                this.classList.remove('showingNav');
+                this.shadowRoot.querySelector('#navigationMenu').classList.remove('shrinkAway');
+            }, 1000);
+        }
     }
 
     overlayClicked(event) {

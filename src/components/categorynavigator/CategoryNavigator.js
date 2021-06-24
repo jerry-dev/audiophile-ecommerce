@@ -191,7 +191,6 @@ export default class CategoryNavigator extends HTMLElement {
                         margin-bottom: 1.0625rem;
                     }
 
-
                     :host > nav article .categoryImage {
                         bottom: 5.9375rem;
                     }
@@ -234,10 +233,6 @@ export default class CategoryNavigator extends HTMLElement {
 
                     :host > nav ul li:not(:last-child) {
                         margin-bottom: 4.25rem;
-                    }
-
-                    :host > nav article {
-                        XXXoutline: 2px solid green;
                     }
 
                     :host .articleInnerContainer h3 {

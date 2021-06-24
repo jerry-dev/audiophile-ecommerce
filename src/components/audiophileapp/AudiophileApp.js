@@ -180,10 +180,12 @@ class AudiophileApp extends HTMLElement {
     linksManager() {
         this.shadowRoot.addEventListener('click', (event) => {
             event.preventDefault();
+            console.log(`event.composedPath()[0]:`, event.composedPath()[0]);
             const path = event.composedPath()[0].getAttribute('data-path');
             (path) ? this.store.dispatch('navigate', path) : "";
-            (event.composedPath()[0].className === `linkContainer`)
-                ? this.store.dispatch('navigate', `/${event.composedPath()[0].getAttribute('href')}`) : "";
+            if (event.composedPath()[0].className === `linkContainer`) {
+                this.store.dispatch('navigate', `/${event.composedPath()[0].getAttribute('href')}`);
+            }
         });
     }
 
