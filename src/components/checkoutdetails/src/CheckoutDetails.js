@@ -191,6 +191,7 @@ export default class CheckoutDetails extends HTMLElement {
             event.preventDefault();
             (event.composedPath()[0].id === `pay`) ? this.continueAndPay() : "";
             (event.composedPath()[0].id === `jumpHome`) ? this.backToHome() : "";
+            (event.composedPath()[0].id === `goBack`) ? this.goBack() : "";
         });
     }
 
@@ -230,6 +231,10 @@ export default class CheckoutDetails extends HTMLElement {
 
     lockScrolling() {
         document.querySelector('body').classList.add('locked');
+    }
+
+    goBack() {
+        window.history.back();
     }
 }
 

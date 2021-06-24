@@ -121,8 +121,8 @@ class AudiophileApp extends HTMLElement {
         const path = context.store.state.path;
 
         switch (path) {
-            case '/': context.router.navigate("/"); break;
-            case 'checkout': context.router.navigate("/checkout"); break;
+            case '/': context.router.navigate("/", { historyAPIMethod: 'replaceState' }); break;
+            case 'checkout': context.router.navigate("/checkout", { historyAPIMethod: 'replaceState' }); break;
         }
 
         const headphonesRegex = new RegExp(`/headphones`);
@@ -132,9 +132,9 @@ class AudiophileApp extends HTMLElement {
         if (headphonesRegex.test(path)) {
             const param = path.replace(headphonesRegex, "");
             switch (path) {
-                case '/headphones': context.router.navigate("/headphones");
+                case '/headphones': context.router.navigate("/headphones", { historyAPIMethod: 'replaceState' });
                     break;
-                case `/headphones${param}`: context.router.navigate(`/headphones${param}`);
+                case `/headphones${param}`: context.router.navigate(`/headphones${param}`, { historyAPIMethod: 'replaceState' });
                     break;
             }
         }
@@ -142,9 +142,9 @@ class AudiophileApp extends HTMLElement {
         if (speakersRegex.test(path)) {
             const param = path.replace(speakersRegex, "");
             switch (path) {
-                case '/speakers': context.router.navigate("/speakers");
+                case '/speakers': context.router.navigate("/speakers", { historyAPIMethod: 'replaceState' });
                     break;
-                case `/speakers${param}`: context.router.navigate(`/speakers${param}`);
+                case `/speakers${param}`: context.router.navigate(`/speakers${param}`, { historyAPIMethod: 'replaceState' });
                     break;
             }
         }
@@ -152,9 +152,9 @@ class AudiophileApp extends HTMLElement {
         if (earphonesRegex.test(path)) {
             const param = path.replace(earphonesRegex, "");
             switch (path) {
-                case '/earphones': context.router.navigate("/earphones");
+                case '/earphones': context.router.navigate("/earphones", { historyAPIMethod: 'replaceState' });
                     break;
-                case `/earphones${param}`: context.router.navigate(`/earphones${param}`);
+                case `/earphones${param}`: context.router.navigate(`/earphones${param}`, { historyAPIMethod: 'replaceState' });
                     break;
             }
         }
