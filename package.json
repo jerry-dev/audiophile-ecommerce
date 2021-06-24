@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "browserSync": "browser-sync start --index public/index.html --browser wslview chrome --server --files= public/*.html src"
+    "browserSync": "browser-sync start --index public/index.html --browser wslview chrome --server --files= public/*.html src",
+    "browserSyncDist": "browser-sync start --index dist/index.html --browser wslview chrome --server --files=dist",
+    "build-clone-src": "cp -r ./src ./dist/src",
+    "build-mangle-audiophileapp": "./node_modules/.bin/terser ./dist/src/components/audiophileapp/src/AudiophileApp.js --output ./dist/src/components/audiophileapp/src/AudiophileApp.js --mangle",
+    "build-app": "npm run build-clone-src && npm run build-mangle-audiophileapp"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "navigo": "^8.11.1",
-    "rollup": "^2.52.2"
+    "terser": "^5.7.0"
   }
 }

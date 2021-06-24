@@ -10,7 +10,6 @@ class AudiophileApp extends HTMLElement {
     }
 
     connectedCallback() {
-        console.log(`TEST`);
         this.render();
         this.routerInit();
         this.storeInit();
