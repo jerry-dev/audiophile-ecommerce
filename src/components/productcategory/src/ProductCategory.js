@@ -20,6 +20,7 @@ export default class ProductCategory extends HTMLElement {
     render() {
         this.HTML();
         this.CSS();
+        this.animations();
     }
 
     HTML() {
@@ -109,6 +110,44 @@ export default class ProductCategory extends HTMLElement {
                 }
             });
         });
+    }
+
+    animations() {
+        this.shadowRoot.innerHTML += `
+            <style>
+                .drop {
+                    animation-duration: 1.5s;
+                    animation-iteration-count: 1;
+                    animation-name: drop;
+                }
+
+                @keyframes drop {
+                    0% {
+                        opacity: 0.5;
+                        transform: translateY(-200px);
+                    } 100% {
+                        opacity: 1;
+                        transform: translateY(0px);
+                    }
+                }
+            </style>`;
+
+        const headerComponent = this.shadowRoot.querySelector('product-category-header');
+
+
+        const productCategoryHeaderObserverOptions = { 
+            root: this,
+            rootMargin: `0px`,
+            threshold: 1
+        };
+
+        const productCategoryHeader = new IntersectionObserver((entry, observer) => {
+            if (entry[0].isIntersecting) {
+                entry[0].target.classList.add('drop');
+            }
+        });
+
+        productCategoryHeader.observe(headerComponent, productCategoryHeaderObserverOptions);
     }
 }
 
