@@ -200,18 +200,6 @@ export default class AppHeader extends HTMLElement {
                     }
                 }
 
-                XXX#navigationMenu,
-                XXX#shoppingCartOverlay {
-                    background-color: rgba(0, 0, 0, 0.4);
-                    display: none;
-                    height: 100vh;
-                    position: absolute;
-                    left: 0;
-                    top: 96px;
-                    width: 100%;
-                    z-index: 500;
-                }
-
                 #navigationMenu,
                 #shoppingCartOverlay {
                     background-color: rgba(0, 0, 0, 0.4);
