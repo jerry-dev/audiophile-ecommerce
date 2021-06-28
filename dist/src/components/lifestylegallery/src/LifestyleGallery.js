@@ -89,7 +89,7 @@ export default class LifestyleGallery extends HTMLElement {
     tabletCSS() {
         const markup =
         `<style>
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 834px) {
                 :host {
                     margin-top: 7.5rem;
                 }

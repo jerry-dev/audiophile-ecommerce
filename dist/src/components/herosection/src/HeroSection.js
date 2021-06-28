@@ -111,7 +111,7 @@ export default class HeroSection extends HTMLElement {
     tabletCSS() {
         this.shadowRoot.innerHTML += `
             <style>
-                @media screen and (max-width: 768px) {
+                @media screen and (max-width: 834px) {
                     :host {
                         background-image: url("../src/assets/home/tablet/image-header.jpg");
                         background-size: cover;

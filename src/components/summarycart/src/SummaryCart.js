@@ -96,7 +96,7 @@ export default class SummaryCart extends HTMLElement {
     tabletCSS() {
         const markup =
         `<style>
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 834px) {
                 :host {
                     width: 100%;
                 }

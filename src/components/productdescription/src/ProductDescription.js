@@ -106,7 +106,7 @@ export default class ProductDescription extends HTMLElement {
     tabletCSS() {
         const markup =
             `<style>
-                @media screen and (max-width: 768px) {
+                @media screen and (max-width: 834px) {
                     #descriptionInnerContainer {
                         flex-direction: column;
                         width: 89.8437%;

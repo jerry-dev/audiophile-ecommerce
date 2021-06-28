@@ -253,7 +253,7 @@ export default class CategoryListing extends HTMLElement {
     tabletCSS() {
         this.shadowRoot.innerHTML += `
             <style>
-                @media screen and (max-width: 768px) {
+                @media screen and (max-width: 834px) {
                     :host {
                         margin-top: 7.5rem;
                     }
@@ -325,7 +325,7 @@ export default class CategoryListing extends HTMLElement {
     productDetailTabletCSS() {
         const markup =
             `<style>
-                @media screen and (max-width: 768px) {
+                @media screen and (max-width: 834px) {
                     :host([cartReady="true"])  {
                         margin-top: 1.5rem;
                     }

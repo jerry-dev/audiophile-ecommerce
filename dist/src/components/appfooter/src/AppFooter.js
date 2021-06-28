@@ -174,7 +174,7 @@ export default class AppFooter extends HTMLElement {
     tabletCSS() {
         this.shadowRoot.innerHTML += `
             <style>
-                @media screen and (max-width: 768px) {
+                @media screen and (max-width: 834px) {
                     #footer-inner-container {
                         grid-row-gap: 0;
                         grid-template-columns: repeat(2, 1fr);

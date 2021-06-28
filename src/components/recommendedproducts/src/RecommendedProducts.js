@@ -147,7 +147,7 @@ export default class RecommendedProducts extends HTMLElement {
     tabletCSS() {
         const markup =
         `<style>
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 834px) {
                 :host {
                     margin-bottom: 7.5rem;
                     margin-top: 7.5rem;

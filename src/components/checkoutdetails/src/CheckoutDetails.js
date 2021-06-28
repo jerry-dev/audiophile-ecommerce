@@ -80,7 +80,7 @@ export default class CheckoutDetails extends HTMLElement {
     tabletCSS() {
         const markup =
         `<style>
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 834px) {
                 :host {
                     padding-top: 3rem;
                     padding-bottom: 7.25rem;
@@ -104,7 +104,7 @@ export default class CheckoutDetails extends HTMLElement {
     mobileCSS() {
         const markup =
         `<style>
-            @media screen and (max-width: 375px) {
+            @media screen and (max-width: 414px) {
                 :host {
                     padding-top: 1rem;
                     padding-bottom: 6.0625rem;

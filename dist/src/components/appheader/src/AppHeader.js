@@ -313,7 +313,7 @@ export default class AppHeader extends HTMLElement {
     tabletCSS() {
         const markup =
             `<style>
-                @media screen and (max-width: 768px) {
+                @media screen and (max-width: 834px) {
                     nav {
                         display: none;
                     }

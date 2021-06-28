@@ -323,7 +323,7 @@ export default class CheckoutForm extends HTMLElement {
     tabletCSS() {
         const markup =
         `<style>
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 834px) {
                 :host {
                     margin-bottom: 2rem;
                     width: 100%;
