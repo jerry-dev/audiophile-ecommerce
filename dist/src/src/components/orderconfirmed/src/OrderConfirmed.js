@@ -68,16 +68,17 @@ export default class OrderConfirmed extends HTMLElement {
         const markup =
         `<style>
             *, *::before, *::after { padding: 0; margin: 0; }
-
+            
             :host {
                 background-color: rgba(0, 0, 0, 0.4);
-                height: 100vh;
+                height: 100%;
                 left: 0;
-                position: fixed;
                 right: 0;
-                top: 96px;
-                width: 100vw;
+                position: fixed;
+                top: 0;
+                width: 100%;
                 z-index: 500;
+                overflow: auto;
             }
 
             :host([activated="false"]) {
@@ -91,12 +92,12 @@ export default class OrderConfirmed extends HTMLElement {
             #dialogBox {
                 background-color: var(--white-1);
                 border-radius: 0.5rem;
+                margin-top: 7.8125rem;
+                max-width: 33.75rem;
                 margin-left: auto;
                 margin-right: auto;
-                margin-top: 7.8125rem;
                 padding-bottom: 3rem;
                 padding-top: 3rem;
-                max-width: 33.75rem;
             }
 
             #dialogBoxInnerContainer {
@@ -223,7 +224,7 @@ export default class OrderConfirmed extends HTMLElement {
         `<style>
             @media screen and (max-width: 576px) {
                 :host {
-                    top: 0px;
+                    top: 0rem;
                 }
 
                 #dialogBox {

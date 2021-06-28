@@ -10,9 +10,9 @@ class AudiophileApp extends HTMLElement {
     }
 
     connectedCallback() {
+        this.storeInit();
         this.render();
         this.routerInit();
-        this.storeInit();
     }
 
     render() {
@@ -42,70 +42,62 @@ class AudiophileApp extends HTMLElement {
 
     routerInit() {
         this.routerOutput = this.shadowRoot.querySelector("#routerOutput");
-        this.router = new Navigo("/");
+        this.router = new Navigo("/", { hash: true });
 
         this.router.on('/', async () => {
             await import('../../homesection/src/HomeSection.js');
             this.routerOutput.innerHTML = `<home-section></home-section>`;
             this.scrollToTop();
             this.closeShoppingCart();
-            this.unlockScrolling();
         });
 
-        this.router.on('/headphones', async () => {
+        this.router.on('headphones', async () => {
             await import('../../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="headphones"></product-category>`;
             this.scrollToTop();
             this.closeShoppingCart();
-            this.unlockScrolling();
         });
 
-        this.router.on('/speakers', async () => {
+        this.router.on('speakers', async () => {
             await import('../../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="speakers"></product-category>`;
             this.scrollToTop();
             this.closeShoppingCart();
-            this.unlockScrolling();
         });
 
-        this.router.on('/earphones', async () => {
+        this.router.on('earphones', async () => {
             await import('../../productcategory/src/ProductCategory.js');
             this.routerOutput.innerHTML = `<product-category category="earphones"></product-category>`;
             this.scrollToTop();
             this.closeShoppingCart();
-            this.unlockScrolling();
         });
 
-        this.router.on('/headphones/:product', async ({data}) => {
+        this.router.on('headphones/:product', async ({data}) => {
             await import('../../productdetail/src/ProductDetail.js');
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
             this.scrollToTop();
             this.closeShoppingCart();
-            this.unlockScrolling();
         });
 
-        this.router.on('/speakers/:product', async ({data}) => {
+        this.router.on('speakers/:product', async ({data}) => {
             await import('../../productdetail/src/ProductDetail.js');
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
             this.scrollToTop();
             this.closeShoppingCart();
-            this.unlockScrolling();
         });
 
-        this.router.on('/earphones/:product', async ({data}) => {
+        this.router.on('earphones/:product', async ({data}) => {
             await import('../../productdetail/src/ProductDetail.js');
             this.routerOutput.innerHTML = `<product-detail product="${data.product}"></product-detail>`;
             this.scrollToTop();
             this.closeShoppingCart();
-            this.unlockScrolling();
         });
 
-        this.router.on('/checkout', async () => {
+        this.router.on('checkout', async () => {
             await import('../../checkoutdetails/src/CheckoutDetails.js');
             this.routerOutput.innerHTML = `<checkout-details></checkout-details>`;
             this.scrollToTop();
             this.closeShoppingCart();
-            this.unlockScrolling();
         });
 
         this.router.resolve();
@@ -120,9 +112,18 @@ class AudiophileApp extends HTMLElement {
     pathMap(context) {
         const path = context.store.state.path;
 
+        const navigateOptions = {
+            title: document.title,
+            historyAPIMethod: 'replaceState',
+            updateBrowserURL: true,
+            updateState: true,
+            force: false
+        };
+
         switch (path) {
-            case '/': context.router.navigate("/"); break;
-            case 'checkout': context.router.navigate("/checkout"); break;
+            case '/': context.router.navigate("/", navigateOptions); break;
+            case 'checkout': context.router.navigate("checkout", navigateOptions);
+            break;
         }
 
         const headphonesRegex = new RegExp(`/headphones`);
@@ -132,36 +133,30 @@ class AudiophileApp extends HTMLElement {
         if (headphonesRegex.test(path)) {
             const param = path.replace(headphonesRegex, "");
             switch (path) {
-                case '/headphones': context.router.navigate("/headphones");
-                    break;
-                case `/headphones${param}`: context.router.navigate(`/headphones${param}`);
-                    break;
+                case '/headphones': context.router.navigate("/headphones", navigateOptions); break;
+                case `/headphones${param}`: context.router.navigate(`/headphones${param}`, navigateOptions); break;
             }
         }
 
         if (speakersRegex.test(path)) {
             const param = path.replace(speakersRegex, "");
             switch (path) {
-                case '/speakers': context.router.navigate("/speakers");
-                    break;
-                case `/speakers${param}`: context.router.navigate(`/speakers${param}`);
-                    break;
+                case '/speakers': context.router.navigate("/speakers", navigateOptions); break;
+                case `/speakers${param}`: context.router.navigate(`/speakers${param}`, navigateOptions); break;
             }
         }
 
         if (earphonesRegex.test(path)) {
             const param = path.replace(earphonesRegex, "");
             switch (path) {
-                case '/earphones': context.router.navigate("/earphones");
-                    break;
-                case `/earphones${param}`: context.router.navigate(`/earphones${param}`);
-                    break;
+                case '/earphones': context.router.navigate("/earphones", navigateOptions); break;
+                case `/earphones${param}`: context.router.navigate(`/earphones${param}`, navigateOptions); break;
             }
         }
     }
 
     scrollToTop() {
-        this.shadowRoot.querySelector('app-header').scrollIntoView({behavior: "smooth"});
+        document.querySelector('body').scrollIntoView({behavior: "smooth"});
     }
 
     closeShoppingCart() {
@@ -186,13 +181,6 @@ class AudiophileApp extends HTMLElement {
                 this.store.dispatch('navigate', `/${event.composedPath()[0].getAttribute('href')}`);
             }
         });
-    }
-
-    unlockScrolling() {
-        if (document.querySelector('body').classList.contains('locked')) {
-            document.querySelector('body').classList.remove('locked');
-        }
-        
     }
 }
 
