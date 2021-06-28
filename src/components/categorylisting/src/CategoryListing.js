@@ -566,8 +566,9 @@ export default class CategoryListing extends HTMLElement {
                 .fadeIn2 {
                     animation-duration: 1s;
                     animation-iteration-count: 1;
-                    animation-name: fadeIn;
+                    animation-name: fadeIn2;
                     animation-timing-function: ease;
+                    animation-fill-mode: backwards;
                 }
 
                 @keyframes fadeIn2 {
@@ -578,12 +579,11 @@ export default class CategoryListing extends HTMLElement {
                     }
                 }
 
-
                 .expand2 {
                     animation-duration: 1s;
                     animation-iteration-count: 1;
                     animation-name: expand2;
-                    animation-timing-function: ease;
+                    animation-timing-function: linear;
                 }
 
                 @keyframes expand2 {
@@ -597,24 +597,19 @@ export default class CategoryListing extends HTMLElement {
                 }
             </style>`;
 
+        const picture = this.shadowRoot.querySelector('picture img');
         const title = this.shadowRoot.querySelector('.detailsInnerContainer h2');
         const paragraph = this.shadowRoot.querySelector('.detailsInnerContainer p');
         const newProductText = this.shadowRoot.querySelector('small');
         const seeProductButton = this.shadowRoot.querySelector('.linkButton');
 
-        const h2ObserverOptions = { 
+        const fadeInOneObserverOptions = { 
             root: this.shadowRoot.querySelector('.detailsInnerContainer'),
             rootMargin: `0px`,
             threshold: 1
         };
 
-        const paragraphObserverOptions = { 
-            root: this.shadowRoot.querySelector('.detailsInnerContainer'),
-            rootMargin: `0px`,
-            threshold: 1
-        };
-
-        const newProductObserverOptions = { 
+        const fadeInTwoObserverOptions = { 
             root: this.shadowRoot.querySelector('.detailsInnerContainer'),
             rootMargin: `0px`,
             threshold: 1
@@ -632,7 +627,7 @@ export default class CategoryListing extends HTMLElement {
             }
         });
 
-        const paragraphObserver = new IntersectionObserver((entry, observer) => {
+        const fadeInOneObserver = new IntersectionObserver((entry, observer) => {
             if (entry[0].isIntersecting) {
                 entry[0].target.classList.add('fadeIn');
             } else {
@@ -640,11 +635,9 @@ export default class CategoryListing extends HTMLElement {
             }
         });
 
-        const newProductTextObserver = new IntersectionObserver((entry, observer) => {
+        const fadeInTwoObserver = new IntersectionObserver((entry, observer) => {
             if (entry[0].isIntersecting) {
                 entry[0].target.classList.add('fadeIn2');
-            } else {
-                entry[0].target.classList.remove('fadeIn2');
             }
         });
 
@@ -654,9 +647,10 @@ export default class CategoryListing extends HTMLElement {
             }
         });
 
-        newProductTextObserver.observe(newProductText, newProductObserverOptions);
+        fadeInTwoObserver.observe(picture, fadeInTwoObserverOptions);
+        fadeInTwoObserver.observe(newProductText, fadeInTwoObserverOptions);
         titleObserver.observe(title, titleObserver);
-        paragraphObserver.observe(paragraph, paragraphObserverOptions);
+        fadeInOneObserver.observe(paragraph, fadeInOneObserverOptions);
         seeProductButtonObserver.observe(seeProductButton, seeProductButtonObserverOptions);
     }
 
