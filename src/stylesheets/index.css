@@ -29,6 +29,10 @@ body {
     line-height: 1.5625rem;
 }
 
+.lock {
+    overflow: hidden;
+}
+
 audiophile-app {
     margin-right: auto;
     margin-left: auto;

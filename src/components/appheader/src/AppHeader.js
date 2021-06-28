@@ -200,8 +200,8 @@ export default class AppHeader extends HTMLElement {
                     }
                 }
 
-                #navigationMenu,
-                #shoppingCartOverlay {
+                XXX#navigationMenu,
+                XXX#shoppingCartOverlay {
                     background-color: rgba(0, 0, 0, 0.4);
                     display: none;
                     height: 100vh;
@@ -210,6 +210,20 @@ export default class AppHeader extends HTMLElement {
                     top: 96px;
                     width: 100%;
                     z-index: 500;
+                }
+
+                #navigationMenu,
+                #shoppingCartOverlay {
+                    background-color: rgba(0, 0, 0, 0.4);
+                    display: none;
+                    height: 100%;
+                    position: fixed;
+                    left: 0;
+                    right: 0;
+                    top: 96px;
+                    width: 100%;
+                    z-index: 500;
+                    overflow-y: auto;
                 }
 
                 #shoppingCartOverlayInnerContainer {
@@ -267,21 +281,39 @@ export default class AppHeader extends HTMLElement {
                     }
                 }
 
-                .shrinkAway {
+                .slideOutOfView {
                     animation-duration: 0.35s;
                     animation-iteration-count: 1;
-                    animation-name: shrinkAway;
+                    animation-name: slideOutOfView;
                     animation-timing-function: ease;
                     animation-fill-mode: forwards;
                 }
 
-                @keyframes shrinkAway {
+                @keyframes slideOutOfView {
                     0% {
                         transform: translateX(0px);
                     } 100% {
                         transform: translateX(-800px);
                         display: none;
                     }
+                }
+
+                .slideIntoView {
+                    animation-duration: 0.35s;
+                    animation-iteration-count: 1;
+                    animation-name: slideIntoView;
+                    animation-timing-function: ease-out;
+                    animation-fill-mode: forwards;
+                }
+
+                @keyframes slideIntoView {
+                    0% {
+                        transform: translateX(-800px);
+                        display: block;
+                    } 100% {
+                        transform: translateX(0px);
+                    }
+                }
             </style>`;
 
         this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
@@ -303,7 +335,7 @@ export default class AppHeader extends HTMLElement {
                     #header-inner-container {
                         width: 89.713%;
                     }
-
+                    
                     :host(.showingNav) #navigationMenu {
                         display: block;
                     }
@@ -374,13 +406,25 @@ export default class AppHeader extends HTMLElement {
         return (this.store.state.path === `checkout`) ? true: false;
     }
 
+    openNav() {
+        if (!this.classList.contains('showingNav') && !this.isAtCheckout()) {
+            this.shadowRoot.querySelector('#navigationMenu').classList.add('slideIntoView');
+            this.classList.add('showingNav');
+            document.querySelector('body').classList.add('lock');
+            setTimeout(() => {
+                this.shadowRoot.querySelector('#navigationMenu').classList.remove('slideIntoView');
+            }, 500);
+        }
+    }
+
     closeNav() {
         if (this.classList.contains('showingNav')) {
-            this.shadowRoot.querySelector('#navigationMenu').classList.add('shrinkAway');
+            this.shadowRoot.querySelector('#navigationMenu').classList.add('slideOutOfView');
+            document.querySelector('body').classList.remove('lock');
             setTimeout(() => {
                 this.classList.remove('showingNav');
-                this.shadowRoot.querySelector('#navigationMenu').classList.remove('shrinkAway');
-            }, 1000);
+                this.shadowRoot.querySelector('#navigationMenu').classList.remove('slideOutOfView');
+            }, 500);
         }
     }
 
@@ -421,7 +465,7 @@ export default class AppHeader extends HTMLElement {
             }
 
             if (event.target.id === 'hamburger') {
-                this.classList.toggle('showingNav');
+                (!this.isShowingNav()) ? this.openNav() : this.closeNav();
 
                 if (this.isShowingNav()) {        
                     window.addEventListener(`keydown`, (event) => {
@@ -432,10 +476,6 @@ export default class AppHeader extends HTMLElement {
                         if (window.innerWidth > 768) {
                             this.closeNav();
                         }
-                    });
-
-                    window.addEventListener(`scroll`, () => {
-                        this.closeNav();
                     });
                 }
             }
