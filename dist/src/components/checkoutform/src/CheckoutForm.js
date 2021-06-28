@@ -347,7 +347,7 @@ export default class CheckoutForm extends HTMLElement {
     mobileCSS() {
         const markup =
         `<style>
-            @media screen and (max-width: 375px) {
+            @media screen and (max-width: 414px) {
                 :host {
                     margin-bottom: 2rem;
                 }
