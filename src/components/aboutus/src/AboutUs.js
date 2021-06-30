@@ -37,8 +37,8 @@ export default class AboutUs extends HTMLElement {
                     </p>
                 </div>
                 <picture>
-                    <source srcset="../src/assets/shared/mobile/image-best-gear.jpg" media="(max-width: 576px)">
-                    <source srcset="../src/assets/shared/tablet/image-best-gear.jpg" media="(max-width: 768px)">
+                    <source srcset="../src/assets/shared/mobile/image-best-gear.jpg" media="(max-width: 414px)">
+                    <source srcset="../src/assets/shared/tablet/image-best-gear.jpg" media="(max-width: 834px)">
                     <img src="../src/assets/shared/desktop/image-best-gear.jpg" alt="Black and white image of a man wearing headphones">
                 </picture>
             </div>
@@ -137,7 +137,7 @@ export default class AboutUs extends HTMLElement {
     mobileCSS() {
         this.shadowRoot.innerHTML += `
             <style>
-                @media screen and (max-width: 576px) {
+                @media screen and (max-width: 414px) {
                     :host {
                         padding-bottom: 7.5rem;
                     }
