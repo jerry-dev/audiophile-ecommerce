@@ -186,6 +186,7 @@ export default class AppHeader extends HTMLElement {
                     animation-iteration-count: 1;
                     animation-name: dropIn;
                     animation-timing-function: ease;
+                    z-index: 999;
                 }
 
                 #itemsCount.empty {
