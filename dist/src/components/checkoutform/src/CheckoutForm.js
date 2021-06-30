@@ -315,6 +315,11 @@ export default class CheckoutForm extends HTMLElement {
             .labelInputCombo span.error {
                 color: #CD2C2C;
             }
+
+            label > span,
+            label > span > span {
+                pointer-events: none;
+            }
         </style>`;
 
         this.shadowRoot.innerHTML += markup.replace(/\n/g, "").replace(/[\t ]+\</g, "<").replace(" ", "");
@@ -444,9 +449,11 @@ export default class CheckoutForm extends HTMLElement {
     }
 
     clickHandler() {
+        
         this.shadowRoot.addEventListener('click', (event) => {
+            
             const theClass = event.target.classList.value;
-            (theClass === 'paymentRadio') ? this.targetManager(theClass, event) : "";
+            (event.target.classList.contains('paymentRadio')) ? this.targetManager(theClass, event) : "";
         });
     }
 
@@ -462,7 +469,6 @@ export default class CheckoutForm extends HTMLElement {
         event.target.nextElementSibling.setAttribute('checked', "");
 
         this.removeEmoneyInputsAndCashArticle();
-
         (event.target.id === `cashLabel`) ? this.showCashArticle() : this.showEmoneyInputs();
     }
 
