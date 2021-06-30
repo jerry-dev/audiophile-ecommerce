@@ -451,7 +451,7 @@ export default class AppHeader extends HTMLElement {
     }
 
     overlayClicked(event) {
-        return (event.target.id === `navigationMenu`) ? true : false;
+        return (event.target.id === `navigationMenu` || event.target.id === 'shoppingCartOverlayInnerContainer') ? true : false;
     }
 
     observerLinkClicks() {
@@ -470,21 +470,32 @@ export default class AppHeader extends HTMLElement {
                 this.store.dispatch('navigate', event.target.pathname);
             }
 
-            if (this.isShowingNav() && this.overlayClicked(event)) {
-                this.closeNav();
+            if (this.overlayClicked(event)) {
+                if (this.isShowingShoppingCart()) {
+                    this.closeShoppingCart();
+                }
+
+                if (this.isShowingNav()) {
+                    this.closeNav();
+                }
             }
 
+            window.addEventListener(`keydown`, (event) => {
+                if (event.key === `Escape`) {
+                    if (this.isShowingShoppingCart()) {
+                        this.closeShoppingCart();
+                    }
+
+                    if (this.isShowingNav()) {
+                        this.closeNav();
+                    }
+                }
+           });
+            
             if (event.target.id === 'hamburger') {
                 (!this.isShowingNav()) ? this.openNav() : this.closeNav();
 
-                if (this.isShowingNav()) {        
-                    window.addEventListener(`keydown`, (event) => {
-                         if (event.key === `Escape`) {
-                            this.closeNav();
-                            this.closeShoppingCart();
-                         }
-                    });
-
+                if (this.isShowingNav()) {
                     window.addEventListener(`resize`, () => {
                         if (window.innerWidth > 768) {
                             this.closeNav();
