@@ -22,11 +22,17 @@ class AudiophileApp extends HTMLElement {
     }
 
     HTML() {
-        this.shadowRoot.innerHTML =
-            `<app-header backgroundColor="on"></app-header>
-            <output id="routerOutput">
-            </output>
-            <app-footer></app-footer>`;
+        const appHeader = documement.createElement('app-header');
+        appHeader.setAttribute('backgroundColor', 'on');
+
+        const routerOutput = documement.createElement('output');
+        routerOutput.id = `routerOutput`;
+
+        const appFooter = documement.createElement('app-footer');
+
+        this.shadowRoot.appendChild(appHeader);
+        this.shadowRoot.appendChild(routerOutput);
+        this.shadowRoot.appendChild(appFooter);
     }
 
     CSS() {
