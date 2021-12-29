@@ -6,7 +6,7 @@
   "scripts": {
     "browserSync": "browser-sync start --index public/index.html --browser wslview chrome --server --files= public/*.html src",
     "browserSyncDist": "browser-sync start --index dist/index.html --browser wslview chrome --server --files=dist",
-    "buildDistSrc": "mkdir dist/src",
+    "buildDistSrc": "[ ! -d ./dist ] && mkdir dist && mkdir dist/src",
     "buildAssets": "cp -r src/assets dist/src/",
     "buildData": "cp -r src/data dist/src/",
     "buildLib": "cp -r src/lib dist/src/",
