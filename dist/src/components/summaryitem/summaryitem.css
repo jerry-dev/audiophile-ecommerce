@@ -1,0 +1,47 @@
+*,*::before,*::after { padding: 0; margin: 0; }
+
+:host {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+picture {
+    align-items: center;
+    background-color: var(--grey-1);
+    border-radius: 0.5rem;
+    display: flex;
+    height: 4rem;
+    justify-content: center;
+    margin-right: 1rem;
+    width: 4rem;
+}
+
+picture img {
+    max-width: 100%;
+}
+
+#product {
+    color: var(--black-2);
+    font-size: 0.9375rem;
+    font-weight: bold;
+    line-height: 1.5625rem;
+}
+
+#price {
+    color: var(--black-2);
+    font-size: 0.875rem;
+    font-weight: bold;
+    line-height: 1.5625rem;
+    opacity: 0.5;
+}
+
+#quantity {
+    font-size: 0.9375rem;
+    font-weight: bold;
+    line-height: 1.5625rem;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-top: 0.4375rem;
+    opacity: 0.5;
+}

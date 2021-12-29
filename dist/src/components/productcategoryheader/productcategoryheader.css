@@ -1,0 +1,50 @@
+*,*::before,*::after{margin:0;padding:0;}
+
+:host {
+    background-color: var(--black-2);
+    display: block;
+    padding-bottom: 6.125rem;
+    padding-top: 6.125rem;
+}
+
+#innerContainer {
+    margin-left: auto;
+    margin-right: auto;
+    width: 77.083%;
+}
+
+h2 {
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+    animation-name: appear;
+
+    color: var(--white-1);
+    text-align: center;
+}
+
+@keyframes appear {
+    0% {
+        transform: scale3d(0.8, 0.8, 1);
+    }
+
+    100% {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    :host {
+        padding-bottom: 2rem;
+        padding-top: 2rem;
+    }
+
+    #innerContainer {
+        width: 87.2%;
+    }
+
+    #innerContainer h2 {
+        font-size: 1.75rem;
+        letter-spacing: 0.125rem;
+        line-height: 2.375rem;
+    }
+}

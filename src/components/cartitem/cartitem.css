@@ -1,0 +1,69 @@
+*,*::before,*::after { padding: 0; margin: 0; }
+
+:host {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+picture {
+    align-items: center;
+    background-color: var(--grey-1);
+    border-radius: 0.5rem;
+    display: flex;
+    height: 4rem;
+    justify-content: center;
+    margin-right: 1rem;
+    width: 4rem;
+}
+
+picture img {
+    max-width: 100%;
+}
+
+#product {
+    color: var(--black-2);
+    font-size: 0.9375rem;
+    font-weight: bold;
+    line-height: 1.5625rem;
+}
+
+#price {
+    color: var(--black-2);
+    font-size: 0.875rem;
+    font-weight: bold;
+    line-height: 1.5625rem;
+    opacity: 0.5;
+}
+
+#controlsContainer {
+    background-color: var(--grey-1);
+    display: flex;
+    flex-direction: row;
+    height: 2rem;
+    margin-left: auto;
+    width: 6rem;
+}
+
+#controlsContainer button {
+    color: var(--black-2);
+    opacity: 0.25;
+    font-weight: bold;
+    font-size: 0.8125rem;
+    line-height: 1.125rem;
+    text-align: center;
+}
+
+#controlsContainer button:hover {
+    color: var(--brown-2);
+    cursor: pointer;
+}
+
+#controlsContainer button,
+#controlsContainer input {
+    background-color: var(--grey-1);
+    border: none;
+    height: 100%;
+    text-align: center;
+    width: 33.3333%;
+}

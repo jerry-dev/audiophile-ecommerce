@@ -6,15 +6,19 @@
   "scripts": {
     "browserSync": "browser-sync start --index public/index.html --browser wslview chrome --server --files= public/*.html src",
     "browserSyncDist": "browser-sync start --index dist/index.html --browser wslview chrome --server --files=dist",
-    "build-clone-src": "cp -r ./src ./dist/src",
-    "build-mangle-audiophileapp": "./node_modules/.bin/terser ./dist/src/components/audiophileapp/src/AudiophileApp.js --output ./dist/src/components/audiophileapp/src/AudiophileApp.js --mangle",
-    "build-app": "npm run build-clone-src && npm run build-mangle-audiophileapp"
+    "buildDistSrc": "mkdir dist/src",
+    "buildAssets": "cp -r src/assets dist/src/",
+    "buildData": "cp -r src/data dist/src/",
+    "buildLib": "cp -r src/lib dist/src/",
+    "buildStyleSheets": "cp -r src/stylesheets dist/src/",
+    "buildComponents": "cp -r src/components dist/src/",
+    "buildMain": "cp src/main.js dist/src/",
+    "build": "npm run buildDistSrc && npm run buildAssets && npm run buildData && npm run buildLib && npm run buildStyleSheets && npm run buildComponents && npm run buildMain"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "navigo": "^8.11.1",
-    "terser": "^5.7.0"
+    "navigo": "^8.11.1"
   }
 }

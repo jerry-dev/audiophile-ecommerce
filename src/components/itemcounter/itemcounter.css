@@ -1,0 +1,31 @@
+*,*::before,*::after { padding:0; margin: 0; }
+
+:host {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+h6 {
+    color: var(--black-2);
+    font-size: 1.125rem;
+    font-weight: bold;
+    letter-spacing: 0.080356875rem;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.5625rem;
+    opacity: 0.5;
+    text-decoration-line: underline;
+}
+
+button:hover {
+    color: var(--brown-2);
+}

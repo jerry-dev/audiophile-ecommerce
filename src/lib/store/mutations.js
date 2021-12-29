@@ -1,10 +1,4 @@
 export default {
-	navigate(state, payload) {
-		const {...newState} = state;
-		newState.path = payload;
-		return newState;
-	},
-
 	productDataAPIFetch(state, payload) {
 		const {...newState} = state;
 		newState.productData = payload;
@@ -36,7 +30,9 @@ export default {
 
 	clearCart(state, payload) {
 		const {...newState} = state;
-		newState.cartItems = payload;
+		newState.order = payload.order;
+		newState.cartItems = payload.cartItems;
+		newState.cartCalculations = payload.cartCalculations;
 		sessionStorage.setItem('shoppingCart', JSON.stringify(newState));
 		return newState;
 	},
@@ -54,4 +50,10 @@ export default {
 		newState.order = payload;
 		return newState;
 	},
+
+	shoppingCartStateUpdate(state, payload) {
+		const {...newState} = state;
+		newState.shoppingCartState = payload.shoppingCartState;
+		return newState;
+    },
 }

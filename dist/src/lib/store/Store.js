@@ -29,6 +29,9 @@ export default class Store {
 				
 				self.status = 'resting';
 				return true;
+			},
+			get: function(state, key) {
+				return state[key];
 			}
 		});
 	}
@@ -55,7 +58,7 @@ export default class Store {
 			return false;
 		}
 		
-		self.status = 'mutation';
+		self.status = 'mutation';	
 		let newState = self.mutations[mutationKey](self.state, payload);
 		Object.assign(self.state, newState);
 		return true;

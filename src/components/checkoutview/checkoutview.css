@@ -1,0 +1,63 @@
+:host {
+    background-color: var(--grey-1);
+    display: block;
+    padding-bottom: 8.8125rem;
+    padding-top: 4.9375rem;
+}
+
+#checkoutDetailsInnerContainer {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    width: 77.08333%;
+}
+
+#goBackLinkWrapper {
+    margin-bottom: 2.375rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 77.08333%;
+}
+
+#goBack {
+    color: var(--black-2);
+    font-size: 0.9375rem;
+    line-height: 1.5625rem;
+    text-decoration: none;
+    opacity: 0.5;
+}
+
+@media screen and (max-width: 834px) {
+    :host {
+        padding-top: 3rem;
+        padding-bottom: 7.25rem;
+    }
+
+    #goBackLinkWrapper {
+        margin-bottom: 1.5rem;
+        width: 89.71354%;
+    }
+
+    #checkoutDetailsInnerContainer {
+        flex-direction: column;
+        width: 89.71354%;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    :host {
+        padding-top: 1rem;
+        padding-bottom: 6.0625rem;
+    }
+
+    #goBackLinkWrapper {
+        width: 87.2%;
+    }
+
+    #checkoutDetailsInnerContainer {
+        width: 87.2%;
+    }
+}

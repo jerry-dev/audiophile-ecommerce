@@ -1,0 +1,38 @@
+:host {
+    display: block;
+    padding-top: 4.9375rem;
+}
+
+#goBackLinkWrapper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 77.083%;
+}
+
+#goBack {
+    color: var(--black-2);
+    font-size: 0.9375rem;
+    line-height: 1.5625rem;
+    text-decoration: none;
+    opacity: 0.5;
+}
+
+@media screen and (max-width: 768px) {
+    :host {
+        padding-top: 2.0625rem;
+    }
+
+    #goBackLinkWrapper {
+        width: 89.8437%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    :host {
+        padding-top: 1rem;
+    }
+
+    #goBackLinkWrapper {
+        width: 87.2%;
+    }
+}

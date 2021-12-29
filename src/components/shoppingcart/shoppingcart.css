@@ -1,0 +1,38 @@
+:host {
+    background-color: var(--white-1);
+    border-radius: 0.5rem;
+    display: block;
+    max-width: 23.5625rem;
+}
+
+:host([state='visible']) {
+    display: block;
+}
+
+:host([state='hidden']) {
+    display: none;
+}
+
+#cartInnerContainer {
+    padding-top: 1.9375rem;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 1.9375rem;
+    padding-top: 1.9375rem;
+    width: 83.02387%;
+}
+
+cart-item:not(:last-child) {
+    margin-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 576px) {
+    :host {
+        min-width: 20.4375rem;
+    }
+
+    #cartInnerContainer {
+        width: 82.87461%;
+    }
+}

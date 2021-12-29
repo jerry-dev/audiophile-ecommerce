@@ -1,0 +1,73 @@
+*, *::before, *::after {padding: 0; margin: 0;}
+
+:host {
+    background-color: var(--black-1);
+    display: block;
+    height: 3rem;
+    width: 10rem;
+}
+
+:host:hover {
+    cursor: pointer;
+}
+
+a {
+    align-items: center;
+    color: var(--white-1);
+    display: flex;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    letter-spacing: 0.0625rem;
+    height: 3rem;
+    justify-content: center;
+    line-height: 1.125rem;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+}
+
+:host(.black) {
+    background-color: var(--black-1);
+}
+
+:host(.black) a {
+    color: var(--white-1);
+}
+
+:host(.black:hover) {
+    background-color: #4C4C4C;
+}
+
+:host(.brown) {
+    background-color: var(--brown-2);
+}
+
+:host(.brown) a {
+    color: var(--white-1);
+}
+
+:host(.brown:hover) {
+    background-color: var(--brown-1);
+}
+
+:host(.opaque) {
+    background-color: rgba(0,0,0,0);
+    outline: 0.0625rem solid var(--black-1);
+}
+
+:host(.opaque) a {
+    color: var(--black-1);
+}
+
+:host(.opaque:hover) {
+    background-color: var(--black-1);
+}
+
+:host(.opaque:hover) a {
+    color: var(--white-1);
+}
+
+
+:host(:active) {
+    transform: scale3d(0.9, 0.9, 1);
+}
