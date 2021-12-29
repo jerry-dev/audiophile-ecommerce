@@ -13,7 +13,7 @@
     "buildStyleSheets": "cp -r src/stylesheets dist/src/",
     "buildComponents": "cp -r src/components dist/src/",
     "buildMain": "cp src/main.js dist/src/",
-    "build": "npm run buildDistSrc && npm run buildAssets && npm run buildData && npm run buildLib && npm run buildStyleSheets && npm run buildComponents && npm run buildMain"
+    "build": "npm run buildAssets && npm run buildData && npm run buildLib && npm run buildStyleSheets && npm run buildComponents && npm run buildMain"
   },
   "keywords": [],
   "author": "",
