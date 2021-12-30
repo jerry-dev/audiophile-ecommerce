@@ -13,7 +13,6 @@ button > * {
 :host {
     align-items: center;
     background-color: var(--black-1);
-    contain: content;
     display: flex;
     height: 6rem;
     position: relative;
