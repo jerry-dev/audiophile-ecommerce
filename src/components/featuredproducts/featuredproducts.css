@@ -163,6 +163,11 @@ button:active {
         margin-bottom: 4rem;
     }
 
+    #block-1-innerContainer-1 > link-button {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     #block-2 {
         background-image: url("../../../../src/assets/product-zx7-speaker/tablet/background.png");
         padding-bottom: 6.3125rem;
