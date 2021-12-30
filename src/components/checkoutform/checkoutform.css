@@ -3,6 +3,7 @@
 :host {
     background-color: var(--white-1);
     border-radius: 0.5rem;
+    contain: content;
     display: block;
     width: 65.76576%;
 }

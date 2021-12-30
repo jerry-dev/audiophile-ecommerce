@@ -2,6 +2,7 @@
 
 :host {
     align-items: center;
+    contain: content;
     display: flex;
     flex-direction: row;
 }

@@ -2,6 +2,7 @@
 
 :host {
     background-color: var(--black-1);
+    contain: content;
     display: block;
     height: 3rem;
     width: 10rem;

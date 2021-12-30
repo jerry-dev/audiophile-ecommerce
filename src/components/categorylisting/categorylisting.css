@@ -2,6 +2,7 @@
 
 :host {
     background-color: var(--white-1);
+    contain: content;
     display: block;
     margin-top: 9.375rem;
 }

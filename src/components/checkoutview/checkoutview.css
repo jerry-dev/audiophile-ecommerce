@@ -1,5 +1,6 @@
 :host {
     background-color: var(--grey-1);
+    contain: content;
     display: block;
     padding-bottom: 8.8125rem;
     padding-top: 4.9375rem;
