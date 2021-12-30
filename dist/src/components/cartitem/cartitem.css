@@ -3,6 +3,7 @@
 :host {
     align-items: center;
     display: flex;
+    contain: content;
     flex-direction: row;
 }
 

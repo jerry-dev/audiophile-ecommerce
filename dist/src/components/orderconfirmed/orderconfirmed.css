@@ -2,6 +2,7 @@
 
 :host {
     background-color: rgba(0, 0, 0, 0.4);
+    contain: content;
     height: 100%;
     left: 0;
     right: 0;

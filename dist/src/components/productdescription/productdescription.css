@@ -1,6 +1,7 @@
 *,*::before,*::after {padding:0;margin:0;}
 
 #descriptionInnerContainer {
+    contain: content;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

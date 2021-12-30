@@ -2,6 +2,7 @@
 
 :host {
     background-color: var(--black-2);
+    contain: content;
     display: block;
     padding-bottom: 6.125rem;
     padding-top: 6.125rem;

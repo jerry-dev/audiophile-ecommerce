@@ -1,6 +1,7 @@
 :host {
     background-color: var(--white-1);
     border-radius: 0.5rem;
+    contain: content;
     display: block;
     height: auto;
     width: 31.53153%;

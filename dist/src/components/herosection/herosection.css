@@ -5,6 +5,7 @@
     background-image: url("../../../../src/assets/home/desktop/image-hero.jpg");
     background-position: center;
     background-repeat: no-repeat;
+    contain: content;
     display: block;
     padding-bottom: 9.875rem;
     padding-top: 14.0625rem;

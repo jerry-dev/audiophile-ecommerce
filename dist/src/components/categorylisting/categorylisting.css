@@ -2,6 +2,7 @@
 
 :host {
     background-color: var(--white-1);
+    contain: content;
     display: block;
     margin-top: 9.375rem;
 }
@@ -163,7 +164,7 @@ picture > img {
 }
 
 :host([cartReady="true"]) #controlsContainer button,
-:host([cartReady="true"]) #controlsContainer input {
+:host([cartReady="true"]) #controlsContainer #display {
     background-color: var(--grey-1);
     border: none;
     height: 100%;
@@ -325,12 +326,6 @@ picture > img {
         margin-top: 4rem;
         margin-bottom: 120px;
     }
-
-    /* Potentially zombie code line.*/
-    /* Investigate before is delete */
-    /* :host([item="this.getAttribute("groupSize")"]) {
-        margin-bottom: 4.25rem;
-    } */
 
     .listingInnerContainer {
         width: 87.2%;
