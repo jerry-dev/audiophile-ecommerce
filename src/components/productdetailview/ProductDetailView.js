@@ -176,6 +176,7 @@ export default class ProductDetailView extends HTMLElement {
         }
     }
 
+
     incrementInputQuantityValue() {
         const input = this.shadowRoot.querySelector('category-listing').shadowRoot
             .querySelector('#controlsContainer > input');
@@ -191,6 +192,7 @@ export default class ProductDetailView extends HTMLElement {
 
         input.setAttribute('value', 1);
     }
+
 
     addToCart() {
         const input = this.shadowRoot.querySelector('category-listing').shadowRoot
