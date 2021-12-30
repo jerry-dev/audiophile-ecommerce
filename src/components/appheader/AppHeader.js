@@ -107,7 +107,7 @@ export default class AppHeader extends HTMLElement {
 
         nav.appendChild(list);
 
-        const itemsCount = document.createElement('span');
+        const itemsCount = document.createElement('div');
         itemsCount.id = 'itemsCount';
         itemsCount.className = 'empty';
 
