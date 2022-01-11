@@ -4,3 +4,12 @@
     display: block;
     min-height: 100%;
 }
+
+:host(.notReady) {
+    opacity: 0;
+}
+
+:host(.isReady) {
+    opacity: 1;
+    transition: .25s opacity;
+}
